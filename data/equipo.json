@@ -1,0 +1,622 @@
+{
+ "armas": [
+  {
+   "n": "Bastón",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "contundente",
+   "p": [
+    "Versátil (1d8)"
+   ],
+   "m": "Derribar"
+  },
+  {
+   "n": "Daga",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d4",
+   "dt": "perforante",
+   "p": [
+    "Sutil",
+    "Ligera",
+    "Arrojadiza (6/18 m)"
+   ],
+   "m": "Mella"
+  },
+  {
+   "n": "Garrote",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d4",
+   "dt": "contundente",
+   "p": [
+    "Ligera"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Gran clava",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "contundente",
+   "p": [
+    "Dos manos"
+   ],
+   "m": "Empujar"
+  },
+  {
+   "n": "Hacha de mano",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "cortante",
+   "p": [
+    "Ligera",
+    "Arrojadiza (6/18 m)"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Jabalina",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "perforante",
+   "p": [
+    "Arrojadiza (9/36 m)"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Martillo ligero",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d4",
+   "dt": "contundente",
+   "p": [
+    "Ligera",
+    "Arrojadiza (6/18 m)"
+   ],
+   "m": "Mella"
+  },
+  {
+   "n": "Maza",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "contundente",
+   "p": [],
+   "m": "Socavar"
+  },
+  {
+   "n": "Hoz",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d4",
+   "dt": "cortante",
+   "p": [
+    "Ligera"
+   ],
+   "m": "Mella"
+  },
+  {
+   "n": "Lanza",
+   "cat": "sencilla",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "perforante",
+   "p": [
+    "Arrojadiza (6/18 m)",
+    "Versátil (1d8)"
+   ],
+   "m": "Socavar"
+  },
+  {
+   "n": "Ballesta ligera",
+   "cat": "sencilla",
+   "t": "dist",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [
+    "Munición (24/96 m)",
+    "Recarga",
+    "Dos manos"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Dardo",
+   "cat": "sencilla",
+   "t": "dist",
+   "d": "1d4",
+   "dt": "perforante",
+   "p": [
+    "Sutil",
+    "Arrojadiza (6/18 m)"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Arco corto",
+   "cat": "sencilla",
+   "t": "dist",
+   "d": "1d6",
+   "dt": "perforante",
+   "p": [
+    "Munición (24/96 m)",
+    "Dos manos"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Honda",
+   "cat": "sencilla",
+   "t": "dist",
+   "d": "1d4",
+   "dt": "contundente",
+   "p": [
+    "Munición (9/36 m)"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Alabarda",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d10",
+   "dt": "cortante",
+   "p": [
+    "Pesada",
+    "Alcance",
+    "Dos manos"
+   ],
+   "m": "Hendir"
+  },
+  {
+   "n": "Cimitarra",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "cortante",
+   "p": [
+    "Sutil",
+    "Ligera"
+   ],
+   "m": "Mella"
+  },
+  {
+   "n": "Espada a dos manos",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "2d6",
+   "dt": "cortante",
+   "p": [
+    "Pesada",
+    "Dos manos"
+   ],
+   "m": "Rozar"
+  },
+  {
+   "n": "Espada corta",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d6",
+   "dt": "perforante",
+   "p": [
+    "Sutil",
+    "Ligera"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Espada larga",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "cortante",
+   "p": [
+    "Versátil (1d10)"
+   ],
+   "m": "Socavar"
+  },
+  {
+   "n": "Estoque",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [
+    "Sutil"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Gran hacha",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d12",
+   "dt": "cortante",
+   "p": [
+    "Pesada",
+    "Dos manos"
+   ],
+   "m": "Hendir"
+  },
+  {
+   "n": "Guja",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d10",
+   "dt": "cortante",
+   "p": [
+    "Pesada",
+    "Alcance",
+    "Dos manos"
+   ],
+   "m": "Rozar"
+  },
+  {
+   "n": "Hacha de batalla",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "cortante",
+   "p": [
+    "Versátil (1d10)"
+   ],
+   "m": "Derribar"
+  },
+  {
+   "n": "Lanza de caballería",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d10",
+   "dt": "perforante",
+   "p": [
+    "Pesada",
+    "Alcance",
+    "Dos manos salvo montado"
+   ],
+   "m": "Derribar"
+  },
+  {
+   "n": "Látigo",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d4",
+   "dt": "cortante",
+   "p": [
+    "Sutil",
+    "Alcance"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Lucero del alba",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [],
+   "m": "Socavar"
+  },
+  {
+   "n": "Mangual",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "contundente",
+   "p": [],
+   "m": "Socavar"
+  },
+  {
+   "n": "Martillo de guerra",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "contundente",
+   "p": [
+    "Versátil (1d10)"
+   ],
+   "m": "Empujar"
+  },
+  {
+   "n": "Mazo",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "2d6",
+   "dt": "contundente",
+   "p": [
+    "Pesada",
+    "Dos manos"
+   ],
+   "m": "Derribar"
+  },
+  {
+   "n": "Pica",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d10",
+   "dt": "perforante",
+   "p": [
+    "Pesada",
+    "Alcance",
+    "Dos manos"
+   ],
+   "m": "Empujar"
+  },
+  {
+   "n": "Pico de guerra",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [
+    "Versátil (1d10)"
+   ],
+   "m": "Socavar"
+  },
+  {
+   "n": "Tridente",
+   "cat": "marcial",
+   "t": "cc",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [
+    "Arrojadiza (6/18 m)",
+    "Versátil (1d10)"
+   ],
+   "m": "Derribar"
+  },
+  {
+   "n": "Arco largo",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1d8",
+   "dt": "perforante",
+   "p": [
+    "Munición (45/180 m)",
+    "Pesada",
+    "Dos manos"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Ballesta de mano",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1d6",
+   "dt": "perforante",
+   "p": [
+    "Munición (9/36 m)",
+    "Ligera",
+    "Recarga"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Ballesta pesada",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1d10",
+   "dt": "perforante",
+   "p": [
+    "Munición (30/120 m)",
+    "Pesada",
+    "Recarga",
+    "Dos manos"
+   ],
+   "m": "Empujar"
+  },
+  {
+   "n": "Cerbatana",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1",
+   "dt": "perforante",
+   "p": [
+    "Munición (7,5/30 m)",
+    "Recarga"
+   ],
+   "m": "Vejar"
+  },
+  {
+   "n": "Mosquete",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1d12",
+   "dt": "perforante",
+   "p": [
+    "Munición (12/36 m)",
+    "Recarga",
+    "Dos manos"
+   ],
+   "m": "Lentitud"
+  },
+  {
+   "n": "Pistola",
+   "cat": "marcial",
+   "t": "dist",
+   "d": "1d10",
+   "dt": "perforante",
+   "p": [
+    "Munición (9/27 m)",
+    "Recarga"
+   ],
+   "m": "Vejar"
+  }
+ ],
+ "armaduras": [
+  {
+   "n": "Armadura acolchada",
+   "cat": "ligera",
+   "ca": 11,
+   "maxDex": null,
+   "str": 0,
+   "sig": true
+  },
+  {
+   "n": "Armadura de cuero",
+   "cat": "ligera",
+   "ca": 11,
+   "maxDex": null,
+   "str": 0,
+   "sig": false
+  },
+  {
+   "n": "Armadura de cuero tachonado",
+   "cat": "ligera",
+   "ca": 12,
+   "maxDex": null,
+   "str": 0,
+   "sig": false
+  },
+  {
+   "n": "Armadura de pieles",
+   "cat": "media",
+   "ca": 12,
+   "maxDex": 2,
+   "str": 0,
+   "sig": false
+  },
+  {
+   "n": "Camisote de mallas",
+   "cat": "media",
+   "ca": 13,
+   "maxDex": 2,
+   "str": 0,
+   "sig": false
+  },
+  {
+   "n": "Cota de escamas",
+   "cat": "media",
+   "ca": 14,
+   "maxDex": 2,
+   "str": 0,
+   "sig": true
+  },
+  {
+   "n": "Coraza",
+   "cat": "media",
+   "ca": 14,
+   "maxDex": 2,
+   "str": 0,
+   "sig": false
+  },
+  {
+   "n": "Media armadura",
+   "cat": "media",
+   "ca": 15,
+   "maxDex": 2,
+   "str": 0,
+   "sig": true
+  },
+  {
+   "n": "Cota de anillas",
+   "cat": "pesada",
+   "ca": 14,
+   "maxDex": 0,
+   "str": 0,
+   "sig": true
+  },
+  {
+   "n": "Cota de mallas",
+   "cat": "pesada",
+   "ca": 16,
+   "maxDex": 0,
+   "str": 13,
+   "sig": true
+  },
+  {
+   "n": "Armadura de bandas",
+   "cat": "pesada",
+   "ca": 17,
+   "maxDex": 0,
+   "str": 15,
+   "sig": true
+  },
+  {
+   "n": "Armadura de placas",
+   "cat": "pesada",
+   "ca": 18,
+   "maxDex": 0,
+   "str": 15,
+   "sig": true
+  },
+  {
+   "n": "Escudo",
+   "cat": "escudo",
+   "ca": 2,
+   "maxDex": null,
+   "str": 0,
+   "sig": false
+  }
+ ],
+ "paquetes": {
+  "Paquete de explorador": [
+   "Mochila",
+   "Saco de dormir",
+   "2 frascos de aceite",
+   "10 días de raciones",
+   "Cuerda",
+   "Yesquero",
+   "10 antorchas",
+   "Odre"
+  ],
+  "Paquete de explorador de mazmorras": [
+   "Mochila",
+   "Abrojos",
+   "Palanca",
+   "2 frascos de aceite",
+   "10 días de raciones",
+   "Cuerda",
+   "Yesquero",
+   "10 antorchas",
+   "Odre"
+  ],
+  "Paquete de artista": [
+   "Mochila",
+   "Saco de dormir",
+   "Campana",
+   "Linterna sorda",
+   "3 frascos de aceite",
+   "9 días de raciones",
+   "Yesquero",
+   "Odre"
+  ],
+  "Paquete de erudito": [
+   "Mochila",
+   "Libro",
+   "Tinta",
+   "Pluma",
+   "Lámpara",
+   "10 frascos de aceite",
+   "10 hojas de pergamino",
+   "Yesquero"
+  ],
+  "Paquete de sacerdote": [
+   "Mochila",
+   "Manta",
+   "Agua bendita",
+   "Lámpara",
+   "7 días de raciones",
+   "Túnica",
+   "Yesquero"
+  ],
+  "Paquete de ladrón": [
+   "Mochila",
+   "Cojinetes de bolas",
+   "Campana",
+   "10 velas",
+   "Palanca",
+   "Linterna con capucha",
+   "7 frascos de aceite",
+   "5 días de raciones",
+   "Cuerda",
+   "Yesquero",
+   "Odre"
+  ]
+ }
+}
