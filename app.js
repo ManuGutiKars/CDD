@@ -34,7 +34,13 @@ let ch,roster,step,panel=null,toastT,delArm=null,DL=null;
 try{window.claude&&window.claude.use&&window.claude.use('downloads').then(d=>{DL=d;if(panel)renderPanel()},()=>{})}catch(e){}
 const fname=s=>(String(s||'personaje').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w -]+/g,'').trim().replace(/\s+/g,'-')||'personaje');
 async function descargar(filename,data){
-  if(!DL){toast('Las descargas no están disponibles aquí. Usa Copiar.');return}
+  if(!DL){
+    if(!window.claude){ // web normal (por ejemplo, alojada en Vercel): descarga directa del navegador
+      try{const type=filename.endsWith('.json')?'application/json':'text/plain';const url=URL.createObjectURL(new Blob([data],{type:type+';charset=utf-8'}));
+        const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Descargado: '+filename)}
+      catch(e){toast('No se pudo descargar. Usa Copiar.')}
+      return}
+    toast('Las descargas no están disponibles aquí. Usa Copiar.');return}
   try{await DL.save({filename,data});toast('Descargado: '+filename)}
   catch(e){const c=e&&e.code;if(c==='declined')return;if(c==='rate_limited'){toast('Ya hay una descarga pendiente de confirmar');return}toast('No se pudo descargar ('+(c||'error')+'). Usa Copiar.')}
 }
@@ -241,9 +247,9 @@ function renderPanel(){
     p.innerHTML=`<div class="pn-h"><h2>Mis personajes</h2><button class="btn small" data-act="panel" data-k="">Cerrar</button></div>`+(roster.length?`<div class="roster">${roster.map(r=>`<div class="it ${r.id===ch.id?'cur':''}"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${esc(D.clases[r.cls]?.n||'')} ${r.lvl} · ${esc(D.origen.especies[r.species]?.n||'')} · ${esc(D.origen.trasfondos[r.bg]?.n||'')}</span></div><button class="btn small" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`:'<p class="muted">Aún no has guardado ningún personaje. Pulsa Guardar para añadir el actual. Se guardan en este navegador.</p>');
   }else{
     p.innerHTML=`<div class="pn-h"><h2>Exportar e importar</h2><button class="btn small" data-act="panel" data-k="">Cerrar</button></div>
-    ${DL?`<div class="row-c"><button class="btn primary" data-act="dljson" id="b-djson">Descargar personaje (.json)</button><button class="btn" data-act="dltext" id="b-dtext">Descargar ficha (.txt)</button>${roster.length?`<button class="btn" data-act="dlall" id="b-dall">Descargar todos los guardados (.json)</button>`:''}</div>`:''}
+    ${(DL||!window.claude)?`<div class="row-c"><button class="btn primary" data-act="dljson" id="b-djson">Descargar personaje (.json)</button><button class="btn" data-act="dltext" id="b-dtext">Descargar ficha (.txt)</button>${roster.length?`<button class="btn" data-act="dlall" id="b-dall">Descargar todos los guardados (.json)</button>`:''}</div>`:''}
     <div class="row-c"><button class="btn" data-act="copytext" id="b-ctext">Copiar ficha en texto</button><button class="btn" data-act="copyjson" id="b-cjson">Copiar JSON del personaje</button></div>
-    <p class="muted small">${DL?'Al descargar, tu navegador te pedirá confirmación. ':''}El JSON guarda todas tus elecciones y se puede volver a importar aquí.</p>
+    <p class="muted small">${(DL||!window.claude)?'Al descargar, tu navegador te pedirá confirmación. ':''}El JSON guarda todas tus elecciones y se puede volver a importar aquí.</p>
     <label class="sub-label" for="imp">Importar: pega aquí un JSON o elige un archivo</label>
     <textarea id="imp" rows="4" placeholder='{"name":"…","cls":"…"}'></textarea>
     <div class="row-c"><button class="btn primary" data-act="import">Importar</button><input type="file" id="impfile" accept=".json,application/json" aria-label="Elegir archivo JSON"></div>`;
