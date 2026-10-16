@@ -18,8 +18,34 @@ const NAMES=['Tilda Ramasco','Brannoc Peñagris','Ysolde Varamar','Kael Orrin','
 
 function blank(){return {v:1,id:uid(),name:'',player:'',align:'Sin definir',lang:'Común y dos idiomas a elegir',notes:'',
   cls:'guerrero',lvl:1,sub:'',land:'arid',order:'',bg:'soldado',species:'humano',spSub:'',size:'Mediano',feat2:'duro',
-  method:'array',arr:{str:15,dex:14,con:13,int:8,wis:12,cha:10},pb:{str:8,dex:8,con:8,int:8,wis:8,cha:8},man:{str:10,dex:10,con:10,int:10,wis:10,cha:10},rolls:'',
+  method:'array',arr:{str:15,dex:14,con:13,int:8,wis:12,cha:10},pb:{str:8,dex:8,con:8,int:8,wis:8,cha:8},roll:{sets:[],asg:{}},man:{str:10,dex:10,con:10,int:10,wis:10,cha:10},rolls:'',
   bgMode:'21',p2:'',p1:'',sk:{},ex:{},feats:{},eqCls:'A',eqBg:'A',armor:'auto',shield:true,spells:{picks:[],book:[],disc:[]}}}
+function dado(n){try{const a=new Uint32Array(1);crypto.getRandomValues(a);return 1+a[0]%n}catch(e){return 1+Math.floor(Math.random()*n)}}
+function rollSort(){const r=ch.roll;if(!r||!r.sets.length)return;const idx=r.sets.map((t,i)=>[t[0]+t[1]+t[2],i]).sort((x,y)=>y[0]-x[0]).map(x=>x[1]);r.asg={};D.clases[ch.cls].ord.forEach((ab,i)=>r.asg[ab]=idx[i])}
+let advMode='n',rollLog=[];
+function tirarD20(label,bon){
+  const a=dado(20),c=dado(20);let u=a,det=String(a);
+  if(advMode==='v'){u=Math.max(a,c);det=`${a} · ${c} con ventaja`}else if(advMode==='d'){u=Math.min(a,c);det=`${a} · ${c} con desventaja`}
+  mostrarTirada({label,total:u+bon,det:`d20 (${det})${bon?' '+R.sg(bon):''}`,crit:u===20?'nat':u===1?'pif':''});
+}
+function tirarExpr(label,expr){
+  const m=String(expr).replace(/−/g,'-').match(/(\d*)d(\d+)\s*(?:([+-])\s*(\d+))?/);if(!m)return;
+  const n=+(m[1]||1),f=+m[2],mod=m[3]?(m[3]==='-'?-1:1)*+m[4]:0,ds=Array.from({length:n},()=>dado(f));
+  mostrarTirada({label,total:ds.reduce((s,x)=>s+x,0)+mod,det:`${n}d${f} (${ds.join(' + ')})${mod?' '+R.sg(mod):''}`,crit:''});
+}
+function mostrarTirada(t){
+  rollLog.unshift(t);rollLog=rollLog.slice(0,12);pintarLog();
+  let p=$('#dicepop');if(!p){p=document.createElement('div');p.id='dicepop';p.setAttribute('role','status');document.body.appendChild(p)}
+  p.className='show '+t.crit;p.innerHTML=`<span class="dl">${esc(t.label)}</span><span class="dv">${t.total}</span><span class="dd">${esc(t.det)}${t.crit==='nat'?' · ¡20 natural!':t.crit==='pif'?' · 1 natural':''}</span>`;
+  clearTimeout(mostrarTirada.t);mostrarTirada.t=setTimeout(()=>p.classList.remove('show'),3500);
+}
+function pintarLog(){const l=$('#dlog');if(l)l.innerHTML=rollLog.length?rollLog.map(t=>`<li class="${t.crit}"><b>${t.total}</b><span>${esc(t.label)}</span><span class="muted small">${esc(t.det)}</span></li>`).join(''):'<li class="muted">Pulsa cualquier característica, salvación, habilidad, ataque o dado.</li>'}
+function diceTray(){return `<div class="sec dtray"><h3>Tiradas</h3>
+  <div class="row-c"><div class="seg" role="group" aria-label="Modo de tirada">${[['n','Normal'],['v','Ventaja'],['d','Desventaja']].map(([k,l])=>`<button data-act="adv" data-k="${k}" aria-pressed="${advMode===k}">${l}</button>`).join('')}</div>
+  <label class="muted small" for="dcount">Cantidad</label><select id="dcount">${[1,2,3,4,5,6,8,10].map(n=>`<option>${n}</option>`).join('')}</select>
+  <label class="muted small" for="dmod">Mod.</label><input type="number" id="dmod" value="0" min="-20" max="30" style="width:4.5em"></div>
+  <div class="dbtns">${[4,6,8,10,12,20,100].map(f=>`<button class="btn small" data-act="rdie" data-k="${f}">d${f}</button>`).join('')}<button class="btn small" data-act="rclear">Limpiar</button></div>
+  <ul id="dlog" class="dlog"></ul></div>`}
 function suggestArr(c){const o=D.clases[c.cls].ord;c.arr={};o.forEach((a,i)=>c.arr[a]=R.ARRAY[i])}
 function sample(){
   const c=blank();Object.assign(c,{name:'Ysolde Varamar',align:'Neutral bueno',lang:'Común, Élfico, Dracónico',notes:'Personaje de ejemplo. Archivista de la Torre de Candlekeep que salió a buscar un grimorio perdido.',
@@ -139,22 +165,28 @@ function stEspecie(el,S){
   <div class="row"><div class="fld grow"><label for="f-lang">Idiomas</label><input type="text" id="f-lang" data-t="lang" maxlength="120" value="${esc(ch.lang)}"></div></div></div>`;
 }
 function stCaract(el,S){
-  const c=S.c,b=ch.method==='array'?ch.arr:ch.method==='pb'?ch.pb:ch.man;
+  const c=S.c,b=R.base(ch),r=ch.roll=ch.roll||{sets:[],asg:{}};
   const spent=R.ABS.reduce((s,[k])=>s+R.PBC[ch.pb[k]],0);
+  const tot3=t=>t[0]+t[1]+t[2];
   let h=`<div class="panel">${head(4,'Características','Las mejoras del trasfondo y las dotes se suman solas')}
-  <div class="row-c"><div class="seg" role="group" aria-label="Método">${[['array','Conjunto estándar'],['pb','Compra de puntos'],['man','Tiradas o manual']].map(([k,l])=>`<button data-act="method" data-k="${k}" aria-pressed="${ch.method===k}">${l}</button>`).join('')}</div>
+  <div class="row-c"><div class="seg" role="group" aria-label="Método">${[['array','Conjunto estándar'],['pb','Compra de puntos'],['roll','Tirar dados'],['man','Manual']].map(([k,l])=>`<button data-act="method" data-k="${k}" aria-pressed="${ch.method===k}">${l}</button>`).join('')}</div>
   ${ch.method==='array'?`<button class="btn small" data-act="suggest">Ordenar para ${c.n.toLowerCase()}</button>`:''}
-  ${ch.method==='man'?`<button class="btn small" data-act="roll">Tirar 4d6 ×6</button>`:''}
-  ${ch.method==='pb'?`<span class="muted">Puntos gastados <b class="ink">${spent} / 27</b></span>`:''}</div>
-  ${ch.method==='man'&&ch.rolls?`<p class="muted">Tiradas: ${esc(ch.rolls)}</p>`:''}
-  <div class="tbl-wrap"><table class="abt"><thead><tr><th>Característica</th><th>Base</th><th>Trasfondo</th><th>Otros</th><th>Total</th><th>Mod.</th></tr></thead><tbody>`;
+  ${ch.method==='pb'?`<span class="muted">Puntos gastados <b class="ink">${spent} / 27</b></span>`:''}</div>`;
+  if(ch.method==='roll'){
+    if(!r.sets.length)h+=`<div class="rollbox empty"><p>Se tiran <b>4d6</b> seis veces y en cada tirada se descarta el dado más bajo. Luego asignas cada resultado a una característica.</p><button class="btn pri" id="b-roll" data-act="roll">🎲 Tirar las características</button></div>`;
+    else h+=`<div class="rollbox"><div class="rsets">${r.sets.map((t,i)=>`<div class="rset"><span class="rn">Tirada ${i+1}</span><span class="dice">${t.map((v,j)=>`<span class="die ${j===3?'drop':''}">${v}</span>`).join('')}</span><span class="rt">${tot3(t)}</span><span class="ra">${esc(R.ABS.filter(([a])=>+r.asg[a]===i).map(([,ab])=>ab).join('')||'—')}</span></div>`).join('')}</div>
+    <div class="row-c"><span class="muted">Suma <b class="ink">${r.sets.reduce((s,t)=>s+tot3(t),0)}</b></span><button class="btn small" data-act="roll">Volver a tirar</button><button class="btn small" data-act="rsort">Ordenar para ${c.n.toLowerCase()}</button><button class="btn small" data-act="r2man">Editar a mano</button></div></div>`;
+  }
+  if(ch.method==='man')h+=`<p class="muted">Escribe las puntuaciones que hayas sacado con tus propios dados o las que te indique tu DM (de 3 a 20).</p>`;
+  h+=`<div class="tbl-wrap"><table class="abt"><thead><tr><th>Característica</th><th>Base</th><th>Trasfondo</th><th>Otros</th><th>Total</th><th>Mod.</th></tr></thead><tbody>`;
   R.ABS.forEach(([k,ab,full])=>{
     let ctl;
     if(ch.method==='array')ctl=sel('ar-'+k,R.ARRAY.map(v=>[v,v]),b[k],`data-f="arr" data-k="${k}" aria-label="${full}"`);
     else if(ch.method==='pb'){const v=ch.pb[k],up=v<15&&spent-R.PBC[v]+R.PBC[v+1]<=27;ctl=`<span class="pbctl"><button data-act="pb" data-k="${k}" data-d="-1" ${v<=8?'disabled':''} aria-label="Bajar ${full}">−</button><output>${v}</output><button data-act="pb" data-k="${k}" data-d="1" ${up?'':'disabled'} aria-label="Subir ${full}">+</button></span>`}
+    else if(ch.method==='roll')ctl=r.sets.length?sel('rl-'+k,r.sets.map((t,i)=>[i,`${tot3(t)} (tirada ${i+1})`]),r.asg[k],`data-f="rasg" data-k="${k}" aria-label="${full}"`):'<span class="muted">—</span>';
     else ctl=`<input type="number" id="mn-${k}" min="3" max="20" data-f="man" data-k="${k}" value="${b[k]}" aria-label="${full}">`;
     const other=S.sc[k]-Math.min(20,(+b[k]||0)+S.bon[k]);
-    h+=`<tr class="${c.pri.includes(k)?'pri':''}"><td class="ab">${ab}<small>${full}</small></td><td>${ctl}</td><td class="bon">${S.bon[k]?'+'+S.bon[k]:''}</td><td class="bon">${other?'+'+other:''}</td><td class="tot">${S.sc[k]}</td><td class="mod">${R.sg(S.mo[k])}</td></tr>`;
+    h+=`<tr class="${c.pri.includes(k)?'pri':''}"><td class="ab">${ab}<small>${full}</small></td><td>${ctl}</td><td class="bon">${S.bon[k]?'+'+S.bon[k]:''}</td><td class="bon">${other>0?'+'+other:''}</td><td class="tot">${S.sc[k]}</td><td class="mod">${R.sg(S.mo[k])}</td></tr>`;
   });
   h+=`</tbody></table></div><p class="muted">“Otros” incluye mejoras de característica, dotes y rasgos de nivel 20. Máximo 20 salvo rasgos que digan lo contrario.</p></div>`;
   el.innerHTML=h;
@@ -207,17 +239,17 @@ function stEquipo(el,S){
   el.innerHTML=h;
 }
 function attacksTable(S){
-  return `<div class="tbl-wrap"><table class="atk"><thead><tr><th>Arma</th><th>Ataque</th><th>Daño</th><th>Propiedades</th></tr></thead><tbody>${S.atks.map(a=>`<tr><td><b>${esc(a.n)}</b>${a.prof?'':' <span class="bad small">sin competencia</span>'}</td><td class="num">${R.sg(a.hit)}</td><td>${esc(a.dmg)} ${esc(a.dt)}</td><td class="muted small">${esc([...a.p,a.m?'Maestría: '+a.m:''].filter(Boolean).join(' · '))}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="tbl-wrap"><table class="atk"><thead><tr><th>Arma</th><th>Ataque</th><th>Daño</th><th>Propiedades</th></tr></thead><tbody>${S.atks.map(a=>`<tr><td><b>${esc(a.n)}</b>${a.prof?'':' <span class="bad small">sin competencia</span>'}</td><td class="num"><button type="button" class="rbtn" data-act="r20" data-k="Ataque · ${esc(a.n)}" data-b="${a.hit}" title="Tirar ataque">${R.sg(a.hit)}</button></td><td><button type="button" class="rbtn" data-act="rdmg" data-k="Daño · ${esc(a.n)}" data-e="${esc(a.dmg)}" title="Tirar daño">${esc(a.dmg)}</button> ${esc(a.dt)}</td><td class="muted small">${esc([...a.p,a.m?'Maestría: '+a.m:''].filter(Boolean).join(' · '))}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function stConjuros(el,S){
   el.innerHTML=`<div class="panel">${head(8,'Conjuros','Las cantidades dependen de tu clase y nivel')}<div id="spbox"></div></div>`;
   Conjuros.render(ch,$('#spbox'),S);
 }
-function abCards(S){return `<div class="abil">${R.ABS.map(([k,ab])=>`<div class="ab-card ${S.c.pri.includes(k)?'pri':''}"><span class="l">${ab}</span><span class="m">${R.sg(S.mo[k])}</span><span class="s">${S.sc[k]}</span></div>`).join('')}</div>`}
+function abCards(S){return `<div class="abil">${R.ABS.map(([k,ab,f])=>`<button type="button" class="ab-card ${S.c.pri.includes(k)?'pri':''}" data-act="r20" data-k="Prueba de ${f}" data-b="${S.mo[k]}" title="Tirar prueba de ${f}"><span class="l">${ab}</span><span class="m">${R.sg(S.mo[k])}</span><span class="s">${S.sc[k]}</span></button>`).join('')}</div>`}
 function statRow(S){return `<div class="stats">
   <div class="stat"><span class="k">Clase de armadura</span><span class="v">${S.ac}</span><span class="x">${esc(S.acn)}</span></div>
   <div class="stat hp"><span class="k">Puntos de golpe</span><span class="v">${S.hp}</span><span class="x">Dados ${S.hd}</span></div>
-  <div class="stat"><span class="k">Iniciativa</span><span class="v">${R.sg(S.init)}</span><span class="x">DES${S.feats.some(f=>f.id==='alerta')?' + Alerta':''}</span></div>
+  <div class="stat roll" role="button" tabindex="0" data-act="r20" data-k="Iniciativa" data-b="${S.init}" title="Tirar iniciativa"><span class="k">Iniciativa 🎲</span><span class="v">${R.sg(S.init)}</span><span class="x">DES${S.feats.some(f=>f.id==='alerta')?' + Alerta':''}</span></div>
   <div class="stat"><span class="k">Velocidad</span><span class="v">${R.m(S.spd)}</span><span class="x">${S.spd} pies</span></div>
   <div class="stat"><span class="k">Bonif. competencia</span><span class="v">+${S.pb}</span><span class="x">Nivel ${S.L}</span></div>
   <div class="stat"><span class="k">Percepción pasiva</span><span class="v">${S.pp}</span><span class="x">Tamaño ${esc(S.size)}</span></div></div>`}
@@ -231,13 +263,14 @@ function stFicha(el,S){
   const sm=Conjuros.summary(ch);
   el.innerHTML=`<article class="sheet"><header class="sh-head"><h2>${esc(ch.name||'Sin nombre')}</h2><div class="sub">${subtitle(S)}${ch.player?' · Jugador: '+esc(ch.player):''}</div></header><div class="sh-body">
   ${abCards(S)}${statRow(S)}
-  ${S.spell?`<div class="spell"><div><span class="k">Lanzamiento</span><span class="v">${R.ABF[S.spell.ab]}</span></div><div><span class="k">CD de salvación</span><span class="v">${S.spell.dc}</span></div><div><span class="k">Ataque de conjuro</span><span class="v">${R.sg(S.spell.atk)}</span></div>${sm?`<div><span class="k">Espacios</span><span class="v sm">${esc(sm.slots)}</span></div>`:''}</div>`:''}
+  ${diceTray()}
+  ${S.spell?`<div class="spell"><div><span class="k">Lanzamiento</span><span class="v">${R.ABF[S.spell.ab]}</span></div><div><span class="k">CD de salvación</span><span class="v">${S.spell.dc}</span></div><div class="roll" role="button" tabindex="0" data-act="r20" data-k="Ataque de conjuro" data-b="${S.spell.atk}"><span class="k">Ataque de conjuro 🎲</span><span class="v">${R.sg(S.spell.atk)}</span></div>${sm?`<div><span class="k">Espacios</span><span class="v sm">${esc(sm.slots)}</span></div>`:''}</div>`:''}
   <div class="cols"><div class="colstack">
-    <div class="sec"><h3>Tiradas de salvación</h3><ul class="plist">${R.ABS.map(([k,,f])=>`<li class="${S.sv.has(k)?'on':''}"><span class="dot2"></span><span class="b">${R.sg(S.saves[k])}</span><span>${f}</span><span></span></li>`).join('')}</ul>${S.aura?`<p class="muted small">Incluye Aura de protección (+${S.aura}).</p>`:''}</div>
+    <div class="sec"><h3>Tiradas de salvación</h3><ul class="plist">${R.ABS.map(([k,,f])=>`<li class="${S.sv.has(k)?'on':''} roll" role="button" tabindex="0" data-act="r20" data-k="Salvación de ${f}" data-b="${S.saves[k]}"><span class="dot2"></span><span class="b">${R.sg(S.saves[k])}</span><span>${f}</span><span></span></li>`).join('')}</ul>${S.aura?`<p class="muted small">Incluye Aura de protección (+${S.aura}).</p>`:''}</div>
     <div class="sec"><h3>Competencias</h3><div class="prof"><div><b>Armadura:</b> ${esc(S.c.arm)}</div><div><b>Armas:</b> ${esc(S.c.wpn)}</div>${S.tools.length?`<div><b>Herramientas:</b> ${esc(S.tools.join('; '))}</div>`:''}<div><b>Idiomas:</b> ${esc(ch.lang||'—')}</div>${S.dv?`<div><b>Sentidos:</b> Visión en la oscuridad ${R.m(S.dv)}</div>`:''}</div></div>
     ${S.prog.length?`<div class="sec"><h3>Recursos de clase</h3><div class="prof">${S.prog.map(([k,v])=>`<div><b>${esc(k)}:</b> ${esc(v)}</div>`).join('')}</div></div>`:''}
   </div>
-  <div class="sec" style="min-width:0"><h3>Habilidades</h3><ul class="plist">${R.SK.map(([k,n,a])=>`<li class="${S.ex.has(k)?'on ex':S.prof.has(k)?'on':''}"><span class="dot2"></span><span class="b">${R.sg(S.skills[k])}</span><span>${n}</span><span class="a">${R.AB[a]}</span></li>`).join('')}</ul></div></div>
+  <div class="sec" style="min-width:0"><h3>Habilidades</h3><ul class="plist">${R.SK.map(([k,n,a])=>`<li class="${S.ex.has(k)?'on ex':S.prof.has(k)?'on':''} roll" role="button" tabindex="0" data-act="r20" data-k="${esc(n)}" data-b="${S.skills[k]}"><span class="dot2"></span><span class="b">${R.sg(S.skills[k])}</span><span>${n}</span><span class="a">${R.AB[a]}</span></li>`).join('')}</ul></div></div>
   <div class="sec"><h3>Ataques</h3>${attacksTable(S)}</div>
   ${sm?`<div class="sec"><h3>Conjuros</h3><div class="prof">${sm.lines.map(([l,ns])=>`<div><b>${l}:</b> ${esc(ns.join(', '))}</div>`).join('')||'<div class="muted">Sin conjuros elegidos.</div>'}${sm.book.length?`<div><b>En el libro, sin preparar:</b> ${esc(sm.book.join(', '))}</div>`:''}</div><p class="muted small">★ siempre preparado por tu subclase.</p></div>`:''}
   <div class="sec"><h3>Rasgos de clase y subclase</h3><div class="feats">${S.feat.map(f=>`<div class="feat"><b>${esc(f.n)}</b> <span class="tg s">${esc(f.src)} ${f.l}</span><br>${esc(f.d)}</div>`).join('')}</div></div>
@@ -247,6 +280,7 @@ function stFicha(el,S){
   <div class="sec"><h3>Notas</h3><textarea id="f-notes" data-t="notes" rows="4" placeholder="Historia, rasgos de personalidad, aliados…">${esc(ch.notes)}</textarea>
   <div class="row"><div class="fld"><label for="f-player">Jugador</label><input type="text" id="f-player" data-t="player" maxlength="40" value="${esc(ch.player)}"></div></div></div>
   </div></article>`;
+  pintarLog();
 }
 
 /* ---------- Personajes y exportar ---------- */
@@ -324,8 +358,14 @@ document.addEventListener('click',e=>{
     case 'method':ch.method=k;break;
     case 'suggest':suggestArr(ch);break;
     case 'pb':ch.pb[k]=Math.max(8,Math.min(15,ch.pb[k]+ +b.dataset.d));break;
-    case 'roll':{const rs=[];for(let i=0;i<6;i++){const d=[1,2,3,4].map(()=>1+Math.floor(Math.random()*6)).sort((x,y)=>y-x);rs.push(d[0]+d[1]+d[2])}
-      const so=[...rs].sort((x,y)=>y-x);D.clases[ch.cls].ord.forEach((ab,i)=>ch.man[ab]=so[i]);ch.rolls=rs.join(', ')+' — ordenadas según la clase';break}
+    case 'roll':{const sets=[];for(let i=0;i<6;i++)sets.push([1,2,3,4].map(()=>dado(6)).sort((x,y)=>y-x));ch.roll={sets,asg:{}};rollSort();toast('¡Dados tirados!');break}
+    case 'rsort':rollSort();break;
+    case 'r2man':{const bb=R.base(ch);ch.man={...bb};ch.method='man';toast('Copiado a Manual');break}
+    case 'r20':tirarD20(k,+b.dataset.b||0);return;
+    case 'rdmg':tirarExpr(k,b.dataset.e||'');return;
+    case 'rdie':{const n=+(($('#dcount')||{}).value||1),m=+(($('#dmod')||{}).value||0);tirarExpr(n+'d'+k,n+'d'+k+(m?(m>0?' + ':' − ')+Math.abs(m):''));return}
+    case 'adv':advMode=k;document.querySelectorAll('[data-act="adv"]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===k));return;
+    case 'rclear':rollLog=[];pintarLog();return;
     case 'sk':{const arr=ch.sk[b.dataset.p]=ch.sk[b.dataset.p]||[];const i=arr.indexOf(k);i>=0?arr.splice(i,1):arr.push(k);break}
     case 'ex':{const arr=ch.ex[b.dataset.p]=ch.ex[b.dataset.p]||[];const i=arr.indexOf(k);i>=0?arr.splice(i,1):arr.push(k);break}
     case 'featab1':ch.feats[b.dataset.s].ab=[k];break;
@@ -346,11 +386,13 @@ document.addEventListener('click',e=>{
   }
   render();
 });
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role="button"][data-act]')){e.preventDefault();e.target.click()}});
 document.addEventListener('change',e=>{
   const el=e.target;
   if(el.id==='impfile'&&el.files&&el.files[0]){const fr=new FileReader();fr.onload=()=>importJSON(String(fr.result));fr.readAsText(el.files[0]);return}
   const f=el.dataset.f;if(!f)return;
   if(f==='arr'){const k=el.dataset.k,v=+el.value,old=ch.arr[k];const o=Object.keys(ch.arr).find(x=>x!==k&&ch.arr[x]===v);if(o)ch.arr[o]=old;ch.arr[k]=v}
+  else if(f==='rasg'){const r=ch.roll,k=el.dataset.k,v=+el.value,old=r.asg[k];const o=Object.keys(r.asg).find(x=>x!==k&&+r.asg[x]===v);if(o)r.asg[o]=old;r.asg[k]=v}
   else if(f==='man')ch.man[el.dataset.k]=Math.max(3,Math.min(20,parseInt(el.value)||10));
   else if(f==='feat'){ch.feats[el.dataset.k]={id:el.value,ab:[]}}
   else if(f==='featab'){ch.feats[el.dataset.k].ab[+el.dataset.i]=el.value}

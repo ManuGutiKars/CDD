@@ -63,7 +63,8 @@ function featsTaken(ch){
 }
 
 // ---- Características ----
-function base(ch){return ch.method==='array'?ch.arr:ch.method==='pb'?ch.pb:ch.man}
+function base(ch){if(ch.method==='roll'){const r=ch.roll||{},o={};ABS.forEach(([a])=>{const t=r.sets&&r.asg?r.sets[r.asg[a]]:null;o[a]=t?t[0]+t[1]+t[2]:10});return o}
+  return ch.method==='array'?ch.arr:ch.method==='pb'?ch.pb:ch.man}
 function abilities(ch){
   const b=base(ch),bg=D.origen.trasfondos[ch.bg],sc={},bon={str:0,dex:0,con:0,int:0,wis:0,cha:0};
   if(ch.bgMode==='111')bg.ab.forEach(a=>bon[a]+=1);else{bon[ch.p2]+=2;bon[ch.p1]+=1}
@@ -263,5 +264,5 @@ function sheet(ch){
     hd:L+'d'+c.hd,size:sp.size==='choice'?ch.size:sp.size,dv:Math.max((spSub&&spSub.dv)||sp.dv||0,(s&&s.dv)||0)};
 }
 
-return {ABS,AB,ABF,SK,SKN,SKA,ALLSK,ARRAY,PBC,md,sg,pbOf,m,init,cls,subOf,subOn,featSlots,featsTaken,abilities,skillPools,expertisePools,fixedSkills,profSkills,normalize,inventory,gear,sheet,casterOf,PACT,ARC,CASTER};
+return {base,ABS,AB,ABF,SK,SKN,SKA,ALLSK,ARRAY,PBC,md,sg,pbOf,m,init,cls,subOf,subOn,featSlots,featsTaken,abilities,skillPools,expertisePools,fixedSkills,profSkills,normalize,inventory,gear,sheet,casterOf,PACT,ARC,CASTER};
 })();
