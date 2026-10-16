@@ -11,7 +11,8 @@
   "barbaro": "Senda",
   "guerrero": "Arquetipo",
   "monje": "Tradición",
-  "picaro": "Arquetipo"
+  "picaro": "Arquetipo",
+  "artifice": "Especialización"
  },
  "tierras": {
   "arid": "Árida",
@@ -45,7 +46,8 @@
       "Evasión dirigida",
       "Obtienes Evasión y puedes compartirla con las criaturas a 1,5 m de ti que fallen la misma salvación."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "glamour",
@@ -86,7 +88,8 @@
       "Majestad inquebrantable",
       "Acción adicional, 1 minuto: la primera vez en cada turno que una criatura te ataca, hace salvación de CAR o el ataque falla y la criatura tiene desventaja en salvaciones contra tus conjuros."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "saber",
@@ -113,7 +116,8 @@
       "Habilidad sin par",
       "Si fallas una prueba de característica o un ataque, gastas Inspiración y sumas el dado. Si aun así fallas, no se gasta."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "valor",
@@ -138,6 +142,98 @@
       14,
       "Magia de batalla",
       "Tras lanzar un conjuro como acción, puedes hacer un ataque con arma como acción adicional."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "luna",
+    "n": "Colegio de la Luna",
+    "src": "Heroes of Faerûn",
+    "g": [
+     [
+      6,
+      [
+       "Rayo Lunar"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Inspiración lunar",
+      "Al dar Inspiración te vuelves invisible y te teletransportas 9 m; puedes gastar Inspiración para sumar a una curación y dar +3 m de velocidad."
+     ],
+     [
+      3,
+      "Saber primigenio",
+      "Druídico, un truco de druida extra y una habilidad entre Trato con animales, Perspicacia, Medicina, Naturaleza, Percepción o Supervivencia."
+     ],
+     [
+      6,
+      "Bendición de la luz lunar",
+      "Siempre tienes preparado Rayo lunar; quien falle la salvación cura 2d4 a otra criatura."
+     ],
+     [
+      14,
+      "Esplendor del ocaso",
+      "Tu aliado también se vuelve invisible y se teletransporta, y puedes usar 1d6 en lugar de gastar Inspiración."
+     ]
+    ],
+    "skills": {
+     "n": 1,
+     "from": [
+      "animal",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "survival"
+     ]
+    }
+   },
+   {
+    "id": "espiritus",
+    "n": "Colegio de los Espíritus",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Orientación"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Susurros guía",
+      "Conoces Orientación con 18 m de alcance."
+     ],
+     [
+      3,
+      "Foco espiritual",
+      "Competencia con una baraja; usas velas, bolas o barajas como canalizador."
+     ],
+     [
+      3,
+      "Espíritus del más allá",
+      "Al dar Inspiración canalizas un espíritu al azar (o elegido gastando otro uso) que luego liberas sobre una criatura."
+     ],
+     [
+      6,
+      "Poder del más allá",
+      "Una vez por turno +1d6 al daño o curación de un conjuro de bardo."
+     ],
+     [
+      6,
+      "Manifestación espiritual",
+      "Lanzas Espíritu guardián sin espacio 1 vez por descanso largo."
+     ],
+     [
+      14,
+      "Conexión mística",
+      "Tiras dos veces en la tabla de espíritus y eliges."
      ]
     ]
    }
@@ -200,7 +296,8 @@
       "Magia hechizante",
       "Al lanzar un conjuro de encantamiento o ilusión con espacio, lanzas también Paso Brumoso gratis."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "celestial",
@@ -260,7 +357,8 @@
       "Venganza abrasadora",
       "Cuando tú o un aliado a 18 m hacéis una salvación de muerte, recupera la mitad de sus PG y los enemigos a 9 m sufren 2d8 + CAR radiante y quedan cegados. 1 vez por descanso largo."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "infernal",
@@ -318,7 +416,8 @@
       "Lanzar a través del infierno",
       "Al impactar, el objetivo hace salvación de CAR o desaparece a un paraje infernal: sufre 8d10 psíquico y queda incapacitado. 1 vez por descanso largo o con un espacio de pacto."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "antiguo",
@@ -392,6 +491,66 @@
       "Crear esclavo",
       "Al lanzar Invocar Aberración no necesitas concentración y la aberración gana PG temporales; hace daño psíquico extra a objetivos bajo tu Maleficio."
      ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "muerto",
+    "n": "Patrón No Muerto",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Maleficio (Bane)",
+       "Cegar/Sordera",
+       "Fuerza Fantasmal",
+       "Rayo Nauseabundo"
+      ]
+     ],
+     [
+      5,
+      [
+       "Hablar con los Muertos",
+       "Invocar Muerto Viviente|3"
+      ]
+     ],
+     [
+      7,
+      [
+       "Invisibilidad Mayor",
+       "Asesino Fantasmal"
+      ]
+     ],
+     [
+      9,
+      [
+       "Cápsula Antivida",
+       "Nube Aniquiladora|5"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Forma del terror",
+      "Acción adicional, 1 minuto: PG temporales 1d10 + nivel, inmune a asustado y tus impactos asustan. CAR veces por descanso largo."
+     ],
+     [
+      6,
+      "Tocado por la tumba",
+      "Tu daño necrótico ignora la resistencia, puedes volver necrótico un conjuro y añades un dado en Forma del terror."
+     ],
+     [
+      10,
+      "Cáscara necrótica",
+      "Resistencia necrótica (inmunidad en forma) y al caer a 0 PG estallas y vuelves con el doble de tu nivel."
+     ],
+     [
+      14,
+      "Terror superior",
+      "En forma: resistencia física, vuelo y atraviesas objetos; conjuros sin componentes."
+     ]
     ]
    }
   ],
@@ -452,7 +611,8 @@
       "Sanación suprema",
       "Tus dados de curación siempre dan el máximo."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "luz",
@@ -510,7 +670,8 @@
       "Corona de luz",
       "Aura de luz solar 1 minuto: los enemigos tienen desventaja en salvaciones contra tu Resplandor y conjuros de fuego o radiantes."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "engano",
@@ -568,7 +729,8 @@
       "Duplicidad mejorada",
       "Los aliados tienen ventaja contra criaturas junto al duplicado y al terminar curas PG igual a tu nivel de clérigo."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "guerra",
@@ -625,6 +787,141 @@
       17,
       "Avatar de batalla",
       "Resistencia al daño contundente, cortante y perforante."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "conocimiento",
+    "n": "Dominio del Conocimiento",
+    "src": "Heroes of Faerûn",
+    "g": [
+     [
+      3,
+      [
+       "Orden",
+       "Comprender Idiomas",
+       "Detectar Magia",
+       "Detectar Pensamientos",
+       "Identificar",
+       "Púa Mental|2"
+      ]
+     ],
+     [
+      5,
+      [
+       "Disipar Magia",
+       "Indetectable",
+       "Idiomas"
+      ]
+     ],
+     [
+      7,
+      [
+       "Ojo Arcano",
+       "Destierro",
+       "Confusión"
+      ]
+     ],
+     [
+      9,
+      [
+       "Conocimiento Legendario",
+       "Escrutar",
+       "Estática Sináptica|5"
+      ]
+     ]
+    ],
+    "skills": {
+     "n": 2,
+     "from": [
+      "arcana",
+      "history",
+      "nature",
+      "religion"
+     ],
+     "exp": true
+    },
+    "f": [
+     [
+      3,
+      "Bendiciones del conocimiento",
+      "Una herramienta de artesano y 2 habilidades entre Arcanos, Historia, Naturaleza y Religión, con pericia."
+     ],
+     [
+      3,
+      "Magia mental",
+      "Canalizar divinidad: lanzas un conjuro de adivinación del dominio sin espacio ni componentes materiales."
+     ],
+     [
+      6,
+      "Mente sin trabas",
+      "Telepatía a 18 m y competencia en salvaciones de INT."
+     ],
+     [
+      17,
+      "Presciencia divina",
+      "Acción adicional: 1 hora con ventaja en las pruebas d20. 1 vez por descanso largo."
+     ]
+    ]
+   },
+   {
+    "id": "tumba",
+    "n": "Dominio de la Tumba",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Detectar el Bien y el Mal",
+       "Vida Falsa",
+       "Reposo Sereno",
+       "Rayo Debilitador",
+       "Perdonar al Moribundo"
+      ]
+     ],
+     [
+      5,
+      [
+       "Revivir",
+       "Toque Vampírico"
+      ]
+     ],
+     [
+      7,
+      [
+       "Marchitar",
+       "Custodia contra la Muerte"
+      ]
+     ],
+     [
+      9,
+      [
+       "Disipar el Bien y el Mal|5",
+       "Devolver la Vida"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Círculo de mortalidad",
+      "Una vez por turno +1d4 necrótico (1d6 a nivel 11) contra criaturas heridas; Perdonar al moribundo como acción adicional y curación máxima a criaturas a 0 PG."
+     ],
+     [
+      3,
+      "Camino a la tumba",
+      "Canalizar divinidad: maldices a una criatura (desventaja en ataques y salvaciones); al golpearla terminas la maldición para sumar daño igual a tu nivel de clérigo."
+     ],
+     [
+      6,
+      "Centinela a las puertas de la muerte",
+      "Reacción: reduces a la mitad el daño de un ataque contra ti o un aliado maltrecho y anulas el crítico. SAB veces por descanso largo."
+     ],
+     [
+      17,
+      "Segador divino",
+      "Tus conjuros de nigromancia de un objetivo pueden afectar a dos, y al morir un enemigo cercano curas el doble de tu nivel."
      ]
     ]
    }
@@ -774,7 +1071,8 @@
       "Santuario natural",
       "Gastas Forma salvaje: cubo de 4,5 m de árboles espectrales que da media cobertura a tus aliados y la resistencia de tu tierra."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "luna",
@@ -828,7 +1126,8 @@
       "Forma lunar",
       "Una vez por turno +2d10 radiante en Forma salvaje; Paso lunar puede llevar a un aliado."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "mar",
@@ -840,7 +1139,6 @@
        "Nube de Niebla",
        "Ráfaga de Viento",
        "Rayo de Escarcha",
-       "Destrozar",
        "Onda Atronadora"
       ]
      ],
@@ -887,7 +1185,8 @@
       "Don oceánico",
       "Puedes poner la emanación sobre un aliado, o sobre ambos gastando dos usos."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "estrellas",
@@ -927,7 +1226,8 @@
       "Lleno de estrellas",
       "En Forma estelar tienes resistencia al daño contundente, cortante y perforante."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    }
   ],
   "explorador": [
@@ -955,7 +1255,8 @@
       "Compartir conjuros",
       "Los conjuros que te lanzas a ti también afectan a tu bestia si está a 9 m."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "feerico",
@@ -1018,7 +1319,8 @@
       "Caminante brumoso",
       "Lanzas Paso Brumoso sin espacio SAB veces y puedes llevar a un aliado."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "sombrio",
@@ -1081,7 +1383,8 @@
       "Esquiva sombría",
       "Reacción: impones desventaja a un ataque contra ti y te teletransportas 9 m."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "cazador",
@@ -1111,6 +1414,130 @@
       15,
       "Defensa superior",
       "Reacción al recibir daño: resistencia a ese tipo de daño hasta el final del turno."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "guardian-hueco",
+    "n": "Guardián Hueco",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Golpe Colérico"
+      ]
+     ],
+     [
+      5,
+      [
+       "Alterarse"
+      ]
+     ],
+     [
+      9,
+      [
+       "Corcel Fantasma|3"
+      ]
+     ],
+     [
+      13,
+      [
+       "Dominar Bestia"
+      ]
+     ],
+     [
+      17,
+      [
+       "Golpe de Viento Acerado"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Ira de lo salvaje",
+      "Gastas Enemigo predilecto para transformarte 1 minuto: +1 CA (+2 a nivel 11), ataques de oportunidad defensivos y un aura que asusta."
+     ],
+     [
+      7,
+      "Poder hambriento",
+      "Sumas SAB a las salvaciones de CON y te curas 1d10 + SAB al impactar estando maltrecho."
+     ],
+     [
+      11,
+      "Podredumbre y violencia",
+      "Los asustados no se curan ni reaccionan y aplicas Socavar o Lentitud además de otra maestría."
+     ],
+     [
+      15,
+      "Poder ancestral",
+      "+SAB al daño contra asustados, vuelves con PG al caer y eres inmune al agotamiento."
+     ]
+    ]
+   },
+   {
+    "id": "invernal",
+    "n": "Caminante Invernal",
+    "src": "Heroes of Faerûn",
+    "g": [
+     [
+      3,
+      [
+       "Cuchillo de Hielo"
+      ]
+     ],
+     [
+      5,
+      [
+       "Retener Persona"
+      ]
+     ],
+     [
+      9,
+      [
+       "Eliminar Maldición"
+      ]
+     ],
+     [
+      13,
+      [
+       "Tormenta de Hielo"
+      ]
+     ],
+     [
+      17,
+      [
+       "Cono de Frío"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Explorador gélido",
+      "Resistencia al frío, ignoras la resistencia al frío y +1d4 de frío al impactar (1d6 a nivel 11)."
+     ],
+     [
+      3,
+      "Escarcha del cazador",
+      "Marca del cazador te da 1d10 + nivel PG temporales y el objetivo no puede Destrabarse."
+     ],
+     [
+      7,
+      "Alma fortificante",
+      "Curas 1d10 + nivel a SAB criaturas y les das ventaja contra asustado. 1 vez por descanso largo."
+     ],
+     [
+      11,
+      "Represalia escalofriante",
+      "Reacción al ser golpeado: salvación de SAB o el atacante queda aturdido. SAB veces por descanso largo."
+     ],
+     [
+      15,
+      "Aparición helada",
+      "Con Marca del cazador adoptas una forma espectral helada que daña a tu alrededor y atraviesa objetos."
      ]
     ]
    }
@@ -1178,7 +1605,8 @@
       "Implosión distorsionante",
       "Te teletransportas 36 m y las criaturas cercanas al punto de partida sufren 3d10 de fuerza y son atraídas."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "mecanica",
@@ -1236,7 +1664,8 @@
       "Cabalgata mecánica",
       "Cubo de 9 m: curas hasta 100 PG repartidos, reparas objetos y terminas conjuros de nivel 6 o menos."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "draconico",
@@ -1294,7 +1723,8 @@
       "Compañero dracónico",
       "Lanzas Invocar Dragón sin componente material, una vez sin espacio y sin concentración si quieres."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "salvaje",
@@ -1324,6 +1754,137 @@
       18,
       "Oleada domada",
       "Una vez por descanso largo eliges el efecto de la tabla en vez de tirar."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "sombra",
+    "n": "Hechicería de las Sombras",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Maleficio (Bane)",
+       "Oscuridad|2",
+       "Infligir Heridas",
+       "Paso sin Rastro"
+      ]
+     ],
+     [
+      5,
+      [
+       "Hambre de Hadar",
+       "Indetectable"
+      ]
+     ],
+     [
+      7,
+      [
+       "Invisibilidad Mayor",
+       "Asesino Fantasmal"
+      ]
+     ],
+     [
+      9,
+      [
+       "Contagio",
+       "Creación|5"
+      ]
+     ]
+    ],
+    "dv": 120,
+    "f": [
+     [
+      3,
+      "Ojos de la oscuridad",
+      "Visión en la oscuridad 36 m, vista ciega 3 m y ves a través de tu Oscuridad."
+     ],
+     [
+      3,
+      "Fuerza de la tumba",
+      "Al caer a 0 PG, salvación de CAR para volver con CAR + nivel PG. 1 vez por descanso largo."
+     ],
+     [
+      6,
+      "Bestias de mal agüero",
+      "3 puntos: Invocar bestia como acción adicional; los enemigos junto a ella tienen desventaja contra tus conjuros."
+     ],
+     [
+      14,
+      "Paseo sombrío",
+      "Acción adicional: te teletransportas 36 m entre zonas de penumbra u oscuridad."
+     ],
+     [
+      18,
+      "Forma umbría",
+      "Con Hechicería innata atraviesas objetos y tienes resistencia a todo salvo fuerza y radiante."
+     ]
+    ]
+   },
+   {
+    "id": "fuego-conjuro",
+    "n": "Hechicería del Fuego de Conjuro",
+    "src": "Heroes of Faerûn",
+    "g": [
+     [
+      3,
+      [
+       "Curar Heridas",
+       "Rayo Guía",
+       "Restablecimiento Menor",
+       "Rayo Abrasador"
+      ]
+     ],
+     [
+      5,
+      [
+       "Aura de Vitalidad|3",
+       "Disipar Magia"
+      ]
+     ],
+     [
+      6,
+      [
+       "Contraconjuro"
+      ]
+     ],
+     [
+      7,
+      [
+       "Escudo de Fuego",
+       "Muro de Fuego"
+      ]
+     ],
+     [
+      9,
+      [
+       "Restablecimiento Mayor",
+       "Golpe Flamígero"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Estallido de fuego de conjuro",
+      "Al gastar puntos de hechicería: PG temporales 1d4 + CAR a un aliado o 1d4 de fuego o radiante a un enemigo."
+     ],
+     [
+      6,
+      "Absorber conjuros",
+      "Siempre tienes preparado Contraconjuro y recuperas 1d4 puntos cuando el objetivo falla."
+     ],
+     [
+      14,
+      "Fuego de conjuro afinado",
+      "Los PG temporales suman tu nivel y el daño sube a 1d8."
+     ],
+     [
+      18,
+      "Corona de fuego de conjuro",
+      "Con Hechicería innata: reduces daño con dados de golpe, vuelas y evitas el daño de las salvaciones."
      ]
     ]
    }
@@ -1368,7 +1929,8 @@
       "Resistencia a los conjuros",
       "Ventaja en salvaciones contra conjuros y resistencia a su daño."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "adivino",
@@ -1400,7 +1962,8 @@
       "Portento mayor",
       "Tiras 3d20 para Portento."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "evocador",
@@ -1432,7 +1995,8 @@
       "Sobrecanalizar",
       "Un conjuro de nivel 1–5 hace el daño máximo; repetirlo te causa daño necrótico."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "ilusionista",
@@ -1478,6 +2042,48 @@
       14,
       "Realidad ilusoria",
       "Al lanzar una ilusión con espacio, un objeto inanimado de ella se vuelve real 1 minuto."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "cantor",
+    "n": "Cantor de la Hoja",
+    "src": "Heroes of Faerûn",
+    "skills": {
+     "n": 1,
+     "from": [
+      "acrobatics",
+      "athletics",
+      "performance",
+      "persuasion"
+     ]
+    },
+    "f": [
+     [
+      3,
+      "Canción de la hoja",
+      "Acción adicional, sin armadura ni escudo, 1 minuto: +INT a la CA, +3 m de velocidad, ventaja en Acrobacias, usas INT con las armas y sumas INT a la concentración. INT veces por descanso largo."
+     ],
+     [
+      3,
+      "Entrenamiento en guerra y canción",
+      "Armas marciales cuerpo a cuerpo que no sean Pesadas ni a Dos manos, una habilidad y tu arma es canalizador."
+     ],
+     [
+      6,
+      "Ataque adicional",
+      "Atacas dos veces y puedes cambiar un ataque por un truco."
+     ],
+     [
+      10,
+      "Canción de defensa",
+      "Reacción: gastas un espacio para reducir el daño en 5 × su nivel."
+     ],
+     [
+      14,
+      "Canción de victoria",
+      "Tras lanzar un conjuro, un ataque con arma como acción adicional."
      ]
     ]
    }
@@ -1544,7 +2150,8 @@
       "Halo sagrado",
       "10 minutos: aura de luz solar, ventaja contra infernales y muertos vivientes, y daño radiante a enemigos dentro."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "gloria",
@@ -1612,7 +2219,8 @@
       "Leyenda viviente",
       "10 minutos: ventaja en pruebas de CAR, conviertes un fallo en impacto y repites salvaciones falladas."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "antiguos",
@@ -1675,7 +2283,8 @@
       "Campeón ancestral",
       "1 minuto: recuperas 10 PG por turno, lanzas conjuros como acción adicional y los enemigos tienen desventaja contra ellos."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "venganza",
@@ -1738,6 +2347,86 @@
       "Ángel vengador",
       "10 minutos: alas con 18 m de vuelo y un aura que asusta a los enemigos."
      ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "genios",
+    "n": "Juramento de los Genios Nobles",
+    "src": "Heroes of Faerûn",
+    "skills": {
+     "n": 1,
+     "from": [
+      "acrobatics",
+      "intimidation",
+      "performance",
+      "persuasion"
+     ]
+    },
+    "g": [
+     [
+      3,
+      [
+       "Orbe Cromático",
+       "Elementalismo|0",
+       "Golpe Atronador"
+      ]
+     ],
+     [
+      5,
+      [
+       "Imagen Especular",
+       "Fuerza Fantasmal"
+      ]
+     ],
+     [
+      9,
+      [
+       "Volar",
+       "Forma Gaseosa"
+      ]
+     ],
+     [
+      13,
+      [
+       "Conjurar Elementales Menores|4",
+       "Invocar Elemental|4"
+      ]
+     ],
+     [
+      17,
+      [
+       "Golpe Desterrador|5",
+       "Contactar Otro Plano|5"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Castigo elemental",
+      "Tras Castigo divino gastas Canalizar divinidad: apresar (dao), teletransporte y resistencias (djinn), fuego extra en cadena (efreet) o empujón en área (marid)."
+     ],
+     [
+      3,
+      "Esplendor de genio",
+      "Sin armadura, CA = 10 + DES + CAR (puedes usar escudo) y una habilidad entre Acrobacias, Intimidación, Interpretación o Persuasión."
+     ],
+     [
+      7,
+      "Aura de escudo elemental",
+      "Tú y tus aliados en el aura tenéis resistencia a ácido, frío, fuego, relámpago o trueno (cambiable cada turno)."
+     ],
+     [
+      15,
+      "Reprimenda elemental",
+      "Reacción: reduces a la mitad el daño de un ataque y el atacante sufre 2d10 + CAR. CAR veces por descanso largo."
+     ],
+     [
+      20,
+      "Vástago noble",
+      "10 minutos con vuelo de 18 m y un deseo menor que convierte un fallo en éxito."
+     ]
     ]
    }
   ],
@@ -1766,7 +2455,8 @@
       "Presencia intimidante",
       "Acción adicional: las criaturas que elijas a 9 m hacen salvación de SAB o quedan asustadas 1 minuto."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "corazon",
@@ -1797,7 +2487,8 @@
       "Poder de lo salvaje",
       "En furia: Halcón (vuelo), León (los enemigos tienen desventaja contra otros) o Carnero (derribas al impactar)."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "arbol",
@@ -1823,7 +2514,8 @@
       "Viaje por el árbol",
       "Al entrar en furia te teletransportas hasta 18 m, y puedes llevar aliados una vez por furia."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "fanatico",
@@ -1854,7 +2546,8 @@
       "Furia de los dioses",
       "Al entrar en furia, 1 minuto con vuelo, resistencia a necrótico, psíquico y radiante, y puedes salvar de caer a 0 PG a un aliado."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    }
   ],
   "guerrero": [
@@ -1892,7 +2585,8 @@
       "Superviviente",
       "Ventaja en salvaciones de muerte y, con la mitad de PG o menos, recuperas 5 + CON cada turno."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "batalla",
@@ -1901,7 +2595,7 @@
      [
       3,
       "Superioridad en combate",
-      "3 maniobras y 4 dados de superioridad (d8) que se recuperan con descanso corto. Más maniobras a niveles 7, 10 y 15."
+      "3 maniobras y 4 dados de superioridad (d8) que se recuperan con descanso corto. 5 dados y 5 maniobras a nivel 7, 7 maniobras a nivel 10, y 6 dados y 9 maniobras a nivel 15."
      ],
      [
       3,
@@ -1928,7 +2622,8 @@
       "Superioridad definitiva",
       "Dados de superioridad d12."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "arcano",
@@ -1965,7 +2660,8 @@
       "Magia de guerra mejorada",
       "Puedes sustituir dos ataques por un conjuro de nivel 1 o 2."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "psiquico",
@@ -1974,7 +2670,7 @@
      [
       3,
       "Poder psiónico",
-      "Dados de energía psiónica (4 d6 al principio) para Golpe psiónico, Escudo protector o Movimiento telequinético."
+      "Dados de energía psiónica para Golpe psiónico, Campo protector o Movimiento telequinético: 4d6 a nivel 3, 6d8 a nivel 5, 8d8 a nivel 9, 8d10 a nivel 11, 10d10 a nivel 13 y 12d12 a nivel 17."
      ],
      [
       7,
@@ -1995,6 +2691,90 @@
       18,
       "Maestro telequinético",
       "Lanzas Telequinesis sin espacio y atacas como acción adicional mientras la mantienes."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "abanderado",
+    "n": "Abanderado",
+    "src": "Heroes of Faerûn",
+    "skills": {
+     "n": 1,
+     "from": [
+      "insight",
+      "intimidation",
+      "persuasion",
+      "performance"
+     ]
+    },
+    "f": [
+     [
+      3,
+      "Enviado caballeresco",
+      "Comprender idiomas como ritual, un idioma adicional cambiable y una habilidad entre Perspicacia, Intimidación, Persuasión o Interpretación."
+     ],
+     [
+      3,
+      "Recuperación en grupo",
+      "Al usar Tomar aliento curas también a CAR aliados cercanos 1d4 + nivel de guerrero."
+     ],
+     [
+      7,
+      "Tácticas de equipo",
+      "Los aliados curados tienen ventaja en pruebas d20 hasta tu siguiente turno."
+     ],
+     [
+      10,
+      "Oleada de reunión",
+      "Al usar Oleada de acción, CAR aliados atacan o se mueven con su reacción."
+     ],
+     [
+      15,
+      "Resiliencia compartida",
+      "Gastas Indomable para que un aliado repita una salvación con bonificador igual a tu nivel."
+     ],
+     [
+      18,
+      "Comandante inspirador",
+      "Tus áreas llegan a 18 m y eres inmune a hechizado y asustado."
+     ]
+    ]
+   },
+   {
+    "id": "pesar",
+    "n": "Caballero del Pesar",
+    "src": "D&D Beyond Drops (oct. 2026)",
+    "f": [
+     [
+      3,
+      "Golpes desesperados",
+      "Dados de desesperación (3 d8; 4 d10 a nivel 10; 5 d12 a nivel 15) que suman daño psíquico y un efecto al impactar."
+     ],
+     [
+      3,
+      "Mirada solemne",
+      "Visión en la oscuridad 18 m (o +18 m) y lees la emoción dominante de una criatura."
+     ],
+     [
+      7,
+      "Aparición temible",
+      "Con Cambio táctico te teletransportas 9 m y asustas a los cercanos. 1 vez por descanso."
+     ],
+     [
+      10,
+      "Golpes inquietantes",
+      "Nuevos efectos: incapacitar, cegar o causar agotamiento."
+     ],
+     [
+      15,
+      "Constitución sombría",
+      "Resistencia a necrótico y psíquico; salvación para evitar reducciones de PG máximos."
+     ],
+     [
+      18,
+      "Manto del duelo",
+      "Con Oleada de acción, 1 minuto inmune a hechizado y asustado y puedes anular el daño de un impacto."
      ]
     ]
    }
@@ -2034,7 +2814,8 @@
       "Mano de la misericordia definitiva",
       "Resucitas a una criatura muerta en las últimas 24 h con 4d10 + SAB PG."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "sombra",
@@ -2060,7 +2841,8 @@
       "Manto de sombras",
       "En penumbra u oscuridad te vuelves invisible y atraviesas criaturas y objetos."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "elementos",
@@ -2091,7 +2873,8 @@
       "Epítome elemental",
       "Resistencia a un tipo de daño, mayor velocidad y daño elemental extra."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "mano",
@@ -2117,7 +2900,8 @@
       "Palma temblorosa",
       "4 puntos: vibraciones que luego puedes activar para causar 10d12 de fuerza (salvación de CON)."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    }
   ],
   "picaro": [
@@ -2151,7 +2935,8 @@
       "Ladrón de conjuros",
       "Reacción: anulas un conjuro lanzado contra ti y puedes lanzarlo tú durante 8 horas."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "asesino",
@@ -2182,7 +2967,8 @@
       "Golpe mortal",
       "Al impactar a una criatura en el primer asalto, salvación de CON o el daño se duplica."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "alma",
@@ -2213,7 +2999,8 @@
       "Desgarrar la mente",
       "Al impactar con Ataque furtivo, salvación de SAB o queda aturdido 1 minuto."
      ]
-    ]
+    ],
+    "src": "Player's Handbook"
    },
    {
     "id": "ladron",
@@ -2243,6 +3030,514 @@
       17,
       "Reflejos de ladrón",
       "Dos turnos en el primer asalto de cada combate."
+     ]
+    ],
+    "src": "Player's Handbook"
+   },
+   {
+    "id": "fantasma",
+    "n": "Fantasma",
+    "src": "Ravenloft: The Horrors Within",
+    "f": [
+     [
+      3,
+      "Lamentos de la tumba",
+      "Tras un Ataque furtivo dañas a otra criatura con la mitad de los dados como necrótico. DES veces por descanso largo."
+     ],
+     [
+      3,
+      "Susurros de los muertos",
+      "Tras cada descanso ganas una competencia de habilidad o herramienta que no tengas."
+     ],
+     [
+      9,
+      "Recuerdos de los difuntos",
+      "Baratijas de almas que mejoran tus lamentos, dan ventaja en salvaciones de muerte y CON y permiten Augurio."
+     ],
+     [
+      9,
+      "Voz de la muerte",
+      "Hablar con los muertos sin espacio 1 vez por descanso."
+     ],
+     [
+      13,
+      "Paseo fantasmal",
+      "Forma espectral 10 minutos: vuelo, desventaja a los ataques contra ti y atraviesas objetos."
+     ],
+     [
+      17,
+      "Amigo de la muerte",
+      "Los lamentos dañan a ambos objetivos y obtienes una baratija al tirar iniciativa."
+     ]
+    ]
+   },
+   {
+    "id": "vastago",
+    "n": "Vástago de los Tres",
+    "src": "Heroes of Faerûn",
+    "f": [
+     [
+      3,
+      "Sed de sangre",
+      "Reacción: cuando un enemigo queda maltrecho, te teletransportas junto a él y atacas. INT veces por descanso largo."
+     ],
+     [
+      3,
+      "Lealtad temible",
+      "Bane (resistencia psíquica, Ilusión menor), Bhaal (veneno, Protección contra armas) o Myrkul (necrótico, Toque gélido)."
+     ],
+     [
+      9,
+      "Infundir miedo",
+      "Nueva opción de Golpe astuto: aterrorizar al objetivo."
+     ],
+     [
+      13,
+      "Aura de malevolencia",
+      "Al teletransportarte con Sed de sangre dañas a los cercanos."
+     ],
+     [
+      17,
+      "Pavor encarnado",
+      "Recuperas Sed de sangre con descanso corto y los 1 y 2 de Ataque furtivo cuentan como 3."
+     ]
+    ]
+   }
+  ],
+  "artifice": [
+   {
+    "id": "alquimista",
+    "n": "Alquimista",
+    "src": "Eberron: Forge of the Artificer",
+    "g": [
+     [
+      3,
+      [
+       "Palabra Curativa",
+       "Rayo Nauseabundo"
+      ]
+     ],
+     [
+      5,
+      [
+       "Esfera de Fuego",
+       "Flecha Ácida"
+      ]
+     ],
+     [
+      9,
+      [
+       "Forma Gaseosa",
+       "Palabra Curativa en Masa"
+      ]
+     ],
+     [
+      13,
+      [
+       "Custodia contra la Muerte",
+       "Esfera Vitriólica|4"
+      ]
+     ],
+     [
+      17,
+      [
+       "Nube Aniquiladora|5",
+       "Devolver la Vida"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del oficio",
+      "Útiles de alquimista y de herborista; elaboras pociones en la mitad de tiempo."
+     ],
+     [
+      3,
+      "Elixir experimental",
+      "Tras un descanso largo creas 2 elixires al azar (curación, rapidez, resiliencia, osadía o vuelo); más con espacios. 3 a nivel 5, 4 a nivel 9 y 5 a nivel 15."
+     ],
+     [
+      5,
+      "Sabio alquímico",
+      "Con útiles de alquimista como canalizador sumas INT a una tirada de curación o de daño de ácido, fuego o veneno."
+     ],
+     [
+      9,
+      "Reactivos restauradores",
+      "Lanzas Restablecimiento menor sin espacio INT veces por descanso largo."
+     ],
+     [
+      15,
+      "Maestría química",
+      "+2d8 de fuerza con tus conjuros de ácido, fuego o veneno; resistencia a ácido y veneno, inmune a envenenado; Caldero burbujeante de Tasha gratis 1 vez al día."
+     ]
+    ]
+   },
+   {
+    "id": "armero",
+    "n": "Armero",
+    "src": "Eberron: Forge of the Artificer",
+    "g": [
+     [
+      3,
+      [
+       "Proyectil Mágico",
+       "Onda Atronadora"
+      ]
+     ],
+     [
+      5,
+      [
+       "Imagen Especular",
+       "Destrozar"
+      ]
+     ],
+     [
+      9,
+      [
+       "Patrón Hipnótico",
+       "Rayo (Lightning Bolt)"
+      ]
+     ],
+     [
+      13,
+      [
+       "Escudo de Fuego",
+       "Invisibilidad Mayor"
+      ]
+     ],
+     [
+      17,
+      [
+       "Pasamuros|5",
+       "Muro de Fuerza"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del oficio",
+      "Competencia con armadura pesada y herramientas de herrero."
+     ],
+     [
+      3,
+      "Armadura arcana",
+      "Conviertes tu armadura en arcana: sin requisito de FUE, no te la pueden quitar y es tu canalizador."
+     ],
+     [
+      3,
+      "Modelo de armadura",
+      "Acorazado (demoledor de fuerza 1d10 con alcance y estatura gigante), Guardián (pulso atronador 1d8 y campo defensivo) o Infiltrador (lanzador de relámpagos 1d6 a 27 m, +1,5 m de velocidad y ventaja en Sigilo). Usan INT."
+     ],
+     [
+      5,
+      "Ataque adicional",
+      "Atacas dos veces con la acción de Atacar."
+     ],
+     [
+      9,
+      "Armero mejorado",
+      "Un plano de armadura más y +1 a ataque y daño del arma de tu modelo."
+     ],
+     [
+      15,
+      "Armadura perfeccionada",
+      "Mejora de tu modelo: tamaño Enorme, atraer enemigos o vuelo breve."
+     ]
+    ]
+   },
+   {
+    "id": "artillero",
+    "n": "Artillero",
+    "src": "Eberron: Forge of the Artificer",
+    "g": [
+     [
+      3,
+      [
+       "Escudo",
+       "Onda Atronadora"
+      ]
+     ],
+     [
+      5,
+      [
+       "Rayo Abrasador",
+       "Destrozar"
+      ]
+     ],
+     [
+      9,
+      [
+       "Bola de Fuego",
+       "Muro de Viento"
+      ]
+     ],
+     [
+      13,
+      [
+       "Tormenta de Hielo",
+       "Muro de Fuego"
+      ]
+     ],
+     [
+      17,
+      [
+       "Cono de Frío",
+       "Muro de Fuerza"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del oficio",
+      "Armas marciales a distancia y herramientas de tallista; varitas en la mitad de tiempo."
+     ],
+     [
+      3,
+      "Cañón sobrenatural",
+      "Creas un cañón (CA 18, 5 × nivel PG). Acción adicional: lanzallamas 2d8 de fuego, balista de fuerza 2d8 o protector (PG temporales 1d8 + INT)."
+     ],
+     [
+      5,
+      "Arma de fuego arcana",
+      "Un bastón, varita o arma a distancia suma 1d8 al daño de tus conjuros."
+     ],
+     [
+      9,
+      "Cañón explosivo",
+      "El cañón hace +1d8 y puedes detonarlo (3d10 de fuerza a 6 m)."
+     ],
+     [
+      15,
+      "Posición fortificada",
+      "Dos cañones a la vez y media cobertura para ti y aliados junto a él."
+     ]
+    ]
+   },
+   {
+    "id": "herrero",
+    "n": "Herrero de Batalla",
+    "src": "Eberron: Forge of the Artificer",
+    "g": [
+     [
+      3,
+      [
+       "Heroísmo",
+       "Escudo"
+      ]
+     ],
+     [
+      5,
+      [
+       "Golpe Resplandeciente|2",
+       "Vínculo Protector"
+      ]
+     ],
+     [
+      9,
+      [
+       "Aura de Vitalidad|3",
+       "Conjurar Andanada|3"
+      ]
+     ],
+     [
+      13,
+      [
+       "Aura de Pureza",
+       "Escudo de Fuego"
+      ]
+     ],
+     [
+      17,
+      [
+       "Golpe Desterrador|5",
+       "Curar Heridas en Masa"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del oficio",
+      "Herramientas de herrero; armas en la mitad de tiempo."
+     ],
+     [
+      3,
+      "Listo para la batalla",
+      "Armas marciales; usas INT para atacar y dañar con armas mágicas y tus armas son canalizador."
+     ],
+     [
+      3,
+      "Defensor de acero",
+      "Un constructo (CA 12 + INT, 5 + 5 × nivel PG) que desgarra con 1d8 + 2 + INT de fuerza, repara y desvía ataques."
+     ],
+     [
+      5,
+      "Ataque adicional",
+      "Atacas dos veces; puedes cambiar un ataque por una orden al defensor."
+     ],
+     [
+      9,
+      "Descarga arcana",
+      "Al impactar, +2d6 de fuerza o curas 2d6. INT veces por descanso largo."
+     ],
+     [
+      15,
+      "Defensor mejorado",
+      "La descarga sube a 4d6 y el desvío causa 1d4 + INT de fuerza."
+     ]
+    ]
+   },
+   {
+    "id": "cartografo",
+    "n": "Cartógrafo",
+    "src": "Eberron: Forge of the Artificer",
+    "g": [
+     [
+      3,
+      [
+       "Fuego Feérico",
+       "Rayo Guía",
+       "Palabra Curativa"
+      ]
+     ],
+     [
+      5,
+      [
+       "Localizar Objeto",
+       "Púa Mental|2"
+      ]
+     ],
+     [
+      9,
+      [
+       "Convocar Relámpago",
+       "Clarividencia"
+      ]
+     ],
+     [
+      13,
+      [
+       "Destierro",
+       "Localizar Criatura"
+      ]
+     ],
+     [
+      17,
+      [
+       "Escrutar",
+       "Círculo de Teletransporte"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del oficio",
+      "Útiles de caligrafía y de cartógrafo; pergaminos de conjuro en la mitad de tiempo."
+     ],
+     [
+      3,
+      "Atlas del aventurero",
+      "Mapas mágicos para 1 + INT criaturas: +1d4 a la iniciativa y se localizan entre sí."
+     ],
+     [
+      3,
+      "Magia cartográfica",
+      "Fuego feérico sin espacio INT veces y te teletransportas 3 m gastando la mitad de tu movimiento."
+     ],
+     [
+      5,
+      "Precisión guiada",
+      "Una vez por turno sumas INT al daño contra objetivos de tu Fuego feérico."
+     ],
+     [
+      9,
+      "Movimiento ingenioso",
+      "Con Destello de genio, tú o un aliado os teletransportáis 9 m."
+     ],
+     [
+      15,
+      "Atlas superior",
+      "Un portador de mapa que caiga a 0 PG se salva y se teletransporta; Encontrar el camino gratis 1 vez al día."
+     ]
+    ]
+   },
+   {
+    "id": "reanimador",
+    "n": "Reanimador",
+    "src": "Ravenloft: The Horrors Within",
+    "g": [
+     [
+      3,
+      [
+       "Vida Falsa",
+       "Perdonar al Moribundo",
+       "Rayo de Bruja"
+      ]
+     ],
+     [
+      5,
+      [
+       "Cegar/Sordera",
+       "Potenciar Habilidad"
+      ]
+     ],
+     [
+      9,
+      [
+       "Animar Muertos",
+       "Rayo (Lightning Bolt)"
+      ]
+     ],
+     [
+      13,
+      [
+       "Marchitar",
+       "Custodia contra la Muerte"
+      ]
+     ],
+     [
+      17,
+      [
+       "Cápsula Antivida",
+       "Devolver la Vida"
+      ]
+     ]
+    ],
+    "f": [
+     [
+      3,
+      "Herramientas del reanimador",
+      "Útiles de alquimista."
+     ],
+     [
+      3,
+      "Sacudida vital",
+      "Con Perdonar al moribundo el objetivo recupera PG igual a tu nivel y los cercanos sufren 2d4 de relámpago. INT veces por descanso largo."
+     ],
+     [
+      3,
+      "Compañero reanimado",
+      "Creas un compañero muerto viviente que obedece tus órdenes."
+     ],
+     [
+      5,
+      "Modificaciones extrañas",
+      "Tu compañero gana una modificación (conducto arcano o ferocidad)."
+     ],
+     [
+      9,
+      "Reanimación mejorada",
+      "Estallido de muerte de 4d4 necrótico que ignora resistencia y dos modificaciones."
+     ],
+     [
+      15,
+      "Reanimación refinada",
+      "Devolver la vida gratis 1 vez al día, transferencia vital y tres modificaciones."
      ]
     ]
    }

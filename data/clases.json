@@ -228,7 +228,8 @@
     "Campeón primigenio",
     "FUE y CON +4, hasta un máximo de 25."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "bardo": {
   "n": "Bardo",
@@ -385,7 +386,8 @@
     "Palabras de la creación",
     "Siempre tienes preparados Palabra de poder: curar y Palabra de poder: matar, y afectan a una segunda criatura."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "brujo": {
   "n": "Brujo",
@@ -528,7 +530,8 @@
     "Maestro sobrenatural",
     "Astucia mágica recupera todos tus espacios de pacto."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "clerigo": {
   "n": "Clérigo",
@@ -677,7 +680,8 @@
     "Intervención divina mayor",
     "Puedes lanzar Deseo con Intervención divina (recuperable tras 2d4 descansos largos)."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "druida": {
   "n": "Druida",
@@ -742,7 +746,7 @@
       1
      ],
      [
-      "Canalizador druídico (bastón)",
+      "Bastón (canalizador druídico)",
       1
      ],
      [
@@ -842,7 +846,8 @@
     "Archidruida",
     "Recuperas un uso de Forma salvaje al tirar iniciativa y conviertes usos en espacios de conjuro."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "explorador": {
   "n": "Explorador",
@@ -1070,7 +1075,8 @@
     "Matador de enemigos",
     "El dado de Marca del cazador pasa a d10."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "guerrero": {
   "n": "Guerrero",
@@ -1325,7 +1331,8 @@
     "Tres ataques adicionales",
     "Atacas cuatro veces con la acción de Atacar."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "hechicero": {
   "n": "Hechicero",
@@ -1484,7 +1491,8 @@
     "Apoteosis arcana",
     "Con Hechicería innata activa, una metamagia por turno no cuesta puntos."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "mago": {
   "n": "Mago",
@@ -1537,7 +1545,7 @@
       2
      ],
      [
-      "Canalizador arcano (bastón)",
+      "Bastón (canalizador arcano)",
       1
      ],
      [
@@ -1616,7 +1624,8 @@
     "Conjuros característicos",
     "Dos conjuros de nivel 3 siempre preparados que lanzas gratis una vez cada uno por descanso corto."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "monje": {
   "n": "Monje",
@@ -1858,7 +1867,8 @@
     "Cuerpo y mente",
     "DES y SAB +4, hasta un máximo de 25."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "paladin": {
   "n": "Paladín",
@@ -2067,7 +2077,8 @@
     "Don épico",
     "Obtienes una dote de don épico."
    ]
-  ]
+  ],
+  "src": "Player's Handbook"
  },
  "picaro": {
   "n": "Pícaro",
@@ -2280,6 +2291,191 @@
     20,
     "Golpe de suerte",
     "Si fallas una prueba d20, la conviertes en un 20. 1 vez por descanso corto."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "artifice": {
+  "n": "Artífice",
+  "src": "Eberron: Forge of the Artificer",
+  "hd": 8,
+  "pri": [
+   "int"
+  ],
+  "sv": [
+   "con",
+   "int"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "history",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "sleight"
+   ]
+  },
+  "arm": "Armadura ligera y media, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "Herramientas de ladrón, herramientas de hojalatero y una herramienta de artesano",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "int",
+  "ord": [
+   "int",
+   "con",
+   "dex",
+   "wis",
+   "str",
+   "cha"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero tachonado",
+      1
+     ],
+     [
+      "Daga",
+      1
+     ],
+     [
+      "Herramientas de ladrón",
+      1
+     ],
+     [
+      "Herramientas de hojalatero",
+      1
+     ],
+     [
+      "Paquete de explorador de mazmorras",
+      1
+     ]
+    ],
+    "po": 16
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 150
+   }
+  ],
+  "prog": {
+   "Planos conocidos": [
+    "—",
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8
+   ],
+   "Objetos mágicos": [
+    "—",
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de artífice con Inteligencia; usas herramientas como canalizador."
+   ],
+   [
+    1,
+    "Magia del hojalatero",
+    "Conoces Reparar. Con herramientas de hojalatero creas pequeños objetos útiles INT veces por descanso largo."
+   ],
+   [
+    2,
+    "Replicar objeto mágico",
+    "Aprendes planos de objetos mágicos y, tras cada descanso largo, fabricas varios de ellos (ver tabla)."
+   ],
+   [
+    6,
+    "Hojalatero de objetos mágicos",
+    "Recargas objetos con espacios de conjuro, drenas un objeto para obtener un espacio y transmutas un objeto en otro plano."
+   ],
+   [
+    7,
+    "Destello de genio",
+    "Reacción: sumas INT a una prueba o salvación fallida tuya o de una criatura a 9 m. INT veces por descanso largo."
+   ],
+   [
+    10,
+    "Adepto de objetos mágicos",
+    "Puedes sintonizarte con 4 objetos mágicos."
+   ],
+   [
+    11,
+    "Objeto almacenaconjuros",
+    "Guardas un conjuro de artífice de nivel 1–3 en un arma o canalizador; quien lo sostenga puede lanzarlo 2 × INT veces."
+   ],
+   [
+    14,
+    "Artificio avanzado",
+    "Sintonía con 5 objetos y recuperas un Destello de genio con descanso corto."
+   ],
+   [
+    18,
+    "Maestro de objetos mágicos",
+    "Sintonía con 6 objetos."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Alma del artificio",
+    "Si caes a 0 PG, desintegras objetos replicados para quedarte con 20 PG por objeto; recuperas Destellos con descanso corto."
    ]
   ]
  }

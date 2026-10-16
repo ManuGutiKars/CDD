@@ -27,6 +27,7 @@ const CASTER={
   hechicero:{list:'hechicero',ab:'cha',tr:l=>4+C3(l),pr:l=>[2,4,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22][l-1],sl:l=>FULL[l-1]},
   mago:{list:'mago',ab:'int',tr:l=>3+C3(l),pr:l=>[4,5,6,7,9,10,11,12,14,15,16,16,17,18,19,21,22,23,24,25][l-1],sl:l=>FULL[l-1],book:true},
   paladin:{list:'paladin',ab:'cha',tr:()=>0,pr:l=>PREP_HALF[l-1],sl:l=>HALF[l-1]},
+  artifice:{list:'artifice',ab:'int',tr:l=>l<10?2:l<14?3:4,pr:l=>PREP_HALF[l-1],sl:l=>HALF[l-1]},
   'guerrero:arcano':{list:'mago',ab:'int',tr:l=>l<3?0:l<10?2:3,pr:l=>PREP_THIRD[l-1],sl:l=>THIRD[l-1],third:true},
   'picaro:arcano':{list:'mago',ab:'int',tr:l=>l<3?0:l<10?3:4,pr:l=>PREP_THIRD[l-1],sl:l=>THIRD[l-1],third:true}
 };
@@ -54,7 +55,8 @@ function featSlots(ch){
   return out;
 }
 function featsTaken(ch){
-  const list=[{key:'bg',id:D.origen.trasfondos[ch.bg].f,src:'Trasfondo'}];
+  const bg=D.origen.trasfondos[ch.bg];
+  const list=[{key:'bg',id:(bg.fOpts&&bg.fOpts.includes(ch.bgFeat))?ch.bgFeat:bg.f,src:'Trasfondo'}];
   if(D.origen.especies[ch.species].feat)list.push({key:'hum',id:ch.feat2||'duro',src:'Humano'});
   featSlots(ch).forEach(s=>{const v=(ch.feats||{})[s.key];if(v&&v.id&&D.origen.dotes[v.id])list.push({key:s.key,id:v.id,src:s.label,ab:v.ab||[]})});
   return list;
@@ -82,17 +84,19 @@ function abilities(ch){
 function skillPools(ch){
   const c=cls(ch),sp=D.origen.especies[ch.species],P=[];
   P.push({key:'cls',label:'Clase · '+c.n,n:c.sk.n,from:c.sk.from==='all'?ALLSK:c.sk.from});
-  if(sp.skill)P.push({key:'sp',label:(ch.species==='humano'?'Hábil':'Sentidos agudos')+' · '+sp.n,n:1,from:sp.skill==='all'?ALLSK:sp.skill});
+  if(sp.skill)P.push({key:'sp',label:'Especie · '+sp.n,n:sp.skillN||1,from:sp.skill==='all'?ALLSK:sp.skill});
   if(ch.cls==='barbaro'&&ch.lvl>=3)P.push({key:'barb3',label:'Conocimiento primigenio',n:1,from:c.sk.from});
   const s=subOn(ch);
   if(s&&s.id==='saber')P.push({key:'saber',label:'Colegio del Saber',n:3,from:ALLSK});
   if(s&&s.id==='batalla')P.push({key:'batalla',label:'Estudiante de la guerra',n:1,from:D.clases.guerrero.sk.from});
-  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.skills)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n,n:fx.skills,from:ALLSK})});
+  if(s&&s.skills)P.push({key:'sub',label:s.n+(s.skills.exp?' (con pericia)':''),n:s.skills.n,from:s.skills.from});
+  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.skills)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n,n:fx.skills,from:fx.from||ALLSK})});
   return P;
 }
 function fixedSkills(ch){
   const fx=new Set(D.origen.trasfondos[ch.bg].sk);
   const s=subOn(ch);if(s&&s.id==='misericordia'){fx.add('insight');fx.add('medicine')}
+  featsTaken(ch).forEach(f=>((D.origen.dotes[f.id].fx||{}).fixedSk||[]).forEach(k=>fx.add(k)));
   return fx;
 }
 function expertisePools(ch){
@@ -116,6 +120,7 @@ function normalize(ch){
   if(sp.sub&&!sp.sub.o.some(o=>o.id===ch.spSub))ch.spSub=sp.sub.o[0].id;
   if(!sp.sub)ch.spSub='';
   if(!D.origen.dotes[ch.feat2]||D.origen.dotes[ch.feat2].cat!=='origen')ch.feat2='duro';
+  if(!(bg.fOpts&&bg.fOpts.includes(ch.bgFeat)))ch.bgFeat=bg.f;
   if(ch.sub&&!(D.subclases.subclases[ch.cls]||[]).some(s=>s.id===ch.sub))ch.sub='';
   // dotes en huecos
   ch.feats=ch.feats||{};
@@ -154,8 +159,7 @@ function armorProf(ch){
   if(ch.cls==='clerigo'&&ch.order==='protector')set.add('pesada');
   if(ch.cls==='druida'&&ch.order==='guardian')set.add('media');
   const s=subOn(ch);if(s&&s.id==='valor'){set.add('media');set.add('escudo')}
-  featsTaken(ch).forEach(f=>{const a=(D.origen.dotes[f.id].fx||{}).armor;if(a==='ligera'){set.add('ligera');set.add('escudo')}if(a==='media'){set.add('ligera');set.add('media');set.add('escudo')}if(a==='pesada'){set.add('ligera');set.add('media');set.add('pesada')}});
-  if(featsTaken(ch).some(f=>f.id==='entrenamiento-marcial')){set.add('ligera');set.add('escudo')}
+  featsTaken(ch).forEach(f=>{const a=(D.origen.dotes[f.id].fx||{}).armor;if(a==='ligera'){set.add('ligera');set.add('escudo')}if(a==='media')set.add('media');if(a==='pesada')set.add('pesada');});
   return set;
 }
 function weaponProf(ch,w){
@@ -206,9 +210,12 @@ function sheet(ch){
     if(c.ud==='wis'&&!g.shield)opts.push([10+mo.dex+mo.wis,'Defensa sin armadura',false]);
     if(s&&s.id==='draconico')opts.push([10+mo.dex+mo.cha,'Resistencia dracónica',true]);
     if(s&&s.id==='danza'&&!g.shield)opts.push([10+mo.dex+mo.cha,'Juego de pies deslumbrante',false]);
+    if(s&&s.id==='genios')opts.push([10+mo.dex+mo.cha,'Esplendor de genio',true]);
+    const bul=feats.find(f=>f.id==='baluarte-infernal');if(bul&&!g.shield&&bul.ab[0])opts.push([10+mo.dex+mo[bul.ab[0]],'Baluarte infernal',false]);
     opts.sort((a,b)=>b[0]-a[0]);[ac,acn]=opts[0];
   }
   if(shieldOk){ac+=2;acn+=' + escudo'}
+  if(sp.ac){ac+=sp.ac;acn+=' + protección integrada'}
   // Velocidad
   let spd=(spSub&&spSub.spd)||sp.spd;const notes=[];
   const heavy=g.armor&&g.armor.cat==='pesada';
@@ -225,6 +232,7 @@ function sheet(ch){
   const saves={};ABS.forEach(([a])=>saves[a]=mo[a]+(sv.has(a)?pb:0)+aura);
   // Habilidades
   const prof=profSkills(ch),ex=new Set(Object.values(ch.ex||{}).flat());
+  if(s&&s.skills&&s.skills.exp)((ch.sk||{}).sub||[]).forEach(k=>ex.add(k));
   const jack=ch.cls==='bardo'&&L>=2;
   const thaum=(ch.cls==='clerigo'&&ch.order==='taumaturgo'&&['arcana','religion'])||(ch.cls==='druida'&&ch.order==='mago'&&['arcana','nature'])||[];
   const skills={};SK.forEach(([k,n,a])=>{let v=mo[a]+(ex.has(k)?2*pb:prof.has(k)?pb:jack?Math.floor(pb/2):0);if(thaum.includes(k))v+=Math.max(1,mo.wis);skills[k]=v});
@@ -232,7 +240,7 @@ function sheet(ch){
   const init=mo.dex+(fx('initPB')?pb:0);
   // Ataques
   const atks=[];const seen=new Set();
-  g.inv.items.forEach(it=>{const w=D.armaByN[it.n];if(!w||seen.has(w.n))return;seen.add(w.n);
+  g.inv.items.forEach(it=>{const w=D.armaByN[it.n]||D.armaByN[it.n.replace(/ \(.*\)$/,'')];if(!w||seen.has(w.n))return;seen.add(w.n);
     const monkW=ch.cls==='monje'&&(w.cat==='sencilla'||w.p.includes('Ligera'))&&w.t==='cc';
     let ab=w.t==='dist'?'dex':(w.p.includes('Sutil')||monkW)?(mo.dex>mo.str?'dex':'str'):'str';
     const pr=weaponProf(ch,w);let hit=mo[ab]+(pr?pb:0)+(w.t==='dist'?fx('rangedAtk'):0);
@@ -252,7 +260,7 @@ function sheet(ch){
   const tools=[bg.tool,c.tool].filter(Boolean);
   const pp=10+skills.perception;
   return {c,L,pb,sp,spSub,bg,sub:s,sc,mo,bon,hp,ac,acn,spd,saves,sv,aura,skills,prof,ex,jack,init,atks,spell,feat,prog,feats,g,tools,pp,
-    hd:L+'d'+c.hd,size:sp.size==='choice'?ch.size:sp.size,dv:(spSub&&spSub.dv)||sp.dv};
+    hd:L+'d'+c.hd,size:sp.size==='choice'?ch.size:sp.size,dv:Math.max((spSub&&spSub.dv)||sp.dv||0,(s&&s.dv)||0)};
 }
 
 return {ABS,AB,ABF,SK,SKN,SKA,ALLSK,ARRAY,PBC,md,sg,pbOf,m,init,cls,subOf,subOn,featSlots,featsTaken,abilities,skillPools,expertisePools,fixedSkills,profSkills,normalize,inventory,gear,sheet,casterOf,PACT,ARC,CASTER};

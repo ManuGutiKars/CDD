@@ -30,10 +30,50 @@ function sample(){
   suggestArr(c);return c;
 }
 
-let ch,roster,step,panel=null,toastT,delArm=null;
+let ch,roster,step,panel=null,toastT,delArm=null,DL=null;
+try{window.claude&&window.claude.use&&window.claude.use('downloads').then(d=>{DL=d;if(panel)renderPanel()},()=>{})}catch(e){}
+const fname=s=>(String(s||'personaje').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w -]+/g,'').trim().replace(/\s+/g,'-')||'personaje');
+async function descargar(filename,data){
+  if(!DL){
+    if(!window.claude){ // web normal (por ejemplo, alojada en Vercel): descarga directa del navegador
+      try{const type=filename.endsWith('.json')?'application/json':'text/plain';const url=URL.createObjectURL(new Blob([data],{type:type+';charset=utf-8'}));
+        const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Descargado: '+filename)}
+      catch(e){toast('No se pudo descargar. Usa Copiar.')}
+      return}
+    toast('Las descargas no están disponibles aquí. Usa Copiar.');return}
+  try{await DL.save({filename,data});toast('Descargado: '+filename)}
+  catch(e){const c=e&&e.code;if(c==='declined')return;if(c==='rate_limited'){toast('Ya hay una descarga pendiente de confirmar');return}toast('No se pudo descargar ('+(c||'error')+'). Usa Copiar.')}
+}
+const PHB="Player's Handbook";
+const BOOKS=[[PHB,'Manual del Jugador'],['Eberron: Forge of the Artificer','Eberron'],['Heroes of Faerûn','Faerûn'],['Ravenloft: The Horrors Within','Ravenloft'],['Lorwyn: First Light','Lorwyn'],['D&D Beyond Drops','D&D Beyond']];
+const bookKey=src=>!src?PHB:String(src).startsWith('D&D Beyond')?'D&D Beyond Drops':src;
+const bookShort=src=>(BOOKS.find(b=>b[0]===bookKey(src))||[0,src])[1];
+let books=new Set((()=>{const v=lsGet('forja-libros');return Array.isArray(v)?v:BOOKS.map(b=>b[0])})());
+const okB=(x,cur)=>cur||books.has(bookKey(x.src));
+const tagB=x=>bookKey(x.src)===PHB?'':' · '+bookShort(x.src);
+function grouped(entries,cur){
+  const g={};entries.filter(([k,v])=>okB(v,k===cur)).forEach(([k,v])=>{const b=bookShort(v.src);(g[b]=g[b]||[]).push([k,v])});
+  return Object.entries(g).map(([b,arr])=>`<optgroup label="${esc(b)}">${arr.map(([k,v])=>`<option value="${esc(k)}" ${k===cur?'selected':''}>${esc(v.n)}</option>`).join('')}</optgroup>`).join('');
+}
+const srcLine=x=>`<span>Libro <b>${esc(bookShort(x.src))}</b></span>`;
 
 /* ---------- Render principal ---------- */
+function saveCurrent(){
+  if(!ch)return;ch.upd=Date.now();const c=JSON.parse(JSON.stringify(ch));
+  const i=roster.findIndex(r=>r.id===ch.id);if(i>=0)roster[i]=c;else roster.unshift(c);
+  lsSet('forja-personajes',roster);
+}
+function stInicio(el){
+  const list=[...roster].sort((a,b)=>(b.upd||0)-(a.upd||0));
+  el.innerHTML=`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">Se guardan solos en este navegador</span></div>
+  <button class="btn primary big" data-act="new" id="b-new-home">+ Crear personaje nuevo</button>
+  ${list.length?`<div class="roster">${list.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${esc(D.clases[r.cls]?.n||'')} ${r.lvl}${r.sub&&r.lvl>=3?' · '+esc(((D.subclases.subclases[r.cls]||[]).find(s=>s.id===r.sub)||{}).n||''):''} · ${esc(D.origen.especies[r.species]?.n||'')} · ${esc(D.origen.trasfondos[r.bg]?.n||'')}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
+  :`<p class="muted">Aún no tienes personajes. Pulsa “Crear personaje nuevo” para empezar, o importa uno desde Exportar.</p>`}</div>`;
+}
 function render(){
+  const home=step==='inicio'||!ch;
+  $('.stepbar').hidden=home;$('.nameb').style.visibility=home?'hidden':'visible';
+  if(home){step='inicio';stInicio($('#stage'));$('#mini').hidden=true;$('.layout').classList.add('wide');renderPanel();return}
   R.normalize(ch);const S=R.sheet(ch);
   $('#f-name').value!==ch.name&&document.activeElement!==$('#f-name')&&($('#f-name').value=ch.name);
   $('#steps').innerHTML=STEPS.map(([k,n],i)=>`<button class="stp" data-act="step" data-k="${k}" aria-current="${step===k?'step':'false'}"><span class="si">${i+1}</span>${n}</button>`).join('');
@@ -42,7 +82,7 @@ function render(){
   $('#mini').hidden=step==='ficha';if(step!=='ficha')renderMini(S);
   $('.layout').classList.toggle('wide',step==='ficha'||step==='conjuros');
   renderPanel();
-  lsSet('forja-borrador',ch);
+  saveCurrent();
 }
 const sel=(id,opts,val,attrs='')=>`<select id="${id}" ${attrs}>${opts.map(([v,t])=>`<option value="${esc(v)}" ${String(v)===String(val)?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
 const chip=(act,k,on,txt,dis,extra='')=>`<button class="chip" data-act="${act}" data-k="${k}" ${extra} aria-pressed="${on}" ${dis?'disabled':''}>${txt}</button>`;
@@ -57,10 +97,10 @@ function featureTimeline(S){
 function stClase(el,S){
   const c=S.c,LBL=D.subclases.etiquetas,subs=D.subclases.subclases[ch.cls],s=R.subOf(ch);
   let h=`<div class="panel">${head(1,'Clase y nivel','Define tu papel, tus puntos de golpe y tus rasgos')}
-  <div class="cgrid">${Object.entries(D.clases).map(([k,v])=>`<button class="ccard" data-act="cls" data-k="${k}" aria-pressed="${k===ch.cls}"><b>${v.n}</b><span>d${v.hd} · ${v.pri.map(a=>R.AB[a]).join('/')}${v.cast?' · conjuros':''}</span></button>`).join('')}</div>
+  <div class="cgrid">${Object.entries(D.clases).filter(([k,v])=>okB(v,k===ch.cls)).map(([k,v])=>`<button class="ccard" data-act="cls" data-k="${k}" aria-pressed="${k===ch.cls}"><b>${v.n}</b><span>d${v.hd} · ${v.pri.map(a=>R.AB[a]).join('/')}${v.cast?' · conjuros':''}${tagB(v)}</span></button>`).join('')}</div>
   <div class="row">
     <div class="fld"><label for="f-lvl">Nivel</label><div class="lvl"><button data-act="lv" data-d="-1" ${ch.lvl<=1?'disabled':''} aria-label="Bajar nivel">−</button>${sel('f-lvl',Array.from({length:20},(_,i)=>[i+1,i+1]),ch.lvl,'data-f="lvl" data-num="1"')}<button data-act="lv" data-d="1" ${ch.lvl>=20?'disabled':''} aria-label="Subir nivel">+</button></div></div>
-    <div class="fld"><label for="f-sub">${LBL[ch.cls]}${ch.lvl<3?' (desde nivel 3)':''}</label>${sel('f-sub',[['','Sin elegir'],...subs.map(x=>[x.id,x.n])],ch.sub,'data-f="sub"')}</div>
+    <div class="fld"><label for="f-sub">${LBL[ch.cls]}${ch.lvl<3?' (desde nivel 3)':''}</label>${sel('f-sub',[['','Sin elegir'],...subs.filter(x=>okB(x,x.id===ch.sub)).map(x=>[x.id,x.n+tagB(x)])],ch.sub,'data-f="sub"')}</div>
     ${s&&s.land?`<div class="fld"><label for="f-land">Tierra</label>${sel('f-land',Object.entries(D.subclases.tierras),ch.land||'arid','data-f="land"')}</div>`:''}
     ${ch.cls==='clerigo'?`<div class="fld"><label for="f-order">Orden divina</label>${sel('f-order',[['','Sin elegir'],['protector','Protector'],['taumaturgo','Taumaturgo']],ch.order,'data-f="order"')}</div>`:''}
     ${ch.cls==='druida'?`<div class="fld"><label for="f-order">Orden primigenia</label>${sel('f-order',[['','Sin elegir'],['mago','Mago'],['guardian','Guardián']],ch.order,'data-f="order"')}</div>`:''}
@@ -72,11 +112,12 @@ function stClase(el,S){
   el.innerHTML=h;
 }
 function stTrasfondo(el,S){
-  const bg=S.bg,f=D.origen.dotes[bg.f];
+  const bg=S.bg,fid=(bg.fOpts&&bg.fOpts.includes(ch.bgFeat))?ch.bgFeat:bg.f,f=D.origen.dotes[fid];
   el.innerHTML=`<div class="panel">${head(2,'Trasfondo','Da las mejoras de característica, la dote de origen, 2 habilidades y equipo')}
-  <div class="row"><div class="fld"><label for="f-bg">Trasfondo</label>${sel('f-bg',Object.entries(D.origen.trasfondos).map(([k,v])=>[k,v.n]),ch.bg,'data-f="bg"')}</div>
+  <div class="row"><div class="fld"><label for="f-bg">Trasfondo</label><select id="f-bg" data-f="bg">${grouped(Object.entries(D.origen.trasfondos),ch.bg)}</select></div>
   <div class="fld"><label for="f-align">Alineamiento</label>${sel('f-align',ALIGN.map(a=>[a,a]),ch.align,'data-f="align"')}</div></div>
-  <div class="info"><div class="kv"><span>Características <b>${bg.ab.map(a=>R.ABF[a]).join(', ')}</b></span><span>Habilidades <b>${bg.sk.map(k=>R.SKN[k]).join(', ')}</b></span><span>Herramienta <b>${esc(bg.tool)}</b></span></div>
+  <div class="info"><div class="kv">${srcLine(bg)}<span>Características <b>${bg.ab.map(a=>R.ABF[a]).join(', ')}</b></span><span>Habilidades <b>${bg.sk.map(k=>R.SKN[k]).join(', ')}</b></span><span>Herramienta <b>${esc(bg.tool)}</b></span></div>
+  ${bg.fOpts?`<div class="row-c"><label class="sub-label" for="f-bgfeat">Dote de origen</label>${sel('f-bgfeat',bg.fOpts.map(k=>[k,D.origen.dotes[k].n]),fid,'data-f="bgFeat"')}</div>`:''}
   <div><b>Dote de origen: ${esc(f.n)}.</b> ${esc(f.d)}</div>
   <div class="muted">Equipo: ${bg.eq.map(([n,q])=>(q>1?q+' × ':'')+n).join(', ')} y ${bg.po} po (o 50 po en su lugar).</div></div>
   <div class="sub-label">Mejoras de característica</div>
@@ -88,10 +129,10 @@ function stTrasfondo(el,S){
 function stEspecie(el,S){
   const sp=S.sp;
   el.innerHTML=`<div class="panel">${head(3,'Especie')}
-  <div class="row"><div class="fld"><label for="f-sp">Especie</label>${sel('f-sp',Object.entries(D.origen.especies).map(([k,v])=>[k,v.n]),ch.species,'data-f="species"')}</div>
+  <div class="row"><div class="fld"><label for="f-sp">Especie</label><select id="f-sp" data-f="species">${grouped(Object.entries(D.origen.especies),ch.species)}</select></div>
   ${sp.sub?`<div class="fld"><label for="f-spsub">${sp.sub.l}</label>${sel('f-spsub',sp.sub.o.map(o=>[o.id,o.n]),ch.spSub,'data-f="spSub"')}</div>`:''}
   ${sp.size==='choice'?`<div class="fld"><label for="f-size">Tamaño</label>${sel('f-size',[['Mediano','Mediano'],['Pequeño','Pequeño']],ch.size,'data-f="size"')}</div>`:''}
-  ${sp.feat?`<div class="fld"><label for="f-feat2">Dote de origen adicional</label>${sel('f-feat2',Object.entries(D.origen.dotes).filter(([,d])=>d.cat==='origen').map(([k,d])=>[k,d.n]),ch.feat2,'data-f="feat2"')}</div>`:''}</div>
+  ${sp.feat?`<div class="fld"><label for="f-feat2">Dote de origen adicional</label><select id="f-feat2" data-f="feat2">${grouped(Object.entries(D.origen.dotes).filter(([,d])=>d.cat==='origen'),ch.feat2)}</select></div>`:''}</div>
   <div class="info"><div class="kv"><span>Tamaño <b>${sp.size==='choice'?'Mediano o Pequeño':sp.size}</b></span><span>Velocidad <b>${R.m((S.spSub&&S.spSub.spd)||sp.spd)}</b></span>${S.dv?`<span>Visión en la oscuridad <b>${R.m(S.dv)}</b></span>`:''}</div>
   ${S.spSub?`<div><b>${esc(S.spSub.n)}.</b> ${esc(S.spSub.d)}</div>`:''}
   ${sp.tr.map(t=>`<div><b>${esc(t[0])}.</b> ${esc(t[1])}</div>`).join('')}</div>
@@ -140,9 +181,9 @@ function stDotes(el,S){
   slots.forEach(s=>{
     const v=ch.feats[s.key],d=D.origen.dotes[v.id];
     const usedElse=new Set(taken.filter(f=>f.key!==s.key).map(f=>f.id));
-    const opts=Object.entries(D.origen.dotes).filter(([k,x])=>s.cats.includes(x.cat)&&(k==='mejora'||k===v.id||!usedElse.has(k)));
+    const opts=Object.entries(D.origen.dotes).filter(([k,x])=>s.cats.includes(x.cat)&&okB(x,k===v.id)&&(k==='mejora'||k===v.id||!usedElse.has(k)));
     const groups={general:'Generales',estilo:'Estilos de combate',epica:'Dones épicos'};
-    const selH=`<select id="ft-${s.key}" data-f="feat" data-k="${s.key}">${s.cats.map(cat=>`<optgroup label="${groups[cat]}">${opts.filter(([,x])=>x.cat===cat).map(([k,x])=>`<option value="${k}" ${k===v.id?'selected':''}>${esc(x.n)}</option>`).join('')}</optgroup>`).join('')}</select>`;
+    const selH=`<select id="ft-${s.key}" data-f="feat" data-k="${s.key}">${s.cats.map(cat=>`<optgroup label="${groups[cat]}">${opts.filter(([,x])=>x.cat===cat).map(([k,x])=>`<option value="${k}" ${k===v.id?'selected':''}>${esc(x.n+tagB(x))}</option>`).join('')}</optgroup>`).join('')}</select>`;
     let abH='';
     if(d.asi)abH=`<div class="row-c"><span class="muted">+1</span>${sel('fa0-'+s.key,R.ABS.map(([k,,f])=>[k,f]),v.ab[0],`data-f="featab" data-k="${s.key}" data-i="0"`)}<span class="muted">+1</span>${sel('fa1-'+s.key,R.ABS.map(([k,,f])=>[k,f]),v.ab[1],`data-f="featab" data-k="${s.key}" data-i="1"`)}<span class="muted small">Elige la misma dos veces para +2</span></div>`;
     else if(d.ab)abH=`<div class="row-c"><span class="muted">+1 a</span><div class="chips">${d.ab.map(a=>chip('featab1',a,v.ab[0]===a,R.ABF[a],false,`data-s="${s.key}"`)).join('')}</div></div>`;
@@ -211,12 +252,19 @@ function stFicha(el,S){
 /* ---------- Personajes y exportar ---------- */
 function renderPanel(){
   const p=$('#panel');p.hidden=!panel;if(!panel)return;
+  if(panel==='libros'){
+    p.innerHTML=`<div class="pn-h"><h2>Libros</h2><button class="btn small" data-act="panel" data-k="">Cerrar</button></div>
+    <p class="muted small">Elige de qué libros quieres ver clases, subclases, especies, trasfondos y dotes. Lo que ya tenga tu personaje se mantiene aunque desactives su libro.</p>
+    <div class="books">${BOOKS.map(([k,n])=>`<label class="check"><input type="checkbox" id="bk-${n.replace(/[^a-z]/gi,'')}" data-f="book" value="${esc(k)}" ${books.has(k)?'checked':''}> ${esc(n)}</label>`).join('')}</div>`;
+    return;
+  }
   if(panel==='roster'){
     p.innerHTML=`<div class="pn-h"><h2>Mis personajes</h2><button class="btn small" data-act="panel" data-k="">Cerrar</button></div>`+(roster.length?`<div class="roster">${roster.map(r=>`<div class="it ${r.id===ch.id?'cur':''}"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${esc(D.clases[r.cls]?.n||'')} ${r.lvl} · ${esc(D.origen.especies[r.species]?.n||'')} · ${esc(D.origen.trasfondos[r.bg]?.n||'')}</span></div><button class="btn small" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`:'<p class="muted">Aún no has guardado ningún personaje. Pulsa Guardar para añadir el actual. Se guardan en este navegador.</p>');
   }else{
     p.innerHTML=`<div class="pn-h"><h2>Exportar e importar</h2><button class="btn small" data-act="panel" data-k="">Cerrar</button></div>
-    <div class="row-c"><button class="btn" data-act="copytext" id="b-ctext">Copiar ficha en texto</button><button class="btn" data-act="copyjson" id="b-cjson">Copiar JSON del personaje</button></div>
-    <p class="muted small">El JSON guarda todas tus elecciones. Pégalo en un archivo .json para tenerlo a salvo o pásaselo a otra persona.</p>
+    ${(DL||!window.claude)?`<div class="row-c">${ch?`<button class="btn primary" data-act="dljson" id="b-djson">Descargar personaje (.json)</button><button class="btn" data-act="dltext" id="b-dtext">Descargar ficha (.txt)</button>`:''}${roster.length?`<button class="btn" data-act="dlall" id="b-dall">Descargar todos los guardados (.json)</button>`:''}</div>`:''}
+    ${ch?`<div class="row-c"><button class="btn" data-act="copytext" id="b-ctext">Copiar ficha en texto</button><button class="btn" data-act="copyjson" id="b-cjson">Copiar JSON del personaje</button></div>`:''}
+    <p class="muted small">${(DL||!window.claude)?'Al descargar, tu navegador te pedirá confirmación. ':''}El JSON guarda todas tus elecciones y se puede volver a importar aquí.</p>
     <label class="sub-label" for="imp">Importar: pega aquí un JSON o elige un archivo</label>
     <textarea id="imp" rows="4" placeholder='{"name":"…","cls":"…"}'></textarea>
     <div class="row-c"><button class="btn primary" data-act="import">Importar</button><input type="file" id="impfile" accept=".json,application/json" aria-label="Elegir archivo JSON"></div>`;
@@ -245,6 +293,7 @@ function copy(t,ok){
 }
 function importJSON(txt){
   let o;try{o=JSON.parse(txt)}catch(e){toast('El texto no es un JSON válido');return}
+  if(Array.isArray(o)){const ok=o.filter(x=>x&&D.clases[x.cls]&&D.origen.especies[x.species]&&D.origen.trasfondos[x.bg]);if(!ok.length){toast('Ese JSON no contiene personajes válidos');return}ok.forEach(x=>{const c=Object.assign(blank(),x);const i=roster.findIndex(r=>r.id===c.id);if(i>=0)roster[i]=c;else roster.push(c)});lsSet('forja-personajes',roster);panel=null;step='inicio';render();toast(ok.length+' personajes importados');return}
   if(!o||!D.clases[o.cls]||!D.origen.especies[o.species]||!D.origen.trasfondos[o.bg]){toast('Ese JSON no es un personaje de Forja de Héroes');return}
   ch=Object.assign(blank(),o);if(roster.some(r=>r.id===ch.id))ch.id=uid();
   panel=null;step='ficha';render();toast('Importado: '+(ch.name||'Sin nombre'));
@@ -266,7 +315,7 @@ document.addEventListener('click',e=>{
   if(a.startsWith('sp-')){if(Conjuros.act(ch,a,k,b)!==false)render();return}
   if(a!=='del')delArm=null;
   switch(a){
-    case 'step':step=k;window.scrollTo({top:0});break;
+    case 'step':if(!ch)return;step=k;window.scrollTo({top:0});break;
     case 'cls':if(ch.cls!==k){ch.cls=k;ch.sub='';ch.order='';ch.feats={};ch.sk.cls=[];ch.ex={};ch.eqCls='A';ch.armor='auto';ch.spells={picks:[],book:[],disc:[]};if(ch.method==='array')suggestArr(ch)}break;
     case 'lv':ch.lvl=Math.max(1,Math.min(20,ch.lvl+ +b.dataset.d));break;
     case 'bgmode':ch.bgMode=k;break;
@@ -283,13 +332,15 @@ document.addEventListener('click',e=>{
     case 'eqcls':ch.eqCls=k;ch.armor='auto';break;
     case 'eqbg':ch.eqBg=k;break;
     case 'new':ch=blank();suggestArr(ch);step='clase';toast('Personaje nuevo');break;
-    case 'random':randomize();step='ficha';toast('Personaje aleatorio');break;
-    case 'save':{const i=roster.findIndex(r=>r.id===ch.id);const copyCh=JSON.parse(JSON.stringify(ch));if(i>=0)roster[i]=copyCh;else roster.unshift(copyCh);lsSet('forja-personajes',roster);toast('Guardado: '+(ch.name||'Sin nombre'));break}
+    case 'home':step='inicio';panel=null;window.scrollTo({top:0});break;
     case 'panel':panel=k||null;break;
     case 'load':{const r=roster.find(x=>x.id===k);if(r){ch=Object.assign(blank(),JSON.parse(JSON.stringify(r)));panel=null;step='ficha';toast('Abierto: '+(ch.name||'Sin nombre'))}break}
-    case 'del':if(delArm===k){roster=roster.filter(r=>r.id!==k);lsSet('forja-personajes',roster);delArm=null;toast('Borrado')}else delArm=k;break;
-    case 'copytext':copy(sheetText(),'Ficha copiada');return;
-    case 'copyjson':copy(JSON.stringify(ch,null,1),'JSON copiado');return;
+    case 'del':if(delArm===k){roster=roster.filter(r=>r.id!==k);lsSet('forja-personajes',roster);if(ch&&ch.id===k)ch=null;delArm=null;toast('Borrado')}else delArm=k;break;
+    case 'dljson':if(!ch)return;descargar(fname(ch.name)+'.json',JSON.stringify(ch,null,1));return;
+    case 'dltext':if(!ch)return;descargar(fname(ch.name)+'.txt',sheetText());return;
+    case 'dlall':descargar('forja-personajes.json',JSON.stringify(roster,null,1));return;
+    case 'copytext':if(!ch)return;copy(sheetText(),'Ficha copiada');return;
+    case 'copyjson':if(!ch)return;copy(JSON.stringify(ch,null,1),'JSON copiado');return;
     case 'import':importJSON($('#imp').value);return;
     default:return;
   }
@@ -303,6 +354,7 @@ document.addEventListener('change',e=>{
   else if(f==='man')ch.man[el.dataset.k]=Math.max(3,Math.min(20,parseInt(el.value)||10));
   else if(f==='feat'){ch.feats[el.dataset.k]={id:el.value,ab:[]}}
   else if(f==='featab'){ch.feats[el.dataset.k].ab[+el.dataset.i]=el.value}
+  else if(f==='book'){el.checked?books.add(el.value):books.delete(el.value);lsSet('forja-libros',[...books])}
   else if(f==='shield')ch.shield=el.checked;
   else if(f==='lvl')ch.lvl=+el.value;
   else if(f==='cls'){}
@@ -312,17 +364,19 @@ document.addEventListener('change',e=>{
 document.addEventListener('input',e=>{
   const el=e.target;
   if(el.id==='sp-q'){Conjuros.setQuery(el.value);const pos=el.selectionStart;render();const n=$('#sp-q');if(n){n.focus();try{n.setSelectionRange(pos,pos)}catch(x){}}return}
-  if(el.id==='f-name'){ch.name=el.value;if(step==='ficha'){const h=document.querySelector('.sh-head h2');if(h)h.textContent=ch.name||'Sin nombre'}else{const h=document.querySelector('.mini-h h2');if(h)h.textContent=ch.name||'Sin nombre'}lsSet('forja-borrador',ch);return}
-  const t=el.dataset.t;if(!t)return;ch[t]=el.value;lsSet('forja-borrador',ch);
+  if(el.id==='f-name'){ch.name=el.value;if(step==='ficha'){const h=document.querySelector('.sh-head h2');if(h)h.textContent=ch.name||'Sin nombre'}else{const h=document.querySelector('.mini-h h2');if(h)h.textContent=ch.name||'Sin nombre'}saveCurrent();return}
+  const t=el.dataset.t;if(!t||!ch)return;ch[t]=el.value;saveCurrent();
 });
 
 async function iniciar(){
-  const [clases,subclases,origen,equipo,conjuros]=await Promise.all(['clases','subclases','origen','equipo','conjuros'].map(n=>cargar('data/'+n+'.json')));
+  const [clases,subclases,origen,equipo,conjuros]=await Promise.all(['clases','subclases','origen','equipo','conjuros'].map(n=>cargar('data/'+n+'.json?v='+(window.FORJA_V||'1'))));
   D={clases,subclases,origen,equipo};R.init(D);Conjuros.init(conjuros,subclases);
   roster=lsGet('forja-personajes')||[];
+  // Recupera un borrador de versiones anteriores si no estaba guardado (salvo el personaje de ejemplo)
   const draft=lsGet('forja-borrador');
-  ch=draft&&D.clases[draft.cls]?Object.assign(blank(),draft):sample();
-  step='ficha';
+  if(draft&&D.clases[draft.cls]&&!/Personaje de ejemplo/.test(draft.notes||'')&&!roster.some(r=>r.id===draft.id)){roster.unshift(Object.assign(blank(),draft));lsSet('forja-personajes',roster)}
+  try{localStorage.removeItem('forja-borrador')}catch(e){}
+  ch=null;step='inicio';
   render();
 }
 iniciar().catch(err=>{console.error(err);$('#stage').innerHTML=`<div class="panel"><p class="bad">No se pudieron cargar los datos (${esc(err.message)}). Si abres la página desde tu ordenador, sírvela con un servidor local en vez de abrir el archivo directamente.</p></div>`});
