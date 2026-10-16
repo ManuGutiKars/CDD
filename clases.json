@@ -1,0 +1,2482 @@
+{
+ "barbaro": {
+  "n": "Bárbaro",
+  "hd": 12,
+  "pri": [
+   "str"
+  ],
+  "sv": [
+   "str",
+   "con"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "animal",
+    "athletics",
+    "intimidation",
+    "nature",
+    "perception",
+    "survival"
+   ]
+  },
+  "arm": "Armadura ligera y media, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas y marciales",
+  "wCat": "todas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "ord": [
+   "str",
+   "con",
+   "dex",
+   "wis",
+   "cha",
+   "int"
+  ],
+  "ud": "con",
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Gran hacha",
+      1
+     ],
+     [
+      "Hacha de mano",
+      4
+     ],
+     [
+      "Paquete de explorador",
+      1
+     ]
+    ],
+    "po": 15
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 75
+   }
+  ],
+  "prog": {
+   "Furias": [
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6
+   ],
+   "Daño de furia": [
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+3",
+    "+3",
+    "+3",
+    "+3",
+    "+3",
+    "+3",
+    "+3",
+    "+4",
+    "+4",
+    "+4",
+    "+4",
+    "+4"
+   ],
+   "Maestría con armas": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Furia",
+    "Acción adicional, sin armadura pesada: ventaja en pruebas y salvaciones de FUE, daño extra con ataques de FUE y resistencia a daño contundente, cortante y perforante. Dura hasta 10 minutos si la mantienes."
+   ],
+   [
+    1,
+    "Defensa sin armadura",
+    "Sin armadura, CA = 10 + DES + CON. Puedes usar escudo."
+   ],
+   [
+    1,
+    "Maestría con armas",
+    "Usas la propiedad de maestría de tantos tipos de armas como indica la tabla."
+   ],
+   [
+    2,
+    "Sentido del peligro",
+    "Ventaja en salvaciones de DES si no estás incapacitado."
+   ],
+   [
+    2,
+    "Ataque temerario",
+    "Ventaja en ataques de FUE este turno; los ataques contra ti también la tienen."
+   ],
+   [
+    3,
+    "Conocimiento primigenio",
+    "Una habilidad más de tu lista. En furia puedes usar FUE para Acrobacias, Intimidación, Percepción, Sigilo y Supervivencia."
+   ],
+   [
+    5,
+    "Ataque adicional",
+    "Atacas dos veces con la acción de Atacar."
+   ],
+   [
+    5,
+    "Movimiento rápido",
+    "+3 m de velocidad sin armadura pesada."
+   ],
+   [
+    7,
+    "Instinto salvaje",
+    "Ventaja en las tiradas de iniciativa."
+   ],
+   [
+    7,
+    "Abalanzarse instintivo",
+    "Al entrar en furia te mueves hasta la mitad de tu velocidad."
+   ],
+   [
+    9,
+    "Golpe brutal",
+    "Renuncias a la ventaja del Ataque temerario para hacer +1d10 y aplicar un efecto: empujar o frenar al objetivo."
+   ],
+   [
+    11,
+    "Furia implacable",
+    "En furia, si caes a 0 PG, una salvación de CON (CD 10, +5 por uso) te deja con PG iguales al doble de tu nivel."
+   ],
+   [
+    13,
+    "Golpe brutal mejorado",
+    "Nuevos efectos: desventaja en su siguiente salvación o en su siguiente ataque."
+   ],
+   [
+    15,
+    "Furia persistente",
+    "Recuperas todas las furias al tirar iniciativa una vez por descanso largo; la furia dura 10 minutos sin mantenerla."
+   ],
+   [
+    17,
+    "Golpe brutal mejorado",
+    "El daño sube a 2d10 y aplicas dos efectos."
+   ],
+   [
+    18,
+    "Poder indómito",
+    "Si tu prueba o salvación de FUE es inferior a tu puntuación de FUE, usas la puntuación."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Campeón primigenio",
+    "FUE y CON +4, hasta un máximo de 25."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "bardo": {
+  "n": "Bardo",
+  "hd": 8,
+  "pri": [
+   "cha"
+  ],
+  "sv": [
+   "dex",
+   "cha"
+  ],
+  "sk": {
+   "n": 3,
+   "from": "all"
+  },
+  "arm": "Armadura ligera",
+  "armCat": [
+   "ligera"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "Tres instrumentos musicales",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "cha",
+  "ord": [
+   "cha",
+   "dex",
+   "con",
+   "wis",
+   "int",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero",
+      1
+     ],
+     [
+      "Daga",
+      2
+     ],
+     [
+      "Instrumento musical",
+      1
+     ],
+     [
+      "Paquete de artista",
+      1
+     ]
+    ],
+    "po": 19
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 90
+   }
+  ],
+  "prog": {
+   "Inspiración bárdica": [
+    "d6",
+    "d6",
+    "d6",
+    "d6",
+    "d8",
+    "d8",
+    "d8",
+    "d8",
+    "d8",
+    "d10",
+    "d10",
+    "d10",
+    "d10",
+    "d10",
+    "d12",
+    "d12",
+    "d12",
+    "d12",
+    "d12",
+    "d12"
+   ]
+  },
+  "exp": [
+   [
+    2,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ],
+  "f": [
+   [
+    1,
+    "Inspiración bárdica",
+    "Acción adicional: das un dado a una criatura que puede sumarlo a una prueba d20 que falle. Usos = CAR por descanso largo."
+   ],
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de bardo con Carisma."
+   ],
+   [
+    2,
+    "Pericia",
+    "Doble bonificador por competencia en 2 habilidades."
+   ],
+   [
+    2,
+    "Aprendiz de todo",
+    "Sumas la mitad de tu BC a las pruebas de habilidad en las que no seas competente."
+   ],
+   [
+    5,
+    "Fuente de inspiración",
+    "Recuperas la Inspiración con descanso corto y puedes gastar un espacio para recuperar un uso."
+   ],
+   [
+    7,
+    "Contraencanto",
+    "Reacción: una criatura a 9 m repite una salvación contra hechizado o asustado con ventaja."
+   ],
+   [
+    9,
+    "Pericia",
+    "Otras 2 habilidades con pericia."
+   ],
+   [
+    10,
+    "Secretos mágicos",
+    "Puedes preparar conjuros de las listas de Bardo, Clérigo, Druida y Mago."
+   ],
+   [
+    18,
+    "Inspiración superior",
+    "Al tirar iniciativa recuperas usos hasta tener 2."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Palabras de la creación",
+    "Siempre tienes preparados Palabra de poder: curar y Palabra de poder: matar, y afectan a una segunda criatura."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "brujo": {
+  "n": "Brujo",
+  "hd": 8,
+  "pri": [
+   "cha"
+  ],
+  "sv": [
+   "wis",
+   "cha"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "deception",
+    "history",
+    "intimidation",
+    "investigation",
+    "nature",
+    "religion"
+   ]
+  },
+  "arm": "Armadura ligera",
+  "armCat": [
+   "ligera"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "cha",
+  "ord": [
+   "cha",
+   "con",
+   "dex",
+   "wis",
+   "int",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero",
+      1
+     ],
+     [
+      "Hoz",
+      1
+     ],
+     [
+      "Daga",
+      2
+     ],
+     [
+      "Canalizador arcano (orbe)",
+      1
+     ],
+     [
+      "Libro (saber oculto)",
+      1
+     ],
+     [
+      "Paquete de erudito",
+      1
+     ]
+    ],
+    "po": 15
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 100
+   }
+  ],
+  "prog": {
+   "Invocaciones": [
+    1,
+    3,
+    3,
+    3,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Invocaciones sobrenaturales",
+    "Fragmentos de saber prohibido que te dan capacidades, como Pacto del filo o Explosión agonizante."
+   ],
+   [
+    1,
+    "Magia del pacto",
+    "Conjuros de brujo con Carisma; espacios de pacto que se recuperan con descanso corto."
+   ],
+   [
+    2,
+    "Astucia mágica",
+    "Un minuto de rito: recuperas la mitad de tus espacios de pacto. 1 vez por descanso largo."
+   ],
+   [
+    9,
+    "Contactar patrón",
+    "Siempre tienes preparado Contactar otro plano y lo lanzas gratis una vez por descanso largo, superando la salvación."
+   ],
+   [
+    11,
+    "Arcano místico",
+    "Un conjuro de nivel 6 que lanzas sin espacio una vez por descanso largo (nivel 7 a 13, 8 a 15, 9 a 17)."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Maestro sobrenatural",
+    "Astucia mágica recupera todos tus espacios de pacto."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "clerigo": {
+  "n": "Clérigo",
+  "hd": 8,
+  "pri": [
+   "wis"
+  ],
+  "sv": [
+   "wis",
+   "cha"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "history",
+    "insight",
+    "medicine",
+    "persuasion",
+    "religion"
+   ]
+  },
+  "arm": "Armadura ligera y media, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "wis",
+  "ord": [
+   "wis",
+   "con",
+   "str",
+   "cha",
+   "dex",
+   "int"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Camisote de mallas",
+      1
+     ],
+     [
+      "Escudo",
+      1
+     ],
+     [
+      "Maza",
+      1
+     ],
+     [
+      "Símbolo sagrado",
+      1
+     ],
+     [
+      "Paquete de sacerdote",
+      1
+     ]
+    ],
+    "po": 7
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 110
+   }
+  ],
+  "prog": {
+   "Canalizar divinidad": [
+    "—",
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de clérigo con Sabiduría."
+   ],
+   [
+    1,
+    "Orden divina",
+    "Protector (armadura pesada y armas marciales) o Taumaturgo (un truco extra y SAB a Arcanos y Religión)."
+   ],
+   [
+    2,
+    "Canalizar divinidad",
+    "Chispa divina (curas o dañas 1d8 + SAB, más dados a niveles 7, 13 y 18) o Expulsar muertos vivientes."
+   ],
+   [
+    5,
+    "Abrasar muertos vivientes",
+    "Al expulsar muertos vivientes les causas SAB d8 de daño radiante."
+   ],
+   [
+    7,
+    "Golpes benditos",
+    "Golpe divino (+1d8 a un ataque) o Truco potente (sumas SAB al daño de tus trucos)."
+   ],
+   [
+    10,
+    "Intervención divina",
+    "Lanzas gratis cualquier conjuro de clérigo de nivel 5 o menos. 1 vez por descanso largo."
+   ],
+   [
+    14,
+    "Golpes benditos mejorados",
+    "El daño extra sube a 2d8, o tu truco potente da PG temporales."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Intervención divina mayor",
+    "Puedes lanzar Deseo con Intervención divina (recuperable tras 2d4 descansos largos)."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "druida": {
+  "n": "Druida",
+  "hd": 8,
+  "pri": [
+   "wis"
+  ],
+  "sv": [
+   "int",
+   "wis"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "animal",
+    "insight",
+    "medicine",
+    "nature",
+    "perception",
+    "religion",
+    "survival"
+   ]
+  },
+  "arm": "Armadura ligera, escudos",
+  "armCat": [
+   "ligera",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "Útiles de herborista",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "wis",
+  "ord": [
+   "wis",
+   "con",
+   "dex",
+   "int",
+   "cha",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero",
+      1
+     ],
+     [
+      "Escudo",
+      1
+     ],
+     [
+      "Hoz",
+      1
+     ],
+     [
+      "Bastón (canalizador druídico)",
+      1
+     ],
+     [
+      "Paquete de explorador",
+      1
+     ],
+     [
+      "Útiles de herborista",
+      1
+     ]
+    ],
+    "po": 9
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 50
+   }
+  ],
+  "prog": {
+   "Forma salvaje": [
+    "—",
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de druida con Sabiduría."
+   ],
+   [
+    1,
+    "Druídico",
+    "Conoces el idioma secreto druídico y siempre tienes preparado Hablar con los animales."
+   ],
+   [
+    1,
+    "Orden primigenia",
+    "Mago (un truco extra y SAB a Arcanos y Naturaleza) o Guardián (armas marciales y armadura media)."
+   ],
+   [
+    2,
+    "Forma salvaje",
+    "Acción adicional: te transformas en una bestia conocida (VD ¼ al principio, más a niveles 4 y 8)."
+   ],
+   [
+    2,
+    "Compañero salvaje",
+    "Gastas un espacio o Forma salvaje para lanzar Encontrar familiar sin componentes."
+   ],
+   [
+    5,
+    "Resurgir salvaje",
+    "Gastas un espacio para recuperar Forma salvaje, o Forma salvaje para recuperar un espacio de nivel 1."
+   ],
+   [
+    7,
+    "Furia elemental",
+    "Golpe potente (+1d8 a ataques con arma o en Forma salvaje) o Conjuros primigenios (SAB al daño de trucos)."
+   ],
+   [
+    15,
+    "Furia elemental mejorada",
+    "El daño extra sube a 2d8, o tus trucos ganan 90 m de alcance."
+   ],
+   [
+    18,
+    "Conjuros bestiales",
+    "Puedes lanzar conjuros en Forma salvaje."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Archidruida",
+    "Recuperas un uso de Forma salvaje al tirar iniciativa y conviertes usos en espacios de conjuro."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "explorador": {
+  "n": "Explorador",
+  "hd": 10,
+  "pri": [
+   "dex",
+   "wis"
+  ],
+  "sv": [
+   "str",
+   "dex"
+  ],
+  "sk": {
+   "n": 3,
+   "from": [
+    "animal",
+    "athletics",
+    "insight",
+    "investigation",
+    "nature",
+    "perception",
+    "stealth",
+    "survival"
+   ]
+  },
+  "arm": "Armadura ligera y media, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas y marciales",
+  "wCat": "todas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "wis",
+  "ord": [
+   "dex",
+   "wis",
+   "con",
+   "str",
+   "int",
+   "cha"
+  ],
+  "style": 2,
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero tachonado",
+      1
+     ],
+     [
+      "Cimitarra",
+      1
+     ],
+     [
+      "Espada corta",
+      1
+     ],
+     [
+      "Arco largo",
+      1
+     ],
+     [
+      "Flechas",
+      20
+     ],
+     [
+      "Carcaj",
+      1
+     ],
+     [
+      "Canalizador druídico (muérdago)",
+      1
+     ],
+     [
+      "Paquete de explorador",
+      1
+     ]
+    ],
+    "po": 7
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 150
+   }
+  ],
+  "prog": {
+   "Enemigo predilecto": [
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6
+   ],
+   "Maestría con armas": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "exp": [
+   [
+    2,
+    1
+   ],
+   [
+    9,
+    2
+   ]
+  ],
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de explorador con Sabiduría."
+   ],
+   [
+    1,
+    "Enemigo predilecto",
+    "Siempre tienes preparado Marca del cazador y lo lanzas sin espacio varias veces por descanso largo."
+   ],
+   [
+    1,
+    "Maestría con armas",
+    "Usas la propiedad de maestría de 2 tipos de armas."
+   ],
+   [
+    2,
+    "Explorador hábil",
+    "Pericia en una habilidad y 2 idiomas más."
+   ],
+   [
+    2,
+    "Estilo de combate",
+    "Obtienes una dote de estilo de combate."
+   ],
+   [
+    5,
+    "Ataque adicional",
+    "Atacas dos veces con la acción de Atacar."
+   ],
+   [
+    6,
+    "Vagabundeo",
+    "+3 m de velocidad y velocidad de trepar y nadar igual a tu velocidad, sin armadura pesada."
+   ],
+   [
+    9,
+    "Pericia",
+    "Otras 2 habilidades con pericia."
+   ],
+   [
+    10,
+    "Incansable",
+    "Acción de magia: PG temporales 1d8 + SAB; un descanso corto reduce tu agotamiento en 1."
+   ],
+   [
+    13,
+    "Cazador implacable",
+    "El daño no rompe tu concentración en Marca del cazador."
+   ],
+   [
+    14,
+    "Velo de la naturaleza",
+    "Acción adicional: invisible hasta el final de tu siguiente turno. SAB veces por descanso largo."
+   ],
+   [
+    17,
+    "Cazador preciso",
+    "Ventaja en ataques contra el objetivo de tu Marca del cazador."
+   ],
+   [
+    18,
+    "Sentidos salvajes",
+    "Vista ciega a 9 m."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Matador de enemigos",
+    "El dado de Marca del cazador pasa a d10."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "guerrero": {
+  "n": "Guerrero",
+  "hd": 10,
+  "pri": [
+   "str",
+   "dex"
+  ],
+  "sv": [
+   "str",
+   "con"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "acrobatics",
+    "animal",
+    "athletics",
+    "history",
+    "insight",
+    "intimidation",
+    "persuasion",
+    "perception",
+    "survival"
+   ]
+  },
+  "arm": "Todas las armaduras, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "pesada",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas y marciales",
+  "wCat": "todas",
+  "tool": "",
+  "asi": [
+   4,
+   6,
+   8,
+   12,
+   14,
+   16
+  ],
+  "ord": [
+   "str",
+   "con",
+   "dex",
+   "wis",
+   "int",
+   "cha"
+  ],
+  "style": 1,
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Cota de mallas",
+      1
+     ],
+     [
+      "Espada a dos manos",
+      1
+     ],
+     [
+      "Mangual",
+      1
+     ],
+     [
+      "Jabalina",
+      8
+     ],
+     [
+      "Paquete de explorador de mazmorras",
+      1
+     ]
+    ],
+    "po": 4
+   },
+   {
+    "id": "B",
+    "items": [
+     [
+      "Armadura de cuero tachonado",
+      1
+     ],
+     [
+      "Cimitarra",
+      1
+     ],
+     [
+      "Espada corta",
+      1
+     ],
+     [
+      "Arco largo",
+      1
+     ],
+     [
+      "Flechas",
+      20
+     ],
+     [
+      "Carcaj",
+      1
+     ],
+     [
+      "Paquete de explorador de mazmorras",
+      1
+     ]
+    ],
+    "po": 11
+   },
+   {
+    "id": "C",
+    "items": [],
+    "po": 155
+   }
+  ],
+  "prog": {
+   "Tomar aliento": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "Maestría con armas": [
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "Ataques": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Estilo de combate",
+    "Obtienes una dote de estilo de combate."
+   ],
+   [
+    1,
+    "Tomar aliento",
+    "Acción adicional: recuperas 1d10 + nivel de guerrero PG."
+   ],
+   [
+    1,
+    "Maestría con armas",
+    "Usas la propiedad de maestría de tantos tipos de armas como indica la tabla."
+   ],
+   [
+    2,
+    "Oleada de acción",
+    "Una acción extra en tu turno (no para Magia). 1 vez por descanso corto (2 a nivel 17)."
+   ],
+   [
+    2,
+    "Mente táctica",
+    "Gastas un uso de Tomar aliento para sumar 1d10 a una prueba de característica fallida."
+   ],
+   [
+    5,
+    "Ataque adicional",
+    "Atacas dos veces con la acción de Atacar."
+   ],
+   [
+    5,
+    "Cambio táctico",
+    "Al usar Tomar aliento te mueves la mitad de tu velocidad sin provocar ataques de oportunidad."
+   ],
+   [
+    9,
+    "Indomable",
+    "Repites una salvación fallida con un bonificador igual a tu nivel de guerrero (2 usos a nivel 13, 3 a nivel 17)."
+   ],
+   [
+    9,
+    "Maestro táctico",
+    "Puedes cambiar la maestría de tu arma por Empujar, Socavar o Lentitud."
+   ],
+   [
+    11,
+    "Dos ataques adicionales",
+    "Atacas tres veces con la acción de Atacar."
+   ],
+   [
+    13,
+    "Ataques estudiados",
+    "Si fallas un ataque, tienes ventaja en el siguiente contra esa criatura."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Tres ataques adicionales",
+    "Atacas cuatro veces con la acción de Atacar."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "hechicero": {
+  "n": "Hechicero",
+  "hd": 6,
+  "pri": [
+   "cha"
+  ],
+  "sv": [
+   "con",
+   "cha"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "deception",
+    "insight",
+    "intimidation",
+    "persuasion",
+    "religion"
+   ]
+  },
+  "arm": "Ninguna",
+  "armCat": [],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "cha",
+  "ord": [
+   "cha",
+   "con",
+   "dex",
+   "wis",
+   "int",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Lanza",
+      1
+     ],
+     [
+      "Daga",
+      2
+     ],
+     [
+      "Canalizador arcano (cristal)",
+      1
+     ],
+     [
+      "Paquete de explorador de mazmorras",
+      1
+     ]
+    ],
+    "po": 28
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 50
+   }
+  ],
+  "prog": {
+   "Puntos de hechicería": [
+    "—",
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "Metamagias": [
+    "—",
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de hechicero con Carisma."
+   ],
+   [
+    1,
+    "Hechicería innata",
+    "Acción adicional, 1 minuto: +1 a la CD de tus conjuros y ventaja en tus ataques de conjuro. 2 usos por descanso largo."
+   ],
+   [
+    2,
+    "Fuente de magia",
+    "Puntos de hechicería que conviertes en espacios de conjuro y viceversa."
+   ],
+   [
+    2,
+    "Metamagia",
+    "Opciones para modificar tus conjuros con puntos de hechicería (2, 4 a nivel 10 y 6 a nivel 17)."
+   ],
+   [
+    5,
+    "Restauración hechicera",
+    "Recuperas puntos de hechicería con un descanso corto (hasta la mitad de tu nivel)."
+   ],
+   [
+    7,
+    "Hechicería encarnada",
+    "Puedes activar Hechicería innata con 2 puntos y usar dos metamagias en un conjuro mientras dura."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Apoteosis arcana",
+    "Con Hechicería innata activa, una metamagia por turno no cuesta puntos."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "mago": {
+  "n": "Mago",
+  "hd": 6,
+  "pri": [
+   "int"
+  ],
+  "sv": [
+   "int",
+   "wis"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "history",
+    "insight",
+    "investigation",
+    "medicine",
+    "nature",
+    "religion"
+   ]
+  },
+  "arm": "Ninguna",
+  "armCat": [],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "int",
+  "ord": [
+   "int",
+   "con",
+   "dex",
+   "wis",
+   "cha",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Daga",
+      2
+     ],
+     [
+      "Bastón (canalizador arcano)",
+      1
+     ],
+     [
+      "Túnica",
+      1
+     ],
+     [
+      "Libro de conjuros",
+      1
+     ],
+     [
+      "Paquete de erudito",
+      1
+     ]
+    ],
+    "po": 5
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 55
+   }
+  ],
+  "exp": [
+   [
+    2,
+    1,
+    [
+     "arcana",
+     "history",
+     "investigation",
+     "medicine",
+     "nature",
+     "religion"
+    ]
+   ]
+  ],
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de mago con Inteligencia, desde tu libro de conjuros."
+   ],
+   [
+    1,
+    "Ritualista",
+    "Lanzas como ritual cualquier conjuro ritual de tu libro, aunque no esté preparado."
+   ],
+   [
+    1,
+    "Recuperación arcana",
+    "Tras un descanso corto recuperas espacios por un total de niveles igual a la mitad de tu nivel de mago."
+   ],
+   [
+    2,
+    "Erudito",
+    "Pericia en Arcanos, Historia, Investigación, Medicina, Naturaleza o Religión."
+   ],
+   [
+    5,
+    "Memorizar conjuro",
+    "Tras un descanso corto puedes cambiar un conjuro preparado por otro de tu libro."
+   ],
+   [
+    18,
+    "Dominio de conjuros",
+    "Un conjuro de nivel 1 y otro de nivel 2 de tu libro se lanzan a su nivel más bajo sin gastar espacio."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Conjuros característicos",
+    "Dos conjuros de nivel 3 siempre preparados que lanzas gratis una vez cada uno por descanso corto."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "monje": {
+  "n": "Monje",
+  "hd": 8,
+  "pri": [
+   "dex",
+   "wis"
+  ],
+  "sv": [
+   "str",
+   "dex"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "acrobatics",
+    "athletics",
+    "history",
+    "insight",
+    "religion",
+    "stealth"
+   ]
+  },
+  "arm": "Ninguna",
+  "armCat": [],
+  "wpn": "Armas sencillas y marciales con la propiedad Ligera",
+  "wCat": "monje",
+  "tool": "Una herramienta de artesano o un instrumento musical",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "ord": [
+   "dex",
+   "wis",
+   "con",
+   "str",
+   "int",
+   "cha"
+  ],
+  "ud": "wis",
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Lanza",
+      1
+     ],
+     [
+      "Daga",
+      5
+     ],
+     [
+      "Herramienta de artesano o instrumento",
+      1
+     ],
+     [
+      "Paquete de explorador",
+      1
+     ]
+    ],
+    "po": 11
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 50
+   }
+  ],
+  "prog": {
+   "Artes marciales": [
+    "d6",
+    "d6",
+    "d6",
+    "d6",
+    "d8",
+    "d8",
+    "d8",
+    "d8",
+    "d8",
+    "d8",
+    "d10",
+    "d10",
+    "d10",
+    "d10",
+    "d10",
+    "d10",
+    "d12",
+    "d12",
+    "d12",
+    "d12"
+   ],
+   "Puntos de concentración": [
+    "—",
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "Movimiento sin armadura": [
+    "—",
+    "+3 m",
+    "+3 m",
+    "+3 m",
+    "+3 m",
+    "+4,5 m",
+    "+4,5 m",
+    "+4,5 m",
+    "+4,5 m",
+    "+6 m",
+    "+6 m",
+    "+6 m",
+    "+6 m",
+    "+7,5 m",
+    "+7,5 m",
+    "+7,5 m",
+    "+7,5 m",
+    "+9 m",
+    "+9 m",
+    "+9 m"
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Artes marciales",
+    "Usas DES con golpes sin armas y armas de monje, el dado de artes marciales como daño y haces un golpe sin armas como acción adicional."
+   ],
+   [
+    1,
+    "Defensa sin armadura",
+    "Sin armadura ni escudo, CA = 10 + DES + SAB."
+   ],
+   [
+    2,
+    "Concentración del monje",
+    "Puntos para Ráfaga de golpes, Defensa paciente y Paso del viento. Se recuperan con descanso corto."
+   ],
+   [
+    2,
+    "Movimiento sin armadura",
+    "Tu velocidad aumenta sin armadura ni escudo."
+   ],
+   [
+    2,
+    "Metabolismo extraordinario",
+    "Al tirar iniciativa recuperas todos tus puntos y curas PG. 1 vez por descanso largo."
+   ],
+   [
+    3,
+    "Desviar ataques",
+    "Reacción: reduces el daño de un ataque y, si llega a 0, puedes redirigirlo con 1 punto."
+   ],
+   [
+    4,
+    "Caída lenta",
+    "Reacción: reduces el daño por caída en 5 × tu nivel de monje."
+   ],
+   [
+    5,
+    "Ataque adicional",
+    "Atacas dos veces con la acción de Atacar."
+   ],
+   [
+    5,
+    "Golpe aturdidor",
+    "Una vez por turno, 1 punto: el objetivo hace salvación de CON o queda aturdido."
+   ],
+   [
+    6,
+    "Golpes potenciados",
+    "Tus golpes sin armas pueden hacer daño de fuerza."
+   ],
+   [
+    7,
+    "Evasión",
+    "Si superas una salvación de DES para mitad de daño, no recibes daño; si fallas, la mitad."
+   ],
+   [
+    9,
+    "Movimiento acrobático",
+    "Te mueves por superficies verticales y líquidos sin caer."
+   ],
+   [
+    10,
+    "Concentración mejorada",
+    "Ráfaga de golpes, Defensa paciente y Paso del viento mejoran."
+   ],
+   [
+    10,
+    "Autorrestauración",
+    "Al final de cada turno terminas los estados hechizado, asustado o envenenado."
+   ],
+   [
+    13,
+    "Desviar energía",
+    "Desviar ataques funciona con cualquier tipo de daño."
+   ],
+   [
+    14,
+    "Superviviente disciplinado",
+    "Competencia en todas las salvaciones; 1 punto para repetir una salvación fallida."
+   ],
+   [
+    15,
+    "Concentración perfecta",
+    "Al tirar iniciativa con 3 o menos puntos, recuperas hasta 4."
+   ],
+   [
+    18,
+    "Defensa superior",
+    "3 puntos: resistencia a todo el daño salvo fuerza durante 1 minuto."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Cuerpo y mente",
+    "DES y SAB +4, hasta un máximo de 25."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "paladin": {
+  "n": "Paladín",
+  "hd": 10,
+  "pri": [
+   "str",
+   "cha"
+  ],
+  "sv": [
+   "wis",
+   "cha"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "athletics",
+    "insight",
+    "intimidation",
+    "medicine",
+    "persuasion",
+    "religion"
+   ]
+  },
+  "arm": "Todas las armaduras, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "pesada",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas y marciales",
+  "wCat": "todas",
+  "tool": "",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "cha",
+  "ord": [
+   "str",
+   "cha",
+   "con",
+   "wis",
+   "dex",
+   "int"
+  ],
+  "style": 2,
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Cota de mallas",
+      1
+     ],
+     [
+      "Escudo",
+      1
+     ],
+     [
+      "Espada larga",
+      1
+     ],
+     [
+      "Jabalina",
+      6
+     ],
+     [
+      "Símbolo sagrado",
+      1
+     ],
+     [
+      "Paquete de sacerdote",
+      1
+     ]
+    ],
+    "po": 9
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 150
+   }
+  ],
+  "prog": {
+   "Imposición de manos": [
+    "5 PG",
+    "10 PG",
+    "15 PG",
+    "20 PG",
+    "25 PG",
+    "30 PG",
+    "35 PG",
+    "40 PG",
+    "45 PG",
+    "50 PG",
+    "55 PG",
+    "60 PG",
+    "65 PG",
+    "70 PG",
+    "75 PG",
+    "80 PG",
+    "85 PG",
+    "90 PG",
+    "95 PG",
+    "100 PG"
+   ],
+   "Canalizar divinidad": [
+    "—",
+    "—",
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Imposición de manos",
+    "Reserva de 5 PG por nivel que repartes al tocar; 5 PG curan también un envenenamiento."
+   ],
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de paladín con Carisma."
+   ],
+   [
+    1,
+    "Maestría con armas",
+    "Usas la propiedad de maestría de 2 tipos de armas."
+   ],
+   [
+    2,
+    "Estilo de combate",
+    "Obtienes una dote de estilo de combate (o la opción Guerrero bendecido)."
+   ],
+   [
+    2,
+    "Golpe del paladín",
+    "Siempre tienes preparado Castigo divino y lo lanzas sin espacio una vez por descanso largo."
+   ],
+   [
+    3,
+    "Canalizar divinidad",
+    "Sentido divino y las opciones de tu juramento."
+   ],
+   [
+    5,
+    "Ataque adicional",
+    "Atacas dos veces con la acción de Atacar."
+   ],
+   [
+    5,
+    "Corcel fiel",
+    "Siempre tienes preparado Encontrar corcel y lo lanzas sin espacio una vez por descanso largo."
+   ],
+   [
+    6,
+    "Aura de protección",
+    "Tú y tus aliados a 3 m sumáis tu CAR a las salvaciones."
+   ],
+   [
+    9,
+    "Abjurar enemigos",
+    "Canalizar divinidad: asustas a CAR criaturas a 18 m durante 1 minuto."
+   ],
+   [
+    10,
+    "Aura de valor",
+    "Tú y tus aliados en el aura sois inmunes a asustado."
+   ],
+   [
+    11,
+    "Golpes radiantes",
+    "Tus ataques cuerpo a cuerpo con arma hacen +1d8 radiante."
+   ],
+   [
+    14,
+    "Toque restaurador",
+    "Con Imposición de manos también eliminas estados (5 PG por estado)."
+   ],
+   [
+    18,
+    "Expansión del aura",
+    "Tus auras llegan a 9 m."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "picaro": {
+  "n": "Pícaro",
+  "hd": 8,
+  "pri": [
+   "dex"
+  ],
+  "sv": [
+   "dex",
+   "int"
+  ],
+  "sk": {
+   "n": 4,
+   "from": [
+    "acrobatics",
+    "athletics",
+    "deception",
+    "insight",
+    "intimidation",
+    "investigation",
+    "perception",
+    "persuasion",
+    "sleight",
+    "stealth"
+   ]
+  },
+  "arm": "Armadura ligera",
+  "armCat": [
+   "ligera"
+  ],
+  "wpn": "Armas sencillas y marciales con Sutil o Ligera",
+  "wCat": "picaro",
+  "tool": "Herramientas de ladrón",
+  "asi": [
+   4,
+   8,
+   10,
+   12,
+   16
+  ],
+  "ord": [
+   "dex",
+   "con",
+   "int",
+   "wis",
+   "cha",
+   "str"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero",
+      1
+     ],
+     [
+      "Daga",
+      2
+     ],
+     [
+      "Espada corta",
+      1
+     ],
+     [
+      "Arco corto",
+      1
+     ],
+     [
+      "Flechas",
+      20
+     ],
+     [
+      "Carcaj",
+      1
+     ],
+     [
+      "Herramientas de ladrón",
+      1
+     ],
+     [
+      "Paquete de ladrón",
+      1
+     ]
+    ],
+    "po": 8
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 100
+   }
+  ],
+  "prog": {
+   "Ataque furtivo": [
+    "1d6",
+    "1d6",
+    "2d6",
+    "2d6",
+    "3d6",
+    "3d6",
+    "4d6",
+    "4d6",
+    "5d6",
+    "5d6",
+    "6d6",
+    "6d6",
+    "7d6",
+    "7d6",
+    "8d6",
+    "8d6",
+    "9d6",
+    "9d6",
+    "10d6",
+    "10d6"
+   ]
+  },
+  "exp": [
+   [
+    1,
+    2
+   ],
+   [
+    6,
+    2
+   ]
+  ],
+  "f": [
+   [
+    1,
+    "Pericia",
+    "Doble bonificador por competencia en 2 habilidades."
+   ],
+   [
+    1,
+    "Ataque furtivo",
+    "Una vez por turno, daño extra si tienes ventaja o un aliado está junto al objetivo (arma Sutil o a distancia)."
+   ],
+   [
+    1,
+    "Jerga de ladrones",
+    "Conoces la jerga de los bajos fondos y un idioma más."
+   ],
+   [
+    1,
+    "Maestría con armas",
+    "Usas la propiedad de maestría de 2 tipos de armas."
+   ],
+   [
+    2,
+    "Acción astuta",
+    "Acción adicional: Correr, Destrabarse o Esconderse."
+   ],
+   [
+    3,
+    "Apuntar con cuidado",
+    "Acción adicional sin moverte: ventaja en tu siguiente ataque."
+   ],
+   [
+    5,
+    "Golpe astuto",
+    "Cambias dados de Ataque furtivo por efectos: envenenar, derribar o retirarte."
+   ],
+   [
+    5,
+    "Esquiva asombrosa",
+    "Reacción: reduces a la mitad el daño de un ataque que veas."
+   ],
+   [
+    6,
+    "Pericia",
+    "Otras 2 habilidades con pericia."
+   ],
+   [
+    7,
+    "Evasión",
+    "Si superas una salvación de DES para mitad de daño, no recibes daño; si fallas, la mitad."
+   ],
+   [
+    7,
+    "Talento fiable",
+    "En pruebas de habilidades o herramientas con competencia, un 9 o menos en el d20 cuenta como 10."
+   ],
+   [
+    11,
+    "Golpe astuto mejorado",
+    "Puedes aplicar dos efectos de Golpe astuto a la vez."
+   ],
+   [
+    14,
+    "Golpes arteros",
+    "Nuevos efectos: aturdir, dejar inconsciente u ofuscar."
+   ],
+   [
+    15,
+    "Mente escurridiza",
+    "Competencia en salvaciones de SAB y CAR."
+   ],
+   [
+    18,
+    "Elusivo",
+    "Ningún ataque tiene ventaja contra ti si no estás incapacitado."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Golpe de suerte",
+    "Si fallas una prueba d20, la conviertes en un 20. 1 vez por descanso corto."
+   ]
+  ],
+  "src": "Player's Handbook"
+ },
+ "artifice": {
+  "n": "Artífice",
+  "src": "Eberron: Forge of the Artificer",
+  "hd": 8,
+  "pri": [
+   "int"
+  ],
+  "sv": [
+   "con",
+   "int"
+  ],
+  "sk": {
+   "n": 2,
+   "from": [
+    "arcana",
+    "history",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "sleight"
+   ]
+  },
+  "arm": "Armadura ligera y media, escudos",
+  "armCat": [
+   "ligera",
+   "media",
+   "escudo"
+  ],
+  "wpn": "Armas sencillas",
+  "wCat": "sencillas",
+  "tool": "Herramientas de ladrón, herramientas de hojalatero y una herramienta de artesano",
+  "asi": [
+   4,
+   8,
+   12,
+   16
+  ],
+  "cast": "int",
+  "ord": [
+   "int",
+   "con",
+   "dex",
+   "wis",
+   "str",
+   "cha"
+  ],
+  "eq": [
+   {
+    "id": "A",
+    "items": [
+     [
+      "Armadura de cuero tachonado",
+      1
+     ],
+     [
+      "Daga",
+      1
+     ],
+     [
+      "Herramientas de ladrón",
+      1
+     ],
+     [
+      "Herramientas de hojalatero",
+      1
+     ],
+     [
+      "Paquete de explorador de mazmorras",
+      1
+     ]
+    ],
+    "po": 16
+   },
+   {
+    "id": "B",
+    "items": [],
+    "po": 150
+   }
+  ],
+  "prog": {
+   "Planos conocidos": [
+    "—",
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8
+   ],
+   "Objetos mágicos": [
+    "—",
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6
+   ]
+  },
+  "f": [
+   [
+    1,
+    "Lanzamiento de conjuros",
+    "Conjuros de artífice con Inteligencia; usas herramientas como canalizador."
+   ],
+   [
+    1,
+    "Magia del hojalatero",
+    "Conoces Reparar. Con herramientas de hojalatero creas pequeños objetos útiles INT veces por descanso largo."
+   ],
+   [
+    2,
+    "Replicar objeto mágico",
+    "Aprendes planos de objetos mágicos y, tras cada descanso largo, fabricas varios de ellos (ver tabla)."
+   ],
+   [
+    6,
+    "Hojalatero de objetos mágicos",
+    "Recargas objetos con espacios de conjuro, drenas un objeto para obtener un espacio y transmutas un objeto en otro plano."
+   ],
+   [
+    7,
+    "Destello de genio",
+    "Reacción: sumas INT a una prueba o salvación fallida tuya o de una criatura a 9 m. INT veces por descanso largo."
+   ],
+   [
+    10,
+    "Adepto de objetos mágicos",
+    "Puedes sintonizarte con 4 objetos mágicos."
+   ],
+   [
+    11,
+    "Objeto almacenaconjuros",
+    "Guardas un conjuro de artífice de nivel 1–3 en un arma o canalizador; quien lo sostenga puede lanzarlo 2 × INT veces."
+   ],
+   [
+    14,
+    "Artificio avanzado",
+    "Sintonía con 5 objetos y recuperas un Destello de genio con descanso corto."
+   ],
+   [
+    18,
+    "Maestro de objetos mágicos",
+    "Sintonía con 6 objetos."
+   ],
+   [
+    19,
+    "Don épico",
+    "Obtienes una dote de don épico."
+   ],
+   [
+    20,
+    "Alma del artificio",
+    "Si caes a 0 PG, desintegras objetos replicados para quedarte con 20 PG por objeto; recuperas Destellos con descanso corto."
+   ]
+  ]
+ }
+}

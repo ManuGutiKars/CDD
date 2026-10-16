@@ -1,0 +1,4811 @@
+{
+ "especies": {
+  "draconido": {
+   "n": "Dracónido",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 60,
+   "sub": {
+    "l": "Ascendencia dracónica",
+    "o": [
+     {
+      "id": "negro",
+      "n": "Negro",
+      "d": "Aliento y resistencia de ácido."
+     },
+     {
+      "id": "azul",
+      "n": "Azul",
+      "d": "Aliento y resistencia de relámpago."
+     },
+     {
+      "id": "laton",
+      "n": "Latón",
+      "d": "Aliento y resistencia de fuego."
+     },
+     {
+      "id": "bronce",
+      "n": "Bronce",
+      "d": "Aliento y resistencia de relámpago."
+     },
+     {
+      "id": "cobre",
+      "n": "Cobre",
+      "d": "Aliento y resistencia de ácido."
+     },
+     {
+      "id": "oro",
+      "n": "Oro",
+      "d": "Aliento y resistencia de fuego."
+     },
+     {
+      "id": "verde",
+      "n": "Verde",
+      "d": "Aliento y resistencia de veneno."
+     },
+     {
+      "id": "rojo",
+      "n": "Rojo",
+      "d": "Aliento y resistencia de fuego."
+     },
+     {
+      "id": "plata",
+      "n": "Plata",
+      "d": "Aliento y resistencia de frío."
+     },
+     {
+      "id": "blanco",
+      "n": "Blanco",
+      "d": "Aliento y resistencia de frío."
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Arma de aliento",
+     "Sustituye un ataque: cono de 4,5 m o línea de 9 m, salvación de DES (CD 8 + CON + BC). 1d10 de daño del tipo de tu ascendencia (2d10 a nivel 5, 3d10 a 11, 4d10 a 17). Usos = BC por descanso largo."
+    ],
+    [
+     "Resistencia al daño",
+     "Resistencia al tipo de daño de tu ascendencia."
+    ],
+    [
+     "Vuelo dracónico",
+     "A nivel 5: acción adicional para tener alas espectrales 10 minutos (vuelo igual a tu velocidad). 1 vez por descanso largo."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "enano": {
+   "n": "Enano",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 120,
+   "hpPerLvl": 1,
+   "tr": [
+    [
+     "Resistencia enana",
+     "Resistencia al daño de veneno y ventaja contra envenenado."
+    ],
+    [
+     "Dureza enana",
+     "+1 PG máximo por nivel."
+    ],
+    [
+     "Afinidad con la piedra",
+     "Acción adicional: sentido de la vibración a 18 m sobre piedra durante 10 minutos. Usos = BC por descanso largo."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "elfo": {
+   "n": "Elfo",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 60,
+   "skill": [
+    "insight",
+    "perception",
+    "survival"
+   ],
+   "sub": {
+    "l": "Linaje élfico",
+    "o": [
+     {
+      "id": "drow",
+      "n": "Drow",
+      "d": "Visión en la oscuridad 36 m. Truco Luces danzantes; Fuego feérico a nivel 3 y Oscuridad a nivel 5.",
+      "dv": 120
+     },
+     {
+      "id": "alto",
+      "n": "Alto elfo",
+      "d": "Truco Prestidigitación (cambiable); Detectar magia a nivel 3 y Paso brumoso a nivel 5."
+     },
+     {
+      "id": "silvano",
+      "n": "Elfo silvano",
+      "d": "Velocidad 10,5 m. Truco Saber druídico; Zancada larga a nivel 3 y Paso sin rastro a nivel 5.",
+      "spd": 35
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Ascendencia feérica",
+     "Ventaja contra hechizado."
+    ],
+    [
+     "Sentidos agudos",
+     "Competencia en Perspicacia, Percepción o Supervivencia."
+    ],
+    [
+     "Trance",
+     "Descanso largo en 4 horas sin perder la consciencia."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "gnomo": {
+   "n": "Gnomo",
+   "size": "Pequeño",
+   "spd": 30,
+   "dv": 60,
+   "sub": {
+    "l": "Linaje gnomo",
+    "o": [
+     {
+      "id": "bosque",
+      "n": "Gnomo de bosque",
+      "d": "Truco Ilusión menor; Hablar con los animales siempre preparado (usos = BC sin espacio)."
+     },
+     {
+      "id": "roca",
+      "n": "Gnomo de roca",
+      "d": "Trucos Reparar y Prestidigitación; construyes pequeños mecanismos de relojería."
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Astucia gnoma",
+     "Ventaja en salvaciones de INT, SAB y CAR."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "goliat": {
+   "n": "Goliat",
+   "size": "Mediano",
+   "spd": 35,
+   "dv": 0,
+   "sub": {
+    "l": "Ascendencia gigante",
+    "o": [
+     {
+      "id": "nube",
+      "n": "Nube",
+      "d": "Acción adicional: te teletransportas 9 m."
+     },
+     {
+      "id": "fuego",
+      "n": "Fuego",
+      "d": "Al impactar, +1d10 de fuego."
+     },
+     {
+      "id": "escarcha",
+      "n": "Escarcha",
+      "d": "Al impactar, +1d6 de frío y −3 m de velocidad al objetivo."
+     },
+     {
+      "id": "colina",
+      "n": "Colina",
+      "d": "Al impactar, derribas a una criatura Grande o menor."
+     },
+     {
+      "id": "piedra",
+      "n": "Piedra",
+      "d": "Reacción: reduces el daño recibido en 1d12 + CON."
+     },
+     {
+      "id": "tormenta",
+      "n": "Tormenta",
+      "d": "Reacción: 1d8 de trueno a quien te dañe a 18 m."
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Ascendencia gigante",
+     "Usos = BC por descanso largo."
+    ],
+    [
+     "Complexión poderosa",
+     "Ventaja para terminar agarrado; cuentas como una talla más para cargar."
+    ],
+    [
+     "Forma grande",
+     "A nivel 5: acción adicional para crecer a Grande 10 minutos (ventaja en FUE y +3 m de velocidad). 1 vez por descanso largo."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "mediano": {
+   "n": "Mediano",
+   "size": "Pequeño",
+   "spd": 30,
+   "dv": 0,
+   "tr": [
+    [
+     "Valiente",
+     "Ventaja contra asustado."
+    ],
+    [
+     "Agilidad mediana",
+     "Atraviesas el espacio de criaturas más grandes que tú."
+    ],
+    [
+     "Suerte",
+     "Si sacas un 1 en una prueba d20, repites el dado."
+    ],
+    [
+     "Sigiloso por naturaleza",
+     "Puedes esconderte tras criaturas más grandes que tú."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "humano": {
+   "n": "Humano",
+   "size": "choice",
+   "spd": 30,
+   "dv": 0,
+   "skill": "all",
+   "feat": true,
+   "tr": [
+    [
+     "Ingenioso",
+     "Ganas Inspiración heroica al terminar cada descanso largo."
+    ],
+    [
+     "Hábil",
+     "Competencia en una habilidad a tu elección."
+    ],
+    [
+     "Versátil",
+     "Una dote de origen adicional."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "orco": {
+   "n": "Orco",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 120,
+   "tr": [
+    [
+     "Subidón de adrenalina",
+     "Acción adicional: Correr y PG temporales = BC. Usos = BC por descanso corto o largo."
+    ],
+    [
+     "Aguante incansable",
+     "Una vez por descanso largo, si caes a 0 PG, quedas a 1."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "tiflin": {
+   "n": "Tiflin",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "sub": {
+    "l": "Legado infernal",
+    "o": [
+     {
+      "id": "abisal",
+      "n": "Abisal",
+      "d": "Resistencia al veneno. Truco Rociada venenosa; Rayo nauseabundo a nivel 3 y Retener persona a nivel 5."
+     },
+     {
+      "id": "ctonico",
+      "n": "Ctónico",
+      "d": "Resistencia al necrótico. Truco Toque gélido; Vida falsa a nivel 3 y Rayo debilitador a nivel 5."
+     },
+     {
+      "id": "infernal",
+      "n": "Infernal",
+      "d": "Resistencia al fuego. Truco Descarga de fuego; Reprimenda infernal a nivel 3 y Oscuridad a nivel 5."
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Presencia de otro mundo",
+     "Conoces el truco Taumaturgia."
+    ]
+   ],
+   "src": "Player's Handbook"
+  },
+  "aasimar": {
+   "n": "Aasimar",
+   "src": "Player's Handbook",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Resistencia celestial",
+     "Resistencia al daño necrótico y radiante."
+    ],
+    [
+     "Manos curativas",
+     "Acción de magia: curas tantos d4 como tu BC. 1 vez por descanso largo."
+    ],
+    [
+     "Portador de luz",
+     "Conoces el truco Luz (CAR)."
+    ],
+    [
+     "Revelación celestial",
+     "A nivel 3, acción adicional durante 1 minuto: alas celestiales (vuelo), radiancia interior o mortaja necrótica; una vez por turno +BC de daño. 1 vez por descanso largo."
+    ]
+   ]
+  },
+  "cambiante": {
+   "n": "Cambiante",
+   "src": "Eberron: Forge of the Artificer",
+   "size": "choice",
+   "spd": 30,
+   "dv": 0,
+   "skill": [
+    "deception",
+    "insight",
+    "intimidation",
+    "performance",
+    "persuasion"
+   ],
+   "skillN": 2,
+   "tr": [
+    [
+     "Instintos de cambiante",
+     "Competencia en 2 habilidades entre Engaño, Perspicacia, Intimidación, Interpretación y Persuasión."
+    ],
+    [
+     "Cambiaformas",
+     "Acción: cambias tu aspecto y voz (incluso entre Mediano y Pequeño) y tienes ventaja en pruebas de CAR mientras dure."
+    ]
+   ]
+  },
+  "kalashtar": {
+   "n": "Kalashtar",
+   "src": "Eberron: Forge of the Artificer",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 0,
+   "skill": "all",
+   "tr": [
+    [
+     "Mente dual",
+     "Ventaja en salvaciones de SAB y CAR."
+    ],
+    [
+     "Disciplina mental",
+     "Resistencia al daño psíquico."
+    ],
+    [
+     "Vínculo mental",
+     "Telepatía a 3 m por nivel de personaje; puedes dejar que te respondan 1 hora."
+    ],
+    [
+     "Separado de los sueños",
+     "Inmune a Sueño; tras cada descanso largo ganas competencia en una habilidad hasta el siguiente."
+    ]
+   ]
+  },
+  "khoravar": {
+   "n": "Khoravar",
+   "src": "Eberron: Forge of the Artificer",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "skill": "all",
+   "tr": [
+    [
+     "Ascendencia feérica",
+     "Ventaja contra hechizado."
+    ],
+    [
+     "Don feérico",
+     "Conoces Amigos (cambiable por otro truco de clérigo, druida o mago tras un descanso largo)."
+    ],
+    [
+     "Resistencia al letargo",
+     "Puedes superar una salvación fallida contra inconsciente; se recarga tras 1d4 descansos largos."
+    ],
+    [
+     "Versatilidad",
+     "Competencia en una habilidad o herramienta, cambiable tras cada descanso largo."
+    ]
+   ]
+  },
+  "cambiaformas": {
+   "n": "Cambiaformas (Shifter)",
+   "src": "Eberron: Forge of the Artificer",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "skill": [
+    "acrobatics",
+    "athletics",
+    "intimidation",
+    "survival"
+   ],
+   "sub": {
+    "l": "Rasgo de cambio",
+    "o": [
+     {
+      "id": "piel",
+      "n": "Piel bestial",
+      "d": "+1d6 PG temporales al cambiar y +1 a la CA cambiado."
+     },
+     {
+      "id": "colmillo",
+      "n": "Colmillo largo",
+      "d": "Mordisco de 1d6 + FUE perforante como acción adicional."
+     },
+     {
+      "id": "zancada",
+      "n": "Zancada veloz",
+      "d": "+3 m de velocidad y te alejas 3 m como reacción."
+     },
+     {
+      "id": "caza",
+      "n": "Caza salvaje",
+      "d": "Ventaja en pruebas de SAB y nadie tiene ventaja al atacarte a 9 m."
+     }
+    ]
+   },
+   "tr": [
+    [
+     "Instintos bestiales",
+     "Competencia en Acrobacias, Atletismo, Intimidación o Supervivencia."
+    ],
+    [
+     "Cambio",
+     "Acción adicional: forma bestial 1 minuto con PG temporales = 2 × BC. Usos = BC por descanso largo."
+    ]
+   ]
+  },
+  "forjado": {
+   "n": "Forjado",
+   "src": "Eberron: Forge of the Artificer",
+   "size": "choice",
+   "spd": 30,
+   "dv": 0,
+   "skill": "all",
+   "ac": 1,
+   "tr": [
+    [
+     "Resistencia de constructo",
+     "Resistencia al veneno y ventaja contra envenenado."
+    ],
+    [
+     "Protección integrada",
+     "+1 a la CA; nadie te quita la armadura contra tu voluntad."
+    ],
+    [
+     "Descanso del centinela",
+     "No duermes; descanso largo en 6 horas inmóvil y consciente."
+    ],
+    [
+     "Diseño especializado",
+     "Competencia en una habilidad y una herramienta."
+    ],
+    [
+     "Incansable",
+     "No te agotas por sed, hambre o asfixia."
+    ]
+   ]
+  },
+  "boggart": {
+   "n": "Boggart",
+   "src": "Lorwyn: First Light",
+   "size": "Pequeño",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Ascendencia feérica",
+     "Ventaja contra hechizado."
+    ],
+    [
+     "Furia de los pequeños",
+     "Una vez por turno, +BC de daño contra una criatura más grande. Usos = BC por descanso largo."
+    ],
+    [
+     "Escape ágil",
+     "Destrabarse o Esconderse como acción adicional."
+    ]
+   ]
+  },
+  "hada": {
+   "n": "Hada",
+   "src": "Lorwyn: First Light",
+   "size": "Pequeño",
+   "spd": 30,
+   "dv": 0,
+   "tr": [
+    [
+     "Magia feérica",
+     "Conoces Saber druídico; Fuego feérico a nivel 3 y Agrandar/Reducir a nivel 5, una vez gratis cada uno por descanso largo."
+    ],
+    [
+     "Vuelo",
+     "Velocidad de vuelo igual a tu velocidad sin armadura media ni pesada."
+    ]
+   ]
+  },
+  "llamaviva": {
+   "n": "Llamaviva",
+   "src": "Lorwyn: First Light",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Resistencia al fuego",
+     "Resistencia al daño de fuego."
+    ],
+    [
+     "Alcanzar la llama",
+     "Conoces Producir llama; Manos ardientes a nivel 3 y Hoja de fuego a nivel 5, una vez gratis cada uno por descanso largo."
+    ]
+   ]
+  },
+  "cambiante_lorwyn": {
+   "n": "Cambiante de Lorwyn",
+   "src": "Lorwyn: First Light",
+   "size": "choice",
+   "spd": 30,
+   "dv": 120,
+   "skill": [
+    "deception",
+    "performance"
+   ],
+   "tr": [
+    [
+     "Moldearse",
+     "Acción: cambias entre forma humanoide bípeda y forma bestial cuadrúpeda."
+    ],
+    [
+     "Imitador encantador",
+     "Competencia en Engaño o Interpretación."
+    ],
+    [
+     "Movimiento impredecible",
+     "Al tirar iniciativa te mueves la mitad de tu velocidad."
+    ]
+   ]
+  },
+  "escarchado": {
+   "n": "Escarchado",
+   "src": "Lorwyn: First Light",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Magia del fuego frío",
+     "Conoces Rayo de escarcha; Cuchillo de hielo a nivel 3 y Hoja de fuego (de frío) a nivel 5, una vez gratis cada uno por descanso largo."
+    ],
+    [
+     "Resistencia al frío",
+     "Resistencia al daño de frío."
+    ]
+   ]
+  },
+  "dhampiro": {
+   "n": "Dhampiro",
+   "src": "Ravenloft: The Horrors Within",
+   "size": "choice",
+   "spd": 35,
+   "dv": 60,
+   "tr": [
+    [
+     "Trepar como una araña",
+     "Velocidad de trepar igual a tu velocidad; a nivel 3, por paredes y techos con las manos libres."
+    ],
+    [
+     "Rastro de no muerte",
+     "Resistencia al daño necrótico."
+    ],
+    [
+     "Mordisco vampírico",
+     "Golpe sin armas de 1d4 + CON perforante; puedes curarte o fortalecerte con el daño. Usos = BC por descanso largo."
+    ]
+   ]
+  },
+  "sangrebruja": {
+   "n": "Sangre de Bruja",
+   "src": "Ravenloft: The Horrors Within",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Ficha inquietante",
+     "Creas una ficha con la que envías mensajes telepáticos y ves a distancia (16 km)."
+    ],
+    [
+     "Magia de maleficio",
+     "Siempre tienes preparados Disfrazarse y Maleficio; una vez gratis cada uno por descanso largo."
+    ]
+   ]
+  },
+  "lupino": {
+   "n": "Lupino",
+   "src": "Ravenloft: The Horrors Within",
+   "size": "choice",
+   "spd": 30,
+   "dv": 60,
+   "skill": [
+    "perception",
+    "stealth",
+    "survival"
+   ],
+   "tr": [
+    [
+     "Abalanzarse feroz",
+     "Golpes sin armas cortantes; una vez por turno dañas y empujas a la vez."
+    ],
+    [
+     "Aullido",
+     "Acción adicional: criaturas a 4,5 m hacen salvación de SAB o tienen desventaja en ataques y salvaciones. Usos = BC por descanso largo."
+    ],
+    [
+     "Instintos de lobo",
+     "Competencia en Percepción, Sigilo o Supervivencia."
+    ]
+   ]
+  },
+  "renacido": {
+   "n": "Renacido",
+   "src": "Ravenloft: The Horrors Within",
+   "size": "choice",
+   "spd": 30,
+   "dv": 0,
+   "skill": "all",
+   "tr": [
+    [
+     "Escapado de la muerte",
+     "Ventaja en salvaciones de muerte."
+    ],
+    [
+     "Eterno",
+     "No duermes; descanso largo en 4 horas."
+    ],
+    [
+     "Saber de una vida pasada",
+     "Competencia en una habilidad y +1d6 a pruebas fallidas BC veces por descanso largo."
+    ],
+    [
+     "Resistencia extraña",
+     "Resistencia al frío, necrótico o veneno."
+    ]
+   ]
+  }
+ },
+ "trasfondos": {
+  "acolito": {
+   "n": "Acólito",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "f": "iniciado-clerigo",
+   "sk": [
+    "insight",
+    "religion"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Libro (oraciones)",
+     1
+    ],
+    [
+     "Símbolo sagrado",
+     1
+    ],
+    [
+     "Pergamino (hojas)",
+     10
+    ],
+    [
+     "Túnica",
+     1
+    ]
+   ],
+   "po": 8,
+   "src": "Player's Handbook"
+  },
+  "artesano": {
+   "n": "Artesano",
+   "ab": [
+    "str",
+    "dex",
+    "int"
+   ],
+   "f": "artesania",
+   "sk": [
+    "investigation",
+    "persuasion"
+   ],
+   "tool": "Una herramienta de artesano",
+   "eq": [
+    [
+     "Herramientas de artesano",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 32,
+   "src": "Player's Handbook"
+  },
+  "charlatan": {
+   "n": "Charlatán",
+   "ab": [
+    "dex",
+    "con",
+    "cha"
+   ],
+   "f": "habilidoso",
+   "sk": [
+    "deception",
+    "sleight"
+   ],
+   "tool": "Útiles de falsificación",
+   "eq": [
+    [
+     "Útiles de falsificación",
+     1
+    ],
+    [
+     "Disfraz",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 15,
+   "src": "Player's Handbook"
+  },
+  "criminal": {
+   "n": "Criminal",
+   "ab": [
+    "dex",
+    "con",
+    "int"
+   ],
+   "f": "alerta",
+   "sk": [
+    "sleight",
+    "stealth"
+   ],
+   "tool": "Herramientas de ladrón",
+   "eq": [
+    [
+     "Daga",
+     2
+    ],
+    [
+     "Herramientas de ladrón",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 16,
+   "src": "Player's Handbook"
+  },
+  "artista": {
+   "n": "Artista",
+   "ab": [
+    "str",
+    "dex",
+    "cha"
+   ],
+   "f": "musico",
+   "sk": [
+    "acrobatics",
+    "performance"
+   ],
+   "tool": "Un instrumento musical",
+   "eq": [
+    [
+     "Instrumento musical",
+     1
+    ],
+    [
+     "Disfraz",
+     2
+    ],
+    [
+     "Espejo",
+     1
+    ],
+    [
+     "Perfume",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 11,
+   "src": "Player's Handbook"
+  },
+  "granjero": {
+   "n": "Granjero",
+   "ab": [
+    "str",
+    "con",
+    "wis"
+   ],
+   "f": "duro",
+   "sk": [
+    "animal",
+    "nature"
+   ],
+   "tool": "Herramientas de carpintero",
+   "eq": [
+    [
+     "Hoz",
+     1
+    ],
+    [
+     "Herramientas de carpintero",
+     1
+    ],
+    [
+     "Kit de sanador",
+     1
+    ],
+    [
+     "Olla de hierro",
+     1
+    ],
+    [
+     "Pala",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 30,
+   "src": "Player's Handbook"
+  },
+  "guardia": {
+   "n": "Guardia",
+   "ab": [
+    "str",
+    "int",
+    "wis"
+   ],
+   "f": "alerta",
+   "sk": [
+    "athletics",
+    "perception"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Lanza",
+     1
+    ],
+    [
+     "Ballesta ligera",
+     1
+    ],
+    [
+     "Virotes",
+     20
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Linterna con capucha",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ],
+    [
+     "Carcaj",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 12,
+   "src": "Player's Handbook"
+  },
+  "guia": {
+   "n": "Guía",
+   "ab": [
+    "dex",
+    "con",
+    "wis"
+   ],
+   "f": "iniciado-druida",
+   "sk": [
+    "stealth",
+    "survival"
+   ],
+   "tool": "Herramientas de cartógrafo",
+   "eq": [
+    [
+     "Arco corto",
+     1
+    ],
+    [
+     "Flechas",
+     20
+    ],
+    [
+     "Herramientas de cartógrafo",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Carcaj",
+     1
+    ],
+    [
+     "Tienda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 3,
+   "src": "Player's Handbook"
+  },
+  "ermitano": {
+   "n": "Ermitaño",
+   "ab": [
+    "con",
+    "wis",
+    "cha"
+   ],
+   "f": "sanador",
+   "sk": [
+    "medicine",
+    "religion"
+   ],
+   "tool": "Útiles de herborista",
+   "eq": [
+    [
+     "Bastón",
+     1
+    ],
+    [
+     "Útiles de herborista",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Libro (filosofía)",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 16,
+   "src": "Player's Handbook"
+  },
+  "mercader": {
+   "n": "Mercader",
+   "ab": [
+    "con",
+    "int",
+    "cha"
+   ],
+   "f": "afortunado",
+   "sk": [
+    "animal",
+    "persuasion"
+   ],
+   "tool": "Herramientas de navegante",
+   "eq": [
+    [
+     "Herramientas de navegante",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 22,
+   "src": "Player's Handbook"
+  },
+  "noble": {
+   "n": "Noble",
+   "ab": [
+    "str",
+    "int",
+    "cha"
+   ],
+   "f": "habilidoso",
+   "sk": [
+    "history",
+    "persuasion"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Perfume",
+     1
+    ]
+   ],
+   "po": 29,
+   "src": "Player's Handbook"
+  },
+  "sabio": {
+   "n": "Sabio",
+   "ab": [
+    "con",
+    "int",
+    "wis"
+   ],
+   "f": "iniciado-mago",
+   "sk": [
+    "arcana",
+    "history"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Bastón",
+     1
+    ],
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Libro (historia)",
+     1
+    ],
+    [
+     "Pergamino (hojas)",
+     8
+    ],
+    [
+     "Túnica",
+     1
+    ]
+   ],
+   "po": 8,
+   "src": "Player's Handbook"
+  },
+  "marinero": {
+   "n": "Marinero",
+   "ab": [
+    "str",
+    "dex",
+    "wis"
+   ],
+   "f": "camorrista",
+   "sk": [
+    "acrobatics",
+    "perception"
+   ],
+   "tool": "Herramientas de navegante",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Herramientas de navegante",
+     1
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 20,
+   "src": "Player's Handbook"
+  },
+  "escriba": {
+   "n": "Escriba",
+   "ab": [
+    "dex",
+    "int",
+    "wis"
+   ],
+   "f": "habilidoso",
+   "sk": [
+    "investigation",
+    "perception"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Pergamino (hojas)",
+     12
+    ]
+   ],
+   "po": 23,
+   "src": "Player's Handbook"
+  },
+  "soldado": {
+   "n": "Soldado",
+   "ab": [
+    "str",
+    "dex",
+    "con"
+   ],
+   "f": "atacante-salvaje",
+   "sk": [
+    "athletics",
+    "intimidation"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Lanza",
+     1
+    ],
+    [
+     "Arco corto",
+     1
+    ],
+    [
+     "Flechas",
+     20
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Kit de sanador",
+     1
+    ],
+    [
+     "Carcaj",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 14,
+   "src": "Player's Handbook"
+  },
+  "viajero": {
+   "n": "Viajero",
+   "ab": [
+    "dex",
+    "wis",
+    "cha"
+   ],
+   "f": "afortunado",
+   "sk": [
+    "insight",
+    "stealth"
+   ],
+   "tool": "Herramientas de ladrón",
+   "eq": [
+    [
+     "Daga",
+     2
+    ],
+    [
+     "Herramientas de ladrón",
+     1
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 16,
+   "src": "Player's Handbook"
+  },
+  "heredero-aberrante": {
+   "n": "Heredero aberrante",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "con",
+    "cha"
+   ],
+   "f": "marca-aberrante",
+   "sk": [
+    "history",
+    "intimidation"
+   ],
+   "tool": "Útiles de disfraz",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Útiles de disfraz",
+     1
+    ],
+    [
+     "Disfraz",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 16
+  },
+  "arqueologo": {
+   "n": "Arqueólogo",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "int",
+    "wis"
+   ],
+   "f": "habilidoso",
+   "sk": [
+    "history",
+    "survival"
+   ],
+   "tool": "Herramientas de cartógrafo",
+   "eq": [
+    [
+     "Herramientas de cartógrafo",
+     1
+    ],
+    [
+     "Linterna sorda",
+     1
+    ],
+    [
+     "Mapa",
+     1
+    ],
+    [
+     "Portamapas",
+     1
+    ],
+    [
+     "Pala",
+     1
+    ],
+    [
+     "Tienda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 17
+  },
+  "agente-casa": {
+   "n": "Agente de una casa",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "int",
+    "cha"
+   ],
+   "f": "afortunado",
+   "sk": [
+    "investigation",
+    "persuasion"
+   ],
+   "tool": "Una herramienta de artesano",
+   "eq": [
+    [
+     "Herramientas de artesano",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 20
+  },
+  "heredero-cannith": {
+   "n": "Heredero de la Casa Cannith",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "dex",
+    "int"
+   ],
+   "f": "marca-creacion",
+   "sk": [
+    "investigation",
+    "sleight"
+   ],
+   "tool": "Una herramienta de artesano",
+   "eq": [
+    [
+     "Herramientas de artesano",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ]
+   ],
+   "po": 17
+  },
+  "heredero-deneith": {
+   "n": "Heredero de la Casa Deneith",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "con",
+    "wis"
+   ],
+   "f": "marca-centinela",
+   "sk": [
+    "insight",
+    "perception"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Lanza",
+     1
+    ],
+    [
+     "Arco corto",
+     1
+    ],
+    [
+     "Flechas",
+     20
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Kit de sanador",
+     1
+    ],
+    [
+     "Carcaj",
+     1
+    ]
+   ],
+   "po": 1
+  },
+  "heredero-ghallanda": {
+   "n": "Heredero de la Casa Ghallanda",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "wis",
+    "cha"
+   ],
+   "f": "marca-hospitalidad",
+   "sk": [
+    "insight",
+    "persuasion"
+   ],
+   "tool": "Útiles de cocinero",
+   "eq": [
+    [
+     "Útiles de cocinero",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Olla de hierro",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     5
+    ],
+    [
+     "Perfume",
+     1
+    ]
+   ],
+   "po": 26
+  },
+  "heredero-jorasco": {
+   "n": "Heredero de la Casa Jorasco",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "con",
+    "wis"
+   ],
+   "f": "marca-curacion",
+   "sk": [
+    "medicine",
+    "stealth"
+   ],
+   "tool": "Útiles de herborista",
+   "eq": [
+    [
+     "Útiles de herborista",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Kit de sanador",
+     1
+    ]
+   ],
+   "po": 25
+  },
+  "heredero-kundarak": {
+   "n": "Heredero de la Casa Kundarak",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "con",
+    "int"
+   ],
+   "f": "marca-guarda",
+   "sk": [
+    "arcana",
+    "investigation"
+   ],
+   "tool": "Herramientas de ladrón",
+   "eq": [
+    [
+     "Herramientas de ladrón",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 10
+  },
+  "heredero-lyrandar": {
+   "n": "Heredero de la Casa Lyrandar",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "str",
+    "dex",
+    "cha"
+   ],
+   "f": "marca-tormenta",
+   "sk": [
+    "acrobatics",
+    "nature"
+   ],
+   "tool": "Herramientas de navegante",
+   "eq": [
+    [
+     "Herramientas de navegante",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 10
+  },
+  "heredero-medani": {
+   "n": "Heredero de la Casa Medani",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "int",
+    "wis"
+   ],
+   "f": "marca-deteccion",
+   "sk": [
+    "insight",
+    "investigation"
+   ],
+   "tool": "Útiles de disfraz",
+   "eq": [
+    [
+     "Útiles de disfraz",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 10
+  },
+  "heredero-orien": {
+   "n": "Heredero de la Casa Orien",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "con",
+    "int"
+   ],
+   "f": "marca-paso",
+   "sk": [
+    "acrobatics",
+    "athletics"
+   ],
+   "tool": "Herramientas de cartógrafo",
+   "eq": [
+    [
+     "Herramientas de cartógrafo",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Mapa",
+     1
+    ],
+    [
+     "Portamapas",
+     1
+    ]
+   ],
+   "po": 18
+  },
+  "heredero-phiarlan": {
+   "n": "Heredero de la Casa Phiarlan",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "wis",
+    "cha"
+   ],
+   "f": "marca-sombra",
+   "sk": [
+    "deception",
+    "stealth"
+   ],
+   "tool": "Útiles de disfraz",
+   "eq": [
+    [
+     "Útiles de disfraz",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 10
+  },
+  "heredero-sivis": {
+   "n": "Heredero de la Casa Sivis",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "f": "marca-escritura",
+   "sk": [
+    "history",
+    "perception"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Tinta",
+     1
+    ],
+    [
+     "Pluma",
+     5
+    ],
+    [
+     "Papel (hojas)",
+     30
+    ],
+    [
+     "Pergamino (hojas)",
+     9
+    ]
+   ],
+   "po": 8
+  },
+  "heredero-tharashk": {
+   "n": "Heredero de la Casa Tharashk",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "con",
+    "int",
+    "wis"
+   ],
+   "f": "marca-hallazgo",
+   "sk": [
+    "perception",
+    "survival"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Kit de escalada",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Trampa de caza",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ]
+   ],
+   "po": 2
+  },
+  "heredero-thuranni": {
+   "n": "Heredero de la Casa Thuranni",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "dex",
+    "int",
+    "cha"
+   ],
+   "f": "marca-sombra",
+   "sk": [
+    "performance",
+    "stealth"
+   ],
+   "tool": "Un instrumento musical",
+   "eq": [
+    [
+     "Instrumento musical",
+     1
+    ],
+    [
+     "Disfraz",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 13
+  },
+  "heredero-vadalis": {
+   "n": "Heredero de la Casa Vadalis",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "con",
+    "wis",
+    "cha"
+   ],
+   "f": "marca-manejo",
+   "sk": [
+    "animal",
+    "nature"
+   ],
+   "tool": "Útiles de herborista",
+   "eq": [
+    [
+     "Útiles de herborista",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Red",
+     1
+    ]
+   ],
+   "po": 29
+  },
+  "inquisitivo": {
+   "n": "Inquisitivo",
+   "src": "Eberron: Forge of the Artificer",
+   "ab": [
+    "con",
+    "int",
+    "cha"
+   ],
+   "f": "alerta",
+   "sk": [
+    "insight",
+    "investigation"
+   ],
+   "tool": "Herramientas de ladrón",
+   "eq": [
+    [
+     "Herramientas de ladrón",
+     1
+    ],
+    [
+     "Linterna sorda",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     10
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 10
+  },
+  "filibustero": {
+   "n": "Filibustero chondathano",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "dex",
+    "wis"
+   ],
+   "f": "habilidoso",
+   "sk": [
+    "athletics",
+    "sleight"
+   ],
+   "tool": "Herramientas de tejedor",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Herramientas de tejedor",
+     1
+    ],
+    [
+     "Mochila",
+     1
+    ],
+    [
+     "Cojinetes de bolas",
+     1
+    ],
+    [
+     "Cesta",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Cubo",
+     1
+    ],
+    [
+     "Raciones (días)",
+     3
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Silbato",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 38
+  },
+  "magia-muerta": {
+   "n": "Morador de la magia muerta",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "con",
+    "wis"
+   ],
+   "f": "sanador",
+   "sk": [
+    "medicine",
+    "survival"
+   ],
+   "tool": "Herramientas de peletero",
+   "eq": [
+    [
+     "Gran clava",
+     1
+    ],
+    [
+     "Herramientas de peletero",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Manta",
+     1
+    ],
+    [
+     "Kit de sanador",
+     1
+    ],
+    [
+     "Pértiga",
+     1
+    ],
+    [
+     "Raciones (días)",
+     3
+    ],
+    [
+     "Tienda",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Antorcha",
+     5
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 32
+  },
+  "cultista-dragon": {
+   "n": "Cultista del Dragón",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "dex",
+    "con",
+    "int"
+   ],
+   "f": "iniciado-culto-dragon",
+   "sk": [
+    "deception",
+    "stealth"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Botella",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     5
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Túnica",
+     1
+    ],
+    [
+     "Cuerda",
+     1
+    ]
+   ],
+   "po": 30
+  },
+  "enclave-esmeralda": {
+   "n": "Cuidador del Enclave Esmeralda",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "con",
+    "int",
+    "wis"
+   ],
+   "f": "enclave-esmeralda",
+   "sk": [
+    "nature",
+    "survival"
+   ],
+   "tool": "Útiles de herborista",
+   "eq": [
+    [
+     "Arco corto",
+     1
+    ],
+    [
+     "Flechas",
+     20
+    ],
+    [
+     "Útiles de herborista",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Manta",
+     1
+    ],
+    [
+     "Bolsa",
+     1
+    ],
+    [
+     "Tienda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 13
+  },
+  "puno-llameante": {
+   "n": "Mercenario del Puño Llameante",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "con",
+    "cha"
+   ],
+   "f": "duro",
+   "sk": [
+    "intimidation",
+    "perception"
+   ],
+   "tool": "Herramientas de herrero",
+   "eq": [
+    [
+     "Maza",
+     1
+    ],
+    [
+     "Herramientas de herrero",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ],
+    [
+     "Ariete portátil",
+     1
+    ]
+   ],
+   "po": 4
+  },
+  "tocado-genio": {
+   "n": "Tocado por un genio",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "dex",
+    "wis",
+    "cha"
+   ],
+   "f": "iniciado-mago",
+   "sk": [
+    "perception",
+    "persuasion"
+   ],
+   "tool": "Herramientas de soplador de vidrio",
+   "eq": [
+    [
+     "Martillo ligero",
+     1
+    ],
+    [
+     "Herramientas de soplador de vidrio",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 2
+  },
+  "arpista": {
+   "n": "Arpista",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "dex",
+    "int",
+    "cha"
+   ],
+   "f": "agente-arpista",
+   "sk": [
+    "performance",
+    "sleight"
+   ],
+   "tool": "Útiles de disfraz",
+   "eq": [
+    [
+     "Útiles de disfraz",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Disfraz",
+     1
+    ],
+    [
+     "Garfio",
+     1
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 14
+  },
+  "pescador-hielo": {
+   "n": "Pescador en el hielo",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "dex",
+    "con"
+   ],
+   "f": "alerta",
+   "sk": [
+    "animal",
+    "athletics"
+   ],
+   "tool": "Herramientas de tallista",
+   "eq": [
+    [
+     "Herramientas de tallista",
+     1
+    ],
+    [
+     "Cesta",
+     1
+    ],
+    [
+     "Polea",
+     1
+    ],
+    [
+     "Cubo",
+     1
+    ],
+    [
+     "Cadena",
+     1
+    ],
+    [
+     "Trampa de caza",
+     1
+    ],
+    [
+     "Red",
+     1
+    ],
+    [
+     "Pértiga",
+     1
+    ],
+    [
+     "Raciones (días)",
+     3
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 32
+  },
+  "caballero-guantelete": {
+   "n": "Caballero del Guantelete",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "int",
+    "wis"
+   ],
+   "f": "tiro-guantelete",
+   "sk": [
+    "athletics",
+    "medicine"
+   ],
+   "tool": "Herramientas de herrero",
+   "eq": [
+    [
+     "Lanza",
+     1
+    ],
+    [
+     "Herramientas de herrero",
+     1
+    ],
+    [
+     "Linterna sorda",
+     1
+    ],
+    [
+     "Símbolo sagrado",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     5
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 9
+  },
+  "vasallo-alianza": {
+   "n": "Vasallo de la Alianza de los Señores",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "int",
+    "cha"
+   ],
+   "f": "agente-alianza",
+   "sk": [
+    "insight",
+    "persuasion"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Jabalina",
+     2
+    ],
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Tinta",
+     1
+    ],
+    [
+     "Pluma",
+     5
+    ],
+    [
+     "Pergamino (hojas)",
+     9
+    ]
+   ],
+   "po": 13
+  },
+  "peregrino-pozo-lunar": {
+   "n": "Peregrino del pozo lunar",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "con",
+    "wis",
+    "cha"
+   ],
+   "f": "iniciado-druida",
+   "sk": [
+    "nature",
+    "performance"
+   ],
+   "tool": "Útiles de pintor",
+   "eq": [
+    [
+     "Bastón",
+     1
+    ],
+    [
+     "Útiles de pintor",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Campana",
+     1
+    ],
+    [
+     "Bolsa",
+     1
+    ],
+    [
+     "Túnica",
+     1
+    ],
+    [
+     "Cordel",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 34
+  },
+  "saqueador-tumbas": {
+   "n": "Saqueador de tumbas mulhorandi",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "dex",
+    "con",
+    "int"
+   ],
+   "f": "afortunado",
+   "sk": [
+    "investigation",
+    "religion"
+   ],
+   "tool": "Herramientas de albañil",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Martillo ligero",
+     1
+    ],
+    [
+     "Herramientas de albañil",
+     1
+    ],
+    [
+     "Mochila",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Escalera",
+     1
+    ],
+    [
+     "Pértiga",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Cordel",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Antorcha",
+     5
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 26
+  },
+  "guardamythal": {
+   "n": "Guardián de mythal",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "f": "artesania",
+   "sk": [
+    "arcana",
+    "history"
+   ],
+   "tool": "Herramientas de joyero",
+   "eq": [
+    [
+     "Bastón",
+     1
+    ],
+    [
+     "Herramientas de joyero",
+     1
+    ],
+    [
+     "Perfume",
+     1
+    ],
+    [
+     "Bolsa",
+     1
+    ],
+    [
+     "Túnica",
+     1
+    ],
+    [
+     "Pala",
+     1
+    ],
+    [
+     "Cordel",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 16
+  },
+  "escudero-dragon-purpura": {
+   "n": "Escudero del Dragón Púrpura",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "wis",
+    "cha"
+   ],
+   "f": "torre-dragon-purpura",
+   "sk": [
+    "animal",
+    "insight"
+   ],
+   "tool": "Herramientas de navegante",
+   "eq": [
+    [
+     "Lanza",
+     1
+    ],
+    [
+     "Herramientas de navegante",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ]
+   ],
+   "po": 9
+  },
+  "errante-rashemi": {
+   "n": "Errante rashemi",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "con",
+    "cha"
+   ],
+   "f": "duro",
+   "sk": [
+    "intimidation",
+    "perception"
+   ],
+   "tool": "Herramientas de cartógrafo",
+   "eq": [
+    [
+     "Herramientas de cartógrafo",
+     1
+    ],
+    [
+     "Mochila",
+     1
+    ],
+    [
+     "Saco de dormir",
+     1
+    ],
+    [
+     "Linterna con capucha",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 23
+  },
+  "exiliado-maestros-sombra": {
+   "n": "Exiliado de los Maestros de las Sombras",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "dex",
+    "int",
+    "cha"
+   ],
+   "f": "atacante-salvaje",
+   "sk": [
+    "acrobatics",
+    "stealth"
+   ],
+   "tool": "Herramientas de ladrón",
+   "eq": [
+    [
+     "Daga",
+     2
+    ],
+    [
+     "Herramientas de ladrón",
+     1
+    ],
+    [
+     "Abrojos",
+     1
+    ],
+    [
+     "Disfraz",
+     1
+    ],
+    [
+     "Garfio",
+     1
+    ],
+    [
+     "Pitones",
+     1
+    ],
+    [
+     "Espejo",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 3
+  },
+  "iniciado-fuego-conjuro": {
+   "n": "Iniciado del fuego de conjuro",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "con",
+    "int",
+    "cha"
+   ],
+   "f": "chispa-fuego-conjuro",
+   "sk": [
+    "arcana",
+    "perception"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Canalizador arcano (cristal o varita)",
+     1
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 36
+  },
+  "mercenario-zhentarim": {
+   "n": "Mercenario zhentarim",
+   "src": "Heroes of Faerûn",
+   "ab": [
+    "str",
+    "dex",
+    "cha"
+   ],
+   "f": "rufian-zhentarim",
+   "sk": [
+    "intimidation",
+    "perception"
+   ],
+   "tool": "Útiles de falsificación",
+   "eq": [
+    [
+     "Garrote",
+     1
+    ],
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Útiles de falsificación",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Linterna con capucha",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Bolsa",
+     2
+    ],
+    [
+     "Cordel",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ]
+   ],
+   "po": 11
+  },
+  "atormentado": {
+   "n": "Atormentado",
+   "src": "Ravenloft: The Horrors Within",
+   "ab": [
+    "con",
+    "wis",
+    "cha"
+   ],
+   "f": "superviviente",
+   "sk": [
+    "arcana",
+    "survival"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Agua bendita",
+     1
+    ],
+    [
+     "Espejo",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     2
+    ],
+    [
+     "Silbato",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Antorcha",
+     5
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 14,
+   "fOpts": [
+    "superviviente",
+    "anatomia-aberrante",
+    "alma-resonante",
+    "susurros-reunidos",
+    "sombra-viviente",
+    "caminante-niebla",
+    "segunda-piel",
+    "ser-simbiotico",
+    "toque-muerte",
+    "vigilantes"
+   ]
+  },
+  "investigador": {
+   "n": "Investigador",
+   "src": "Ravenloft: The Horrors Within",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "f": "ojo-agudo",
+   "sk": [
+    "insight",
+    "investigation"
+   ],
+   "tool": "Útiles de disfraz",
+   "eq": [
+    [
+     "Útiles de disfraz",
+     1
+    ],
+    [
+     "Grilletes",
+     1
+    ],
+    [
+     "Pala",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Vial",
+     3
+    ]
+   ],
+   "po": 16,
+   "fOpts": [
+    "ojo-agudo",
+    "anatomia-aberrante",
+    "alma-resonante",
+    "susurros-reunidos",
+    "sombra-viviente",
+    "caminante-niebla",
+    "segunda-piel",
+    "ser-simbiotico",
+    "toque-muerte",
+    "vigilantes"
+   ]
+  },
+  "errante-nieblas": {
+   "n": "Errante de las nieblas",
+   "src": "Ravenloft: The Horrors Within",
+   "ab": [
+    "dex",
+    "con",
+    "wis"
+   ],
+   "f": "caminante-niebla",
+   "sk": [
+    "survival",
+    "stealth"
+   ],
+   "tool": "Una herramienta de artesano",
+   "eq": [
+    [
+     "Herramientas de artesano",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     5
+    ],
+    [
+     "Bolsa",
+     1
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 30,
+   "fOpts": [
+    "anatomia-aberrante",
+    "alma-resonante",
+    "susurros-reunidos",
+    "sombra-viviente",
+    "caminante-niebla",
+    "segunda-piel",
+    "ser-simbiotico",
+    "toque-muerte",
+    "vigilantes"
+   ]
+  },
+  "medium": {
+   "n": "Médium espiritual",
+   "src": "Ravenloft: The Horrors Within",
+   "ab": [
+    "con",
+    "int",
+    "wis"
+   ],
+   "f": "susurros-reunidos",
+   "sk": [
+    "insight",
+    "religion"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Cesta",
+     1
+    ],
+    [
+     "Campana",
+     1
+    ],
+    [
+     "Vela",
+     8
+    ],
+    [
+     "Tinta",
+     1
+    ],
+    [
+     "Pluma",
+     1
+    ],
+    [
+     "Papel (hojas)",
+     5
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 32,
+   "fOpts": [
+    "anatomia-aberrante",
+    "alma-resonante",
+    "susurros-reunidos",
+    "sombra-viviente",
+    "caminante-niebla",
+    "segunda-piel",
+    "ser-simbiotico",
+    "toque-muerte",
+    "vigilantes"
+   ]
+  }
+ },
+ "dotes": {
+  "alerta": {
+   "n": "Alerta",
+   "cat": "origen",
+   "d": "Sumas tu BC a la iniciativa y puedes intercambiar tu iniciativa con un aliado.",
+   "fx": {
+    "initPB": 1
+   },
+   "src": "Player's Handbook"
+  },
+  "artesania": {
+   "n": "Artesanía",
+   "cat": "origen",
+   "d": "Competencia con 3 herramientas de artesano, 20 % de descuento y fabricación rápida.",
+   "src": "Player's Handbook"
+  },
+  "sanador": {
+   "n": "Sanador",
+   "cat": "origen",
+   "d": "Con un kit de sanador, un aliado gasta un dado de golpe y se cura; repites los unos al curar.",
+   "src": "Player's Handbook"
+  },
+  "afortunado": {
+   "n": "Afortunado",
+   "cat": "origen",
+   "d": "Puntos de suerte iguales a tu BC para darte ventaja o imponer desventaja.",
+   "src": "Player's Handbook"
+  },
+  "iniciado-clerigo": {
+   "n": "Iniciado en la magia (Clérigo)",
+   "cat": "origen",
+   "d": "2 trucos y 1 conjuro de nivel 1 de clérigo, que lanzas gratis una vez por descanso largo.",
+   "src": "Player's Handbook"
+  },
+  "iniciado-druida": {
+   "n": "Iniciado en la magia (Druida)",
+   "cat": "origen",
+   "d": "2 trucos y 1 conjuro de nivel 1 de druida, que lanzas gratis una vez por descanso largo.",
+   "src": "Player's Handbook"
+  },
+  "iniciado-mago": {
+   "n": "Iniciado en la magia (Mago)",
+   "cat": "origen",
+   "d": "2 trucos y 1 conjuro de nivel 1 de mago, que lanzas gratis una vez por descanso largo.",
+   "src": "Player's Handbook"
+  },
+  "musico": {
+   "n": "Músico",
+   "cat": "origen",
+   "d": "Competencia con 3 instrumentos; tras un descanso das Inspiración heroica a tantos aliados como tu BC.",
+   "src": "Player's Handbook"
+  },
+  "atacante-salvaje": {
+   "n": "Atacante salvaje",
+   "cat": "origen",
+   "d": "Una vez por turno tiras dos veces el daño de un arma y eliges.",
+   "src": "Player's Handbook"
+  },
+  "habilidoso": {
+   "n": "Habilidoso",
+   "cat": "origen",
+   "d": "Competencia en 3 habilidades o herramientas.",
+   "fx": {
+    "skills": 3
+   },
+   "src": "Player's Handbook"
+  },
+  "camorrista": {
+   "n": "Camorrista de taberna",
+   "cat": "origen",
+   "d": "Golpe sin armas de 1d4 + FUE, repites unos, empujas 1,5 m y dominas armas improvisadas.",
+   "src": "Player's Handbook"
+  },
+  "duro": {
+   "n": "Duro",
+   "cat": "origen",
+   "d": "+2 PG máximos por nivel.",
+   "fx": {
+    "hpPerLvl": 2
+   },
+   "src": "Player's Handbook"
+  },
+  "mejora": {
+   "n": "Mejora de característica",
+   "cat": "general",
+   "lvl": 4,
+   "d": "+2 a una característica o +1 a dos (máximo 20).",
+   "asi": true,
+   "src": "Player's Handbook"
+  },
+  "actor": {
+   "n": "Actor",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "cha"
+   ],
+   "d": "Ventaja en Engaño e Interpretación para hacerte pasar por otro; imitas voces.",
+   "src": "Player's Handbook"
+  },
+  "atleta": {
+   "n": "Atleta",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Trepar a tu velocidad, levantarte con 1,5 m y saltos con carrera corta.",
+   "src": "Player's Handbook"
+  },
+  "cargador": {
+   "n": "Cargador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "+3 m al Correr; tras moverte 3 m en línea recta, +1d8 de daño o empujón.",
+   "src": "Player's Handbook"
+  },
+  "chef": {
+   "n": "Chef",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "con",
+    "wis"
+   ],
+   "d": "Útiles de cocinero; comida que cura tras descanso corto y golosinas que dan PG temporales.",
+   "src": "Player's Handbook"
+  },
+  "experto-ballesta": {
+   "n": "Experto en ballestas",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex"
+   ],
+   "d": "Ignoras Recarga, no tienes desventaja a distancia con enemigos cerca y sumas el modificador al ataque extra con arma ligera.",
+   "src": "Player's Handbook"
+  },
+  "aplastador": {
+   "n": "Aplastador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "con"
+   ],
+   "d": "Empujas 1,5 m al impactar con daño contundente; tus críticos dan ventaja a los aliados.",
+   "src": "Player's Handbook"
+  },
+  "duelista-defensivo": {
+   "n": "Duelista defensivo",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex"
+   ],
+   "d": "Reacción con arma Sutil: sumas tu BC a la CA hasta el inicio de tu turno.",
+   "src": "Player's Handbook"
+  },
+  "combate-dos-armas": {
+   "n": "Combatiente con dos armas",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Ataque extra con armas no Ligeras y desenvainas dos armas a la vez.",
+   "src": "Player's Handbook"
+  },
+  "resistente": {
+   "n": "Duradero",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "con"
+   ],
+   "d": "Ventaja en salvaciones de muerte; acción adicional para gastar un dado de golpe.",
+   "src": "Player's Handbook"
+  },
+  "adepto-elemental": {
+   "n": "Adepto elemental",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Tus conjuros ignoran la resistencia a un tipo de daño y los unos cuentan como dos.",
+   "src": "Player's Handbook"
+  },
+  "toque-feerico": {
+   "n": "Toque feérico",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Paso brumoso y un conjuro de nivel 1 de adivinación o encantamiento siempre preparados, gratis una vez al día.",
+   "src": "Player's Handbook"
+  },
+  "agarrador": {
+   "n": "Agarrador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Ventaja al atacar a quien agarras; agarras y golpeas a la vez.",
+   "src": "Player's Handbook"
+  },
+  "maestro-armas-grandes": {
+   "n": "Maestro de armas pesadas",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str"
+   ],
+   "d": "Sumas tu BC al daño con armas Pesadas; ataque extra tras un crítico o reducir a 0 PG.",
+   "src": "Player's Handbook"
+  },
+  "blindado-pesado": {
+   "n": "Armadura pesada",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "con"
+   ],
+   "d": "Competencia con armadura pesada (requiere armadura media).",
+   "fx": {
+    "armor": "pesada"
+   },
+   "src": "Player's Handbook"
+  },
+  "maestro-armadura-pesada": {
+   "n": "Maestro de armadura pesada",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "con"
+   ],
+   "d": "Con armadura pesada reduces el daño contundente, cortante y perforante en tu BC.",
+   "src": "Player's Handbook"
+  },
+  "lider-inspirador": {
+   "n": "Líder inspirador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "wis",
+    "cha"
+   ],
+   "d": "Tras un descanso das PG temporales iguales a tu nivel + modificador a hasta 6 aliados.",
+   "src": "Player's Handbook"
+  },
+  "mente-aguda": {
+   "n": "Mente aguda",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int"
+   ],
+   "d": "Competencia o pericia en una habilidad de INT; Estudiar como acción adicional.",
+   "src": "Player's Handbook"
+  },
+  "blindado-ligero": {
+   "n": "Armadura ligera",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Competencia con armadura ligera y escudos.",
+   "fx": {
+    "armor": "ligera"
+   },
+   "src": "Player's Handbook"
+  },
+  "asesino-magos": {
+   "n": "Asesino de magos",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Rompes la concentración de quien golpeas y repites una salvación mental una vez por descanso.",
+   "src": "Player's Handbook"
+  },
+  "entrenamiento-marcial": {
+   "n": "Entrenamiento con armas marciales",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Competencia con armas marciales.",
+   "src": "Player's Handbook"
+  },
+  "maestro-armadura-media": {
+   "n": "Maestro de armadura media",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Con armadura media sumas hasta +3 de DES a la CA.",
+   "src": "Player's Handbook"
+  },
+  "blindado-moderado": {
+   "n": "Armadura moderada",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Competencia con armadura media (requiere armadura ligera).",
+   "fx": {
+    "armor": "media"
+   },
+   "src": "Player's Handbook"
+  },
+  "combatiente-montado": {
+   "n": "Combatiente montado",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "wis"
+   ],
+   "d": "Ventaja contra criaturas a pie más pequeñas que tu montura y proteges a tu montura.",
+   "src": "Player's Handbook"
+  },
+  "observador": {
+   "n": "Observador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis"
+   ],
+   "d": "Competencia o pericia en Perspicacia, Investigación o Percepción; Buscar como acción adicional.",
+   "src": "Player's Handbook"
+  },
+  "perforador": {
+   "n": "Perforador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Repites un dado de daño perforante y tus críticos añaden un dado.",
+   "src": "Player's Handbook"
+  },
+  "envenenador": {
+   "n": "Envenenador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex",
+    "int"
+   ],
+   "d": "Tu daño de veneno ignora la resistencia; preparas venenos con útiles de envenenador.",
+   "src": "Player's Handbook"
+  },
+  "maestro-armas-asta": {
+   "n": "Maestro de armas de asta",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Ataque extra con el extremo del arma y ataques de oportunidad al entrar en tu alcance.",
+   "src": "Player's Handbook"
+  },
+  "resiliente": {
+   "n": "Resiliente",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "+1 a una característica y competencia en sus salvaciones.",
+   "fx": {
+    "saveFromAb": 1
+   },
+   "src": "Player's Handbook"
+  },
+  "lanzador-rituales": {
+   "n": "Lanzador de rituales",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Varios conjuros rituales de nivel 1 siempre preparados y lanzamiento de rituales más rápido.",
+   "src": "Player's Handbook"
+  },
+  "centinela": {
+   "n": "Centinela",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Tus ataques de oportunidad detienen al objetivo y castigas a quien ataca a tus aliados.",
+   "src": "Player's Handbook"
+  },
+  "toque-sombrio": {
+   "n": "Toque sombrío",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Invisibilidad y un conjuro de nivel 1 de ilusión o nigromancia siempre preparados, gratis una vez al día.",
+   "src": "Player's Handbook"
+  },
+  "tirador-experto": {
+   "n": "Tirador experto",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex"
+   ],
+   "d": "Ignoras cobertura media y tres cuartos, no tienes desventaja a larga distancia ni con enemigos cerca.",
+   "src": "Player's Handbook"
+  },
+  "maestro-escudos": {
+   "n": "Maestro de escudos",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str"
+   ],
+   "d": "Golpe con escudo para empujar o derribar e interpones el escudo ante efectos de área.",
+   "src": "Player's Handbook"
+  },
+  "experto-habilidades": {
+   "n": "Experto en habilidades",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Competencia en una habilidad y pericia en otra.",
+   "fx": {
+    "skills": 1,
+    "expertise": 1
+   },
+   "src": "Player's Handbook"
+  },
+  "merodeador": {
+   "n": "Merodeador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex"
+   ],
+   "d": "Vista ciega a 3 m, puedes esconderte en penumbra y fallar un ataque no te revela.",
+   "src": "Player's Handbook"
+  },
+  "cortador": {
+   "n": "Cortador",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Tu daño cortante reduce la velocidad del objetivo; tus críticos le dan desventaja.",
+   "src": "Player's Handbook"
+  },
+  "veloz": {
+   "n": "Veloz",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex",
+    "con"
+   ],
+   "d": "+3 m de velocidad, el terreno difícil no te frena al Correr y los ataques de oportunidad tienen desventaja.",
+   "fx": {
+    "speed": 10
+   },
+   "src": "Player's Handbook"
+  },
+  "francotirador-conjuros": {
+   "n": "Francotirador de conjuros",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Tus ataques de conjuro ignoran cobertura media y tres cuartos y ganan 18 m de alcance.",
+   "src": "Player's Handbook"
+  },
+  "telequinetico": {
+   "n": "Telequinético",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Mano de mago invisible y mejorada; acción adicional para empujar 1,5 m a una criatura.",
+   "src": "Player's Handbook"
+  },
+  "telepatico": {
+   "n": "Telepático",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Telepatía a 18 m y Detectar pensamientos siempre preparado, gratis una vez al día.",
+   "src": "Player's Handbook"
+  },
+  "lanzador-guerra": {
+   "n": "Lanzador de guerra",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Ventaja en concentración, lanzas conjuros como ataque de oportunidad y con las manos ocupadas.",
+   "src": "Player's Handbook"
+  },
+  "maestro-armas": {
+   "n": "Maestro de armas",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Dominas la propiedad de maestría de un tipo de arma más.",
+   "src": "Player's Handbook"
+  },
+  "arqueria": {
+   "n": "Arquería",
+   "cat": "estilo",
+   "d": "+2 a las tiradas de ataque con armas a distancia.",
+   "fx": {
+    "rangedAtk": 2
+   },
+   "src": "Player's Handbook"
+  },
+  "lucha-ciega": {
+   "n": "Lucha a ciegas",
+   "cat": "estilo",
+   "d": "Vista ciega a 3 m.",
+   "src": "Player's Handbook"
+  },
+  "defensa": {
+   "n": "Defensa",
+   "cat": "estilo",
+   "d": "+1 a la CA con armadura ligera, media o pesada.",
+   "fx": {
+    "acArmor": 1
+   },
+   "src": "Player's Handbook"
+  },
+  "duelo": {
+   "n": "Duelo",
+   "cat": "estilo",
+   "d": "+2 al daño con un arma cuerpo a cuerpo en una mano y ninguna otra arma.",
+   "src": "Player's Handbook"
+  },
+  "armas-grandes": {
+   "n": "Lucha con armas a dos manos",
+   "cat": "estilo",
+   "d": "Los 1 y 2 en dados de daño de armas a dos manos cuentan como 3.",
+   "src": "Player's Handbook"
+  },
+  "intercepcion": {
+   "n": "Intercepción",
+   "cat": "estilo",
+   "d": "Reacción: reduces el daño a un aliado cercano en 1d10 + BC.",
+   "src": "Player's Handbook"
+  },
+  "proteccion": {
+   "n": "Protección",
+   "cat": "estilo",
+   "d": "Reacción con escudo: impones desventaja a un ataque contra un aliado cercano.",
+   "src": "Player's Handbook"
+  },
+  "armas-arrojadizas": {
+   "n": "Lucha con armas arrojadizas",
+   "cat": "estilo",
+   "d": "+2 al daño con armas arrojadizas y las desenvainas al atacar.",
+   "src": "Player's Handbook"
+  },
+  "dos-armas": {
+   "n": "Lucha con dos armas",
+   "cat": "estilo",
+   "d": "Sumas el modificador de característica al daño del ataque extra.",
+   "src": "Player's Handbook"
+  },
+  "sin-armas": {
+   "n": "Lucha sin armas",
+   "cat": "estilo",
+   "d": "Golpes sin armas de 1d6 (1d8 sin nada en las manos) y 1d4 a quien agarras.",
+   "src": "Player's Handbook"
+  },
+  "don-combate": {
+   "n": "Don de la proeza en combate",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Una vez por turno conviertes un ataque fallado en impacto.",
+   "src": "Player's Handbook"
+  },
+  "don-dimensional": {
+   "n": "Don del viaje dimensional",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Tras Atacar o lanzar un conjuro te teletransportas 9 m.",
+   "src": "Player's Handbook"
+  },
+  "don-energia": {
+   "n": "Don de la resistencia a la energía",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Resistencia a dos tipos de daño y desvías ese daño a otra criatura.",
+   "src": "Player's Handbook"
+  },
+  "don-destino": {
+   "n": "Don del destino",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Sumas o restas 2d4 a una prueba d20 cercana. 1 vez por descanso.",
+   "src": "Player's Handbook"
+  },
+  "don-fortaleza": {
+   "n": "Don de la fortaleza",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "+40 PG máximos; al curarte, sumas CON una vez por turno.",
+   "fx": {
+    "hpFlat": 40
+   },
+   "src": "Player's Handbook"
+  },
+  "don-ofensiva": {
+   "n": "Don de la ofensiva irresistible",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex"
+   ],
+   "d": "Tu daño ignora la resistencia y un 20 hace daño extra igual a la puntuación aumentada.",
+   "src": "Player's Handbook"
+  },
+  "don-recuperacion": {
+   "n": "Don de la recuperación",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Al caer a 0 PG quedas con la mitad (1/día) y reserva de 10 d10 para curarte.",
+   "src": "Player's Handbook"
+  },
+  "don-habilidad": {
+   "n": "Don de la habilidad",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Competencia en todas las habilidades y pericia en una.",
+   "fx": {
+    "allSkills": 1,
+    "expertise": 1
+   },
+   "src": "Player's Handbook"
+  },
+  "don-velocidad": {
+   "n": "Don de la velocidad",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "+9 m de velocidad y Destrabarse como acción adicional.",
+   "fx": {
+    "speed": 30
+   },
+   "src": "Player's Handbook"
+  },
+  "don-recuerdo": {
+   "n": "Don del recuerdo de conjuros",
+   "cat": "epica",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Lanzas sin gastar el espacio un conjuro de nivel 1 a 4 una vez por descanso largo.",
+   "src": "Player's Handbook"
+  },
+  "don-noche": {
+   "n": "Don del espíritu nocturno",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "En penumbra u oscuridad eres invisible y tienes resistencia a todo salvo psíquico y radiante.",
+   "src": "Player's Handbook"
+  },
+  "don-vision": {
+   "n": "Don de la visión verdadera",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "d": "Visión verdadera a 18 m.",
+   "src": "Player's Handbook"
+  },
+  "marca-aberrante": {
+   "n": "Marca de dragón aberrante",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a una salvación de CON fallida; un truco y un conjuro de nivel 1 de hechicero (CON), gratis una vez por descanso; al lanzarlo puedes gastar un dado de golpe para PG temporales o daño de fuerza. Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-aberrante-mayor": {
+   "n": "Marca de dragón aberrante mayor",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de dragón aberrante. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-aberrante",
+   "grp": "Marca de dragón"
+  },
+  "marca-deteccion": {
+   "n": "Marca de detección",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Investigación y Perspicacia; Detectar magia y Detectar veneno y enfermedad siempre preparados (Ver lo invisible a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-deteccion-mayor": {
+   "n": "Marca mayor de detección",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de detección. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-deteccion",
+   "grp": "Marca de dragón"
+  },
+  "marca-hallazgo": {
+   "n": "Marca del hallazgo",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Percepción y Supervivencia; Marca del cazador siempre preparado (Localizar objeto a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-hallazgo-mayor": {
+   "n": "Marca mayor del hallazgo",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca del hallazgo. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-hallazgo",
+   "grp": "Marca de dragón"
+  },
+  "marca-manejo": {
+   "n": "Marca del manejo",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Naturaleza y Trato con animales; Amistad animal y Hablar con los animales siempre preparados. Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-manejo-mayor": {
+   "n": "Marca mayor del manejo",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca del manejo. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-manejo",
+   "grp": "Marca de dragón"
+  },
+  "marca-curacion": {
+   "n": "Marca de curación",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Medicina y útiles de herborista; Curar heridas siempre preparado (Restablecimiento menor a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-curacion-mayor": {
+   "n": "Marca mayor de curación",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de curación. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-curacion",
+   "grp": "Marca de dragón"
+  },
+  "marca-hospitalidad": {
+   "n": "Marca de hospitalidad",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Persuasión y útiles de cocinero; Purificar comida y bebida y Servidor invisible (Calmar emociones a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-hospitalidad-mayor": {
+   "n": "Marca mayor de hospitalidad",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de hospitalidad. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-hospitalidad",
+   "grp": "Marca de dragón"
+  },
+  "marca-creacion": {
+   "n": "Marca de creación",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Arcanos y herramientas de artesano; truco Reparar y Arma mágica siempre preparado. Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-creacion-mayor": {
+   "n": "Marca mayor de creación",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de creación. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-creacion",
+   "grp": "Marca de dragón"
+  },
+  "marca-paso": {
+   "n": "Marca de paso",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1,5 m de velocidad, +1d4 a Atletismo y Acrobacias y Paso brumoso siempre preparado. Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón",
+   "fx": {
+    "speed": 5
+   }
+  },
+  "marca-paso-mayor": {
+   "n": "Marca mayor de paso",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de paso. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-paso",
+   "grp": "Marca de dragón"
+  },
+  "marca-escritura": {
+   "n": "Marca de escritura",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Historia y útiles de caligrafía; truco Mensaje y Comprender idiomas (Boca mágica a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-escritura-mayor": {
+   "n": "Marca mayor de escritura",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de escritura. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-escritura",
+   "grp": "Marca de dragón"
+  },
+  "marca-centinela": {
+   "n": "Marca de centinela",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Perspicacia y Percepción; Escudo siempre preparado y puedes intercambiarte con un aliado golpeado (BC veces). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-centinela-mayor": {
+   "n": "Marca mayor de centinela",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de centinela. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-centinela",
+   "grp": "Marca de dragón"
+  },
+  "marca-sombra": {
+   "n": "Marca de sombra",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Sigilo e Interpretación; truco Ilusión menor e Invisibilidad siempre preparado. Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-sombra-mayor": {
+   "n": "Marca mayor de sombra",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de sombra. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-sombra",
+   "grp": "Marca de dragón"
+  },
+  "marca-tormenta": {
+   "n": "Marca de tormenta",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Acrobacias y herramientas de navegante, resistencia al relámpago, truco Estallido atronador (Ráfaga de viento a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-tormenta-mayor": {
+   "n": "Marca mayor de tormenta",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de tormenta. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-tormenta",
+   "grp": "Marca de dragón"
+  },
+  "marca-guarda": {
+   "n": "Marca de guarda",
+   "cat": "origen",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "+1d4 a Investigación y herramientas de ladrón; Alarma y Armadura de mago siempre preparados (Cerradura arcana a nivel 3). Añade los conjuros de la marca a tu lista si lanzas conjuros. Requiere campaña de Eberron y solo una marca.",
+   "grp": "Marca de dragón"
+  },
+  "marca-guarda-mayor": {
+   "n": "Marca mayor de guarda",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere Marca de guarda. Mejora el dado de la marca a d6 y amplía su conjuro (por ejemplo, lanzarlo gratis más veces).",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "req": "marca-guarda",
+   "grp": "Marca de dragón"
+  },
+  "marca-potente": {
+   "n": "Marca de dragón potente",
+   "cat": "general",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Requiere una marca de dragón. Los conjuros de tu marca quedan siempre preparados y ganas un espacio extra (nivel = mitad de tu nivel, máx. 5) que se recupera con descanso corto.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "grp": "Marca de dragón"
+  },
+  "ojo-agudo": {
+   "n": "Ojo agudo",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Al Buscar o Estudiar tienes ventaja en una prueba. BC veces por descanso largo (no se gasta si fallas)."
+  },
+  "superviviente": {
+   "n": "Superviviente",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Una vez por tirada de iniciativa repites el d20 si sacas 9 o menos; una vez por descanso largo sumas tu BC a una salvación fallida contra hechizado o asustado."
+  },
+  "iniciado-culto-dragon": {
+   "n": "Iniciado del Culto del Dragón",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Aprendes dracónico y, como acción de magia, asustas a una criatura a 9 m (salvación de SAB); ganas Inspiración heroica al hacerlo una vez por descanso."
+  },
+  "enclave-esmeralda": {
+   "n": "Novicio del Enclave Esmeralda",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Hablar con los animales siempre preparado (8 horas como ritual) y al Ayudar intercambias posición con un aliado."
+  },
+  "agente-arpista": {
+   "n": "Agente arpista",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Jerga de ladrones, un instrumento y al Ayudar en un ataque distraes a un enemigo a 9 m."
+  },
+  "agente-alianza": {
+   "n": "Agente de la Alianza de los Señores",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Tras un crítico das Inspiración heroica a un aliado y tienes ventaja contra quien dañe a un aliado junto a ti."
+  },
+  "torre-dragon-purpura": {
+   "n": "Torre del Dragón Púrpura",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Una habilidad entre Perspicacia, Interpretación o Persuasión y al tirar iniciativa das Inspiración heroica a BC criaturas (1 vez por descanso largo).",
+   "fx": {
+    "skills": 1,
+    "from": [
+     "insight",
+     "performance",
+     "persuasion"
+    ]
+   }
+  },
+  "chispa-fuego-conjuro": {
+   "n": "Chispa de fuego de conjuro",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Reduces 1d4 el daño mágico una vez por turno y conoces Llama sagrada, que lanzas como acción adicional BC veces."
+  },
+  "tiro-guantelete": {
+   "n": "Novicio del Guantelete",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Reacción: evitas que empujen a un aliado cercano; al Preparar una acción, el siguiente ataque contra ti tiene desventaja."
+  },
+  "rufian-zhentarim": {
+   "n": "Rufián zhentarim",
+   "cat": "origen",
+   "src": "Heroes of Faerûn",
+   "d": "Tiras dos veces el daño de los ataques de oportunidad y puedes gastar Inspiración heroica para dar ventaja en iniciativa a tu grupo."
+  },
+  "combatiente-cambiante": {
+   "n": "Combatiente cambiante",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Maestría con armas. Empujas criaturas contra otras para dañarlas y tras un salto largo junto a enemigos los ataques contra ti tienen desventaja.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ]
+  },
+  "combatiente-tactico": {
+   "n": "Combatiente táctico",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere FUE o DES 13. Al impactar ganas PG temporales iguales al daño del arma y sumas 1d6 a una prueba fallida; se recargan al tirar iniciativa o descansar.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ]
+  },
+  "lucha-manada": {
+   "n": "Lucha en manada",
+   "cat": "estilo",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "+1 al daño cuerpo a cuerpo si un aliado está junto al objetivo (+2 si ese aliado también tiene esta dote)."
+  },
+  "lucha-tumbado": {
+   "n": "Lucha tumbado",
+   "cat": "estilo",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "No tienes penalizador al atacar tumbado y los enemigos no ganan ventaja contra ti por estarlo."
+  },
+  "lanzador-frio": {
+   "n": "Lanzador del frío",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Rayo de escarcha (u otro truco de mago) y al hacer daño de frío el objetivo resta 1d4 a su siguiente salvación.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "marcado-dragon": {
+   "n": "Marcado por dragones",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Iniciado del Culto del Dragón. Resistencia a un tipo elemental y usas Terror dracónico como acción adicional tras dañar.",
+   "lvl": 4,
+   "ab": [
+    "con",
+    "cha"
+   ]
+  },
+  "magia-enclave": {
+   "n": "Magia del enclave",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Novicio del Enclave Esmeralda. Ventaja para influir en bestias y Sentido animal sin concentración una vez gratis al día.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "embaucador-feerico": {
+   "n": "Embaucador feérico",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Destrabarte ignora el terreno difícil y al impactar desconciertas al objetivo (desventaja en salvaciones). BC veces por descanso largo.",
+   "lvl": 4,
+   "ab": [
+    "dex",
+    "cha"
+   ]
+  },
+  "magia-genio": {
+   "n": "Magia de genio",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Un conjuro de nivel 1 de hechicero que lanzas gratis una vez al día (más potente a niveles 11 y 17).",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "trabajo-arpista": {
+   "n": "Trabajo en equipo arpista",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Agente arpista. Tu Ayuda impone desventaja en la siguiente salvación del enemigo y liberas a un aliado de asustado o paralizado.",
+   "lvl": 4,
+   "ab": [
+    "dex",
+    "cha"
+   ]
+  },
+  "resolucion-senorial": {
+   "n": "Resolución señorial",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Agente de la Alianza. Acción adicional: hasta tres aliados se levantan y quedan protegidos contra hechizado y asustado 1 minuto.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "cha"
+   ]
+  },
+  "tocado-mythal": {
+   "n": "Tocado por un mythal",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Reacción al sufrir un conjuro: tiras en una tabla de efectos mágicos (daño de fuerza, vínculo telepático, +2 CA…). BC veces.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "resiliencia-orden": {
+   "n": "Resiliencia de la orden",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Novicio del Guantelete. Te levantas con 1,5 m y tú y un aliado cercano tenéis ventaja en salvaciones de FUE.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "wis",
+    "cha"
+   ]
+  },
+  "comandante-dragon-purpura": {
+   "n": "Comandante del Dragón Púrpura",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Acción adicional: das 2d6 + modificador PG temporales a un aliado (BC veces) y tienes ventaja al atacar estando maltrecho.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ]
+  },
+  "adepto-fuego-conjuro": {
+   "n": "Adepto del fuego de conjuro",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Gastas hasta 2 dados de golpe para sumar al daño radiante de un conjuro, que ignora la resistencia radiante.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "justicia-callejera": {
+   "n": "Justicia callejera",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Tus aliados tienen ventaja contra quien agarras, tus ataduras son más difíciles de romper y la hostilidad no te perjudica al intimidar.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex"
+   ]
+  },
+  "tacticas-zhentarim": {
+   "n": "Tácticas zhentarim",
+   "cat": "general",
+   "src": "Heroes of Faerûn",
+   "d": "Requiere Rufián zhentarim. Ataque de oportunidad contra quien te golpea cuerpo a cuerpo y pericia en una habilidad hasta el siguiente descanso largo.",
+   "lvl": 4,
+   "ab": [
+    "dex",
+    "cha"
+   ]
+  },
+  "don-siberys": {
+   "n": "Don de Siberys",
+   "cat": "epica",
+   "src": "Eberron: Forge of the Artificer",
+   "d": "Un conjuro de hechicero de nivel 8 o menos (o de marca de Siberys) siempre preparado, gratis una vez por descanso.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-derramamiento": {
+   "n": "Don del derramamiento de sangre",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Ventaja tras reducir a 0 PG a un enemigo y +BC de daño una vez por turno estando maltrecho.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-salud": {
+   "n": "Don de la salud abundante",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "+5 a cada ganancia de PG temporales y los dados de golpe curan su máximo.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-comunicacion": {
+   "n": "Don de la comunicación",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Entiendes cualquier idioma, telepatía a 36 m y la hostilidad no te perjudica al influir.",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-resiliencia": {
+   "n": "Don de la resiliencia desesperada",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Maltrecho, reduces todo el daño salvo el de fuerza.",
+   "ab": [
+    "str",
+    "con"
+   ]
+  },
+  "don-radiancia": {
+   "n": "Don de la radiancia exquisita",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Quien reduces a 0 PG no puede alzarse como no muerto y una vez al día maximizas el daño radiante.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-formas": {
+   "n": "Don de las formas fluidas",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Una vez al día te transformas 1 hora en una bestia, humanoide o monstruosidad de VD 10 o menos.",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-fortuna": {
+   "n": "Don del favor de la fortuna",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Una vez por turno repites una salvación fallida.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-veneno": {
+   "n": "Don de la maestría del veneno",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Inmune al veneno y una vez por turno maximizas el daño de veneno.",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-juerga": {
+   "n": "Don de la juerga",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Danza irresistible de Otto siempre preparada, gratis una vez al día y sin componentes.",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-terror": {
+   "n": "Don del terror",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Inmune a asustado, competencia y pericia en Intimidación y ahuyentas a un enemigo asustado.",
+   "ab": [
+    "cha"
+   ],
+   "fx": {
+    "fixedSk": [
+     "intimidation"
+    ]
+   }
+  },
+  "don-sol": {
+   "n": "Don del sol brillante",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Acción adicional: luz solar de 9 m que disipa la oscuridad mágica y da 10 PG temporales por turno a tus aliados.",
+   "ab": [
+    "con",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-tormenta": {
+   "n": "Don de la tormenta furiosa",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Resistencia a relámpago y trueno (inmunidad maltrecho) y desventaja en salvaciones contra tus conjuros de ese tipo.",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "don-bebealmas": {
+   "n": "Don del bebedor de almas",
+   "cat": "epica",
+   "src": "Heroes of Faerûn",
+   "d": "Resistencia a frío y necrótico; recuperas 50 PG cuando cae un enemigo cercano (1 vez por descanso).",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ]
+  },
+  "pacto-feerico": {
+   "n": "Pacto feérico",
+   "cat": "origen",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Silvano, competencia en Naturaleza, Saber druídico y un truco de adivinación o encantamiento; repites una prueba de Engaño o Persuasión fallida.",
+   "grp": "Pacto planar",
+   "fx": {
+    "fixedSk": [
+     "nature"
+    ]
+   }
+  },
+  "pacto-infernal": {
+   "n": "Pacto infernal",
+   "cat": "origen",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Resistencia al fuego o al veneno, visión en la oscuridad de 9 m que atraviesa la oscuridad mágica y competencia en Engaño.",
+   "grp": "Pacto planar",
+   "fx": {
+    "fixedSk": [
+     "deception"
+    ]
+   }
+  },
+  "pacto-sombra": {
+   "n": "Pacto de sombra",
+   "cat": "origen",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Visión en la oscuridad de 18 m (o +9 m), repites los unos al curarte en penumbra y creas un aura de penumbra.",
+   "grp": "Pacto planar"
+  },
+  "centinela-feerico": {
+   "n": "Centinela feérico",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto feérico. Invisible como reacción al fallarte un ataque, teletransporte al Correr y Enredar siempre preparado (Crecimiento de plantas a nivel 5).",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "grp": "Pacto planar"
+  },
+  "atormentador-feerico": {
+   "n": "Atormentador feérico",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto feérico. Distorsión temporal que ralentiza y baja la CA a tres criaturas y Maleficio siempre preparado (Otorgar maldición a nivel 5).",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "grp": "Pacto planar"
+  },
+  "baluarte-infernal": {
+   "n": "Baluarte infernal",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto infernal. Sin armadura ni escudo, CA = 10 + DES + modificador elegido; Armadura de Agathys gratis al día y represalia de fuego.",
+   "lvl": 4,
+   "ab": [
+    "con",
+    "cha"
+   ],
+   "grp": "Pacto planar"
+  },
+  "dragon-infernal": {
+   "n": "Dragón infernal",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto infernal. Aura que asusta, +2 a una prueba d20 al día y Arma mágica siempre preparado.",
+   "lvl": 4,
+   "ab": [
+    "con",
+    "cha"
+   ],
+   "grp": "Pacto planar"
+  },
+  "trampero-sombra": {
+   "n": "Trampero de sombra",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto de sombra. Ventaja contra criaturas en tu aura y daño psíquico a quien agarras.",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "wis"
+   ],
+   "grp": "Pacto planar"
+  },
+  "tejedor-sombra": {
+   "n": "Tejedor de sombra",
+   "cat": "general",
+   "src": "D&D Beyond Drops (2026)",
+   "d": "Requiere Pacto de sombra. Oscuridad siempre preparada, gratis al día, y puedes moverla y cambiar su tamaño.",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "grp": "Pacto planar"
+  },
+  "anatomia-aberrante": {
+   "n": "Anatomía aberrante",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Competencia y pericia en Percepción, vista ciega 4,5 m y aguantas la respiración 1 hora. Pega: con un 1 natural puedes quedar aturdido.",
+   "grp": "Don oscuro",
+   "fx": {
+    "fixedSk": [
+     "perception"
+    ]
+   }
+  },
+  "alma-resonante": {
+   "n": "Alma resonante",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "2 habilidades, pericia cambiable y un idioma. Pega: con un 1 natural puedes quedar incapacitado.",
+   "grp": "Don oscuro",
+   "fx": {
+    "skills": 2
+   }
+  },
+  "susurros-reunidos": {
+   "n": "Susurros reunidos",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Augurio gratis al día, truco Mensaje y +BC a la CA contra un impacto con un grito. Pega: con un 1 natural puedes quedar ensordecido.",
+   "grp": "Don oscuro"
+  },
+  "sombra-viviente": {
+   "n": "Sombra viviente",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Mano de mago sin componentes y +3 m de alcance cuerpo a cuerpo BC veces. Pega: con un 1 natural tu sombra actúa por su cuenta.",
+   "grp": "Don oscuro"
+  },
+  "caminante-niebla": {
+   "n": "Caminante de la niebla",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Viajas entre dominios y te teletransportas 4,5 m como reacción BC veces. Pega: tus descansos cortos pueden fallar.",
+   "grp": "Don oscuro"
+  },
+  "segunda-piel": {
+   "n": "Segunda piel",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Alterarse siempre preparado, gratis al día y sin concentración. Pega: ciertos catalizadores te transforman a la fuerza.",
+   "grp": "Don oscuro"
+  },
+  "ser-simbiotico": {
+   "n": "Ser simbiótico",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Una habilidad, un idioma y conviertes salvaciones fallidas en éxitos gastando dados de golpe. Pega: con un 1 natural el simbionte te hechiza.",
+   "grp": "Don oscuro",
+   "fx": {
+    "skills": 1
+   }
+  },
+  "toque-muerte": {
+   "n": "Toque de la muerte",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Toque gélido sin componentes que ignora la resistencia necrótica. Pega: desventaja en salvaciones de muerte.",
+   "grp": "Don oscuro"
+  },
+  "vigilantes": {
+   "n": "Vigilantes",
+   "cat": "origen",
+   "src": "Ravenloft: The Horrors Within",
+   "d": "Sentido animal y Hablar con los animales gratis al día y +1d4 al Buscar. Pega: con un 1 natural, desventaja en pruebas d20 durante 1 minuto.",
+   "grp": "Don oscuro"
+  }
+ }
+}
