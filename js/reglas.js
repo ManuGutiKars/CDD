@@ -91,7 +91,7 @@ function skillPools(ch){
   if(s&&s.id==='saber')P.push({key:'saber',label:'Colegio del Saber',n:3,from:ALLSK});
   if(s&&s.id==='batalla')P.push({key:'batalla',label:'Estudiante de la guerra',n:1,from:D.clases.guerrero.sk.from});
   if(s&&s.skills)P.push({key:'sub',label:s.n+(s.skills.exp?' (con pericia)':''),n:s.skills.n,from:s.skills.from});
-  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.skills)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n,n:fx.skills,from:fx.from||ALLSK})});
+  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.skills)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n+' ('+String(f.src).toLowerCase()+')',n:fx.skills,from:fx.from||ALLSK})});
   return P;
 }
 function fixedSkills(ch){
@@ -103,7 +103,7 @@ function fixedSkills(ch){
 function expertisePools(ch){
   const c=cls(ch),P=[];
   (c.exp||[]).forEach(([l,n,from],i)=>{if(ch.lvl>=l)P.push({key:'c'+i,label:c.n+' · nivel '+l,n,from:from||null})});
-  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.expertise)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n,n:fx.expertise,from:null})});
+  featsTaken(ch).forEach(f=>{const fx=D.origen.dotes[f.id].fx||{};if(fx.expertise)P.push({key:'f:'+f.key,label:'Dote · '+D.origen.dotes[f.id].n+' ('+String(f.src).toLowerCase()+')',n:fx.expertise,from:null})});
   return P;
 }
 function profSkills(ch){

@@ -695,6 +695,27 @@
      "Resistencia al frío, necrótico o veneno."
     ]
    ]
+  },
+  "crepuscular": {
+   "n": "Crepuscular (Duskling)",
+   "src": "D&D Beyond Drops (2026)",
+   "size": "Mediano",
+   "spd": 30,
+   "dv": 60,
+   "tr": [
+    [
+     "Feérico",
+     "Tu tipo de criatura es feérico."
+    ],
+    [
+     "Salto mejorado",
+     "+60 cm a tus saltos de altura y +3 m a tus saltos de longitud con carrerilla."
+    ],
+    [
+     "Magia interior",
+     "Tras un descanso largo eliges un beneficio, que puedes cambiar con una acción adicional BC veces por descanso largo: Ardor (ventaja en pruebas de CAR y en salvaciones contra asustado), Movilidad (+3 m de velocidad; trepar y nadar no cuestan movimiento extra) o Vigor (PG temporales = BC y ventaja en Atletismo y Acrobacias)."
+    ]
+   ]
   }
  },
  "trasfondos": {
@@ -3053,6 +3074,307 @@
     "toque-muerte",
     "vigilantes"
    ]
+  },
+  "juerguista": {
+   "n": "Juerguista",
+   "src": "Astarion's Book of Hungers",
+   "ab": [
+    "dex",
+    "int",
+    "cha"
+   ],
+   "f": "juerguista-incansable",
+   "sk": [
+    "deception",
+    "persuasion"
+   ],
+   "tool": "Un juego",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Juego",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Botella de cristal",
+     1
+    ],
+    [
+     "Espejo",
+     1
+    ],
+    [
+     "Perfume",
+     1
+    ],
+    [
+     "Bolsa",
+     1
+    ],
+    [
+     "Yesquero",
+     1
+    ]
+   ],
+   "po": 19
+  },
+  "devoto-vampiro": {
+   "n": "Devoto de un vampiro",
+   "src": "Astarion's Book of Hungers",
+   "ab": [
+    "str",
+    "con",
+    "cha"
+   ],
+   "f": "juguete-vampiro",
+   "sk": [
+    "persuasion",
+    "stealth"
+   ],
+   "tool": "Útiles de cocinero",
+   "eq": [
+    [
+     "Útiles de cocinero",
+     1
+    ],
+    [
+     "Ropa elegante",
+     1
+    ],
+    [
+     "Botella de cristal",
+     2
+    ],
+    [
+     "Kit de sanador",
+     1
+    ],
+    [
+     "Perfume",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 19
+  },
+  "superviviente-vampiro": {
+   "n": "Superviviente de vampiros",
+   "src": "Astarion's Book of Hungers",
+   "ab": [
+    "dex",
+    "con",
+    "wis"
+   ],
+   "f": "cazavampiros",
+   "sk": [
+    "insight",
+    "religion"
+   ],
+   "tool": "Herramientas de tallista",
+   "eq": [
+    [
+     "Herramientas de tallista",
+     1
+    ],
+    [
+     "Palanca",
+     1
+    ],
+    [
+     "Linterna con capucha",
+     1
+    ],
+    [
+     "Símbolo sagrado (relicario)",
+     1
+    ],
+    [
+     "Agua bendita",
+     1
+    ],
+    [
+     "Espejo",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Yesquero",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 4
+  },
+  "experto-lorwyn": {
+   "n": "Experto de Lorwyn",
+   "src": "Lorwyn: First Light",
+   "ab": [
+    "str",
+    "con",
+    "wis"
+   ],
+   "f": "hijo-del-sol",
+   "sk": [
+    "athletics",
+    "nature"
+   ],
+   "tool": "Herramientas de cartógrafo",
+   "eq": [
+    [
+     "Bastón",
+     1
+    ],
+    [
+     "Herramientas de cartógrafo",
+     1
+    ],
+    [
+     "Mochila",
+     1
+    ],
+    [
+     "Cesta",
+     1
+    ],
+    [
+     "Pergamino (hojas)",
+     4
+    ],
+    [
+     "Cuerda",
+     1
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 29
+  },
+  "experto-sombramar": {
+   "n": "Experto de Sombramar",
+   "src": "Lorwyn: First Light",
+   "ab": [
+    "dex",
+    "int",
+    "cha"
+   ],
+   "f": "hechicero-sombramar",
+   "sk": [
+    "acrobatics",
+    "deception"
+   ],
+   "tool": "Herramientas de soplador de vidrio",
+   "eq": [
+    [
+     "Daga",
+     1
+    ],
+    [
+     "Herramientas de soplador de vidrio",
+     1
+    ],
+    [
+     "Mochila",
+     1
+    ],
+    [
+     "Trampa de caza",
+     1
+    ],
+    [
+     "Lámpara",
+     1
+    ],
+    [
+     "Aceite (frasco)",
+     3
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ],
+    [
+     "Odre",
+     1
+    ]
+   ],
+   "po": 8
+  },
+  "buscador-pactos": {
+   "n": "Buscador de pactos",
+   "src": "D&D Beyond Drops (2026)",
+   "ab": [
+    "con",
+    "int",
+    "cha"
+   ],
+   "f": "pacto-feerico",
+   "sk": [
+    "arcana",
+    "persuasion"
+   ],
+   "tool": "Útiles de caligrafía",
+   "eq": [
+    [
+     "Libro",
+     1
+    ],
+    [
+     "Útiles de caligrafía",
+     1
+    ],
+    [
+     "Tinta",
+     1
+    ],
+    [
+     "Pluma",
+     1
+    ],
+    [
+     "Pergamino (hojas)",
+     10
+    ],
+    [
+     "Ropa de viaje",
+     1
+    ]
+   ],
+   "po": 2,
+   "fOpts": [
+    "pacto-feerico",
+    "pacto-infernal",
+    "pacto-sombra"
+   ]
   }
  },
  "dotes": {
@@ -3116,11 +3438,12 @@
   "habilidoso": {
    "n": "Habilidoso",
    "cat": "origen",
-   "d": "Competencia en 3 habilidades o herramientas.",
+   "d": "Competencia en 3 habilidades o herramientas a tu elección. Repetible: puedes tenerla más de una vez.",
    "fx": {
     "skills": 3
    },
-   "src": "Player's Handbook"
+   "src": "Player's Handbook",
+   "rep": 1
   },
   "camorrista": {
    "n": "Camorrista de taberna",
@@ -4780,7 +5103,7 @@
    "n": "Segunda piel",
    "cat": "origen",
    "src": "Ravenloft: The Horrors Within",
-   "d": "Alterarse siempre preparado, gratis al día y sin concentración. Pega: ciertos catalizadores te transforman a la fuerza.",
+   "d": "Alterar el Propio Aspecto siempre preparado, gratis al día y sin concentración. Pega: ciertos catalizadores te transforman a la fuerza.",
    "grp": "Don oscuro"
   },
   "ser-simbiotico": {
@@ -4806,6 +5129,205 @@
    "src": "Ravenloft: The Horrors Within",
    "d": "Sentido animal y Hablar con los animales gratis al día y +1d4 al Buscar. Pega: con un 1 natural, desventaja en pruebas d20 durante 1 minuto.",
    "grp": "Don oscuro"
+  },
+  "hijo-del-sol": {
+   "n": "Hijo del sol",
+   "cat": "origen",
+   "src": "Lorwyn: First Light",
+   "d": "Tú y tus aliados a 3 m tenéis ventaja en las salvaciones para evitar o terminar el estado cegado. Aprendes Fuego Feérico (INT, SAB o CAR): una vez gratis por descanso largo, y al lanzarlo así el daño no rompe tu concentración."
+  },
+  "hechicero-sombramar": {
+   "n": "Hechicero de Sombramar",
+   "cat": "origen",
+   "src": "Lorwyn: First Light",
+   "d": "Siempre tienes preparado Maleficio (INT, SAB o CAR) y lo lanzas gratis una vez por descanso largo. Una criatura maldita por tu Maleficio que te impacte sufre daño psíquico igual a tu BC (una vez por turno)."
+  },
+  "juerguista-incansable": {
+   "n": "Juerguista incansable",
+   "cat": "origen",
+   "src": "Astarion's Book of Hungers",
+   "d": "Cuando un aliado que puedas ver a 18 m gasta su Inspiración heroica, obtienes Inspiración heroica si no la tienes. BC usos por descanso corto o largo."
+  },
+  "cazavampiros": {
+   "n": "Cazador de vampiros",
+   "cat": "origen",
+   "src": "Astarion's Book of Hungers",
+   "d": "Ventaja en las pruebas para escapar de ataduras no mágicas o de un agarre. Reacción al recibir daño necrótico: lo reduces en tantos d6 como tu BC (1 vez por descanso corto o largo)."
+  },
+  "juguete-vampiro": {
+   "n": "Juguete del vampiro",
+   "cat": "origen",
+   "src": "Astarion's Book of Hungers",
+   "d": "Tras un descanso largo puedes crear una poción de curación o un antitoxina si tienes un vial vacío (se evapora en el siguiente descanso largo). Acción adicional para Correr o Destrabarte, BC veces por descanso largo. Tu antiguo amo vampiro puede hablarte telepáticamente."
+  },
+  "sed-de-sangre": {
+   "n": "Sed de sangre",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Al tirar dados de golpe para curarte, los 1 y 2 cuentan como 3. Una vez por turno, al impactar a una criatura maltrecha que no sea autómata ni muerto viviente, puedes gastar un dado de golpe y recuperar su resultado + CON. BC usos por descanso largo."
+  },
+  "bombardero": {
+   "n": "Bombardero",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "dex"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Al Atacar lanzando un vial o frasco, puedes elegir un objetivo a 12 m. Atacar a largo alcance con armas arrojadizas no te da desventaja."
+  },
+  "brumas-pegajosas": {
+   "n": "Brumas pegajosas",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Siempre tienes preparada Nube de Niebla y la lanzas gratis una vez por descanso largo. Tu niebla apaga las llamas no mágicas y reduce en 1,5 m la velocidad de quienes no sean tus aliados."
+  },
+  "dolor-delicioso": {
+   "n": "Dolor delicioso",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Reacción justo después de recibir daño contundente, perforante o cortante: resistencia a esos tres tipos hasta el inicio de tu siguiente turno (1 vez por descanso corto o largo)."
+  },
+  "portador-luz": {
+   "n": "Portador de luz",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Aprendes Luz (sin componente material) o, si ya lo conocías, otro truco de clérigo. Una vez por descanso largo su luz puede ser luz solar. Acción adicional bajo la luz del sol: gastas un dado de golpe y recuperas su resultado (1 vez por descanso corto o largo)."
+  },
+  "mordiscos-carinosos": {
+   "n": "Mordiscos cariñosos",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Acción adicional justo después de dañar a una criatura con un arma cuerpo a cuerpo o un ataque sin armas: queda hechizada hasta el inicio de tu siguiente turno o hasta que la dañéis (1 vez por descanso corto o largo)."
+  },
+  "putrefaccion": {
+   "n": "Putrefacción",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Al causar daño necrótico, una criatura que lo reciba queda envenenada hasta el inicio de tu siguiente turno (1 vez por descanso corto o largo)."
+  },
+  "reprimenda": {
+   "n": "Reprimenda",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Al causar daño radiante, una criatura Enorme o menor que lo reciba queda derribada (1 vez por descanso corto o largo)."
+  },
+  "encanto-traicionero": {
+   "n": "Encanto traicionero",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Siempre tienes preparado Hechizar Persona y lo lanzas gratis una vez por descanso largo. Ventaja en las tiradas de ataque contra criaturas hechizadas."
+  },
+  "tocado-vampiro": {
+   "n": "Tocado por un vampiro",
+   "cat": "general",
+   "lvl": 4,
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Siempre tienes preparados Trepar cual Arácnido (solo sobre ti) y un conjuro de nivel 1 de encantamiento o ilusión, y lanzas cada uno gratis una vez por descanso largo."
+  },
+  "don-amanecer": {
+   "n": "Don del amanecer ardiente",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Inmunidad al daño radiante. Tus ataques con armas pueden causar daño radiante. Una vez por turno, al impactar con daño radiante, emites luz solar brillante en 9 m hasta el inicio de tu siguiente turno."
+  },
+  "don-sombras": {
+   "n": "Don de las sombras acechantes",
+   "cat": "epica",
+   "ab": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Al usar la acción de Atacar, tu alcance con armas cuerpo a cuerpo aumenta 3 m hasta el final de tu turno. Puedes Esquivar como acción adicional."
+  },
+  "don-niebla": {
+   "n": "Don de la huida brumosa",
+   "cat": "epica",
+   "ab": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "src": "Astarion's Book of Hungers",
+   "d": "Una vez por descanso largo, si caes a 0 PG sin morir, quedas con 1 PG y lanzas Forma Gaseosa sobre ti sin espacio (vuelo 6 m y recuperas 10 PG al inicio de cada turno)."
   }
  }
 }

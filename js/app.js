@@ -71,11 +71,12 @@ async function descargar(filename,data){
   catch(e){const c=e&&e.code;if(c==='declined')return;if(c==='rate_limited'){toast('Ya hay una descarga pendiente de confirmar');return}toast('No se pudo descargar ('+(c||'error')+'). Usa Copiar.')}
 }
 const PHB="Player's Handbook";
-const BOOKS=[[PHB,'Manual del Jugador'],['Eberron: Forge of the Artificer','Eberron'],['Heroes of Faerûn','Faerûn'],['Ravenloft: The Horrors Within','Ravenloft'],['Lorwyn: First Light','Lorwyn'],['D&D Beyond Drops','D&D Beyond']];
+const BOOKS=[[PHB,'Manual del Jugador'],['Eberron: Forge of the Artificer','Eberron'],['Heroes of Faerûn','Faerûn'],['Ravenloft: The Horrors Within','Ravenloft'],['Lorwyn: First Light','Lorwyn'],["Astarion's Book of Hungers",'Astarion'],['D&D Beyond Drops','D&D Beyond']];
 const bookKey=src=>!src?PHB:String(src).startsWith('D&D Beyond')?'D&D Beyond Drops':src;
 const bookShort=src=>(BOOKS.find(b=>b[0]===bookKey(src))||[0,src])[1];
 let books=new Set((()=>{const v=lsGet('forja-libros');return Array.isArray(v)?v:BOOKS.map(b=>b[0])})());
 const okB=(x,cur)=>cur||books.has(bookKey(x.src));
+window.ForjaLibros={ok:src=>books.has(bookKey(src)),short:bookShort};
 const tagB=x=>bookKey(x.src)===PHB?'':' · '+bookShort(x.src);
 function grouped(entries,cur){
   const g={};entries.filter(([k,v])=>okB(v,k===cur)).forEach(([k,v])=>{const b=bookShort(v.src);(g[b]=g[b]||[]).push([k,v])});
@@ -158,7 +159,7 @@ function stEspecie(el,S){
   <div class="row"><div class="fld"><label for="f-sp">Especie</label><select id="f-sp" data-f="species">${grouped(Object.entries(D.origen.especies),ch.species)}</select></div>
   ${sp.sub?`<div class="fld"><label for="f-spsub">${sp.sub.l}</label>${sel('f-spsub',sp.sub.o.map(o=>[o.id,o.n]),ch.spSub,'data-f="spSub"')}</div>`:''}
   ${sp.size==='choice'?`<div class="fld"><label for="f-size">Tamaño</label>${sel('f-size',[['Mediano','Mediano'],['Pequeño','Pequeño']],ch.size,'data-f="size"')}</div>`:''}
-  ${sp.feat?`<div class="fld"><label for="f-feat2">Dote de origen adicional</label><select id="f-feat2" data-f="feat2">${grouped(Object.entries(D.origen.dotes).filter(([,d])=>d.cat==='origen'),ch.feat2)}</select></div>`:''}</div>
+  ${sp.feat?`<div class="fld"><label for="f-feat2">Dote de origen adicional</label><select id="f-feat2" data-f="feat2">${grouped(Object.entries(D.origen.dotes).filter(([k,d])=>d.cat==='origen'&&(k===ch.feat2||d.rep||k!==R.featsTaken(ch)[0].id)),ch.feat2)}</select></div>`:''}</div>
   <div class="info"><div class="kv"><span>Tamaño <b>${sp.size==='choice'?'Mediano o Pequeño':sp.size}</b></span><span>Velocidad <b>${R.m((S.spSub&&S.spSub.spd)||sp.spd)}</b></span>${S.dv?`<span>Visión en la oscuridad <b>${R.m(S.dv)}</b></span>`:''}</div>
   ${S.spSub?`<div><b>${esc(S.spSub.n)}.</b> ${esc(S.spSub.d)}</div>`:''}
   ${sp.tr.map(t=>`<div><b>${esc(t[0])}.</b> ${esc(t[1])}</div>`).join('')}</div>

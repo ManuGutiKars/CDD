@@ -69,12 +69,13 @@ function unlockAt(ch,l){
   const c=R.casterOf(ch);if(c.pact){if(l>5)return R.ARC[l];for(let L=1;L<=20;L++)if(R.PACT(L).lv>=l)return L}
   for(let L=1;L<=20;L++)if(c.sl(L).length>=l)return L;return null;
 }
-const tags=s=>`${s.r?'<span class="tg r" title="Ritual">R</span>':''}${s.cc?'<span class="tg c" title="Concentración">C</span>':''}${s.fr?'<span class="tg f">Faerûn</span>':''}${s.ad?'<span class="tg a" title="Ficha añadida a partir de AideDD">Nuevo</span>':''}`;
-const detail=s=>`<div class="det"><div class="flds"><div><span>Alcance</span> ${esc(s.a)}</div><div><span>Componentes</span> ${esc(s.co)}</div><div><span>Duración</span> ${esc(s.du)}</div></div><div>${s.e}</div>${s.u?`<div class="up">${s.u}</div>`:''}${s.ci?`<div class="up">${s.ci}</div>`:''}</div>`;
+const tags=s=>`${s.r?'<span class="tg r" title="Ritual">R</span>':''}${s.cc?'<span class="tg c" title="Concentración">C</span>':''}${s.src&&window.ForjaLibros?`<span class="tg f" title="${esc(s.src)}">${esc(window.ForjaLibros.short(s.src))}</span>`:''}`;
+const detail=s=>`<div class="det"><div class="flds"><div><span>Tiempo</span> ${esc(s.t)}${s.r?' (o ritual)':''}</div><div><span>Alcance</span> ${esc(s.a)}</div><div><span>Componentes</span> ${esc(s.co)}</div><div><span>Duración</span> ${esc(s.du)}</div></div><div>${s.e}</div>${s.u?`<div class="up">${s.u}</div>`:''}${s.ci?`<div class="up">${s.ci}</div>`:''}</div>`;
 const nameBtn=(s,x)=>`<button class="nm" data-act="sp-open" data-k="${s.id}" aria-expanded="${open.has(s.id)}"><span class="dot" style="background:${s.c}"></span><b>${esc(s.n)}</b>${tags(s)}<span class="sch">${s.s}</span>${x||''}</button>`;
 function pass(ch,s,q,R0){
   const S=st(ch);
   if(q&&!fold(s.n+' '+s.s).includes(q))return false;
+  if(window.ForjaLibros&&!window.ForjaLibros.ok(s.src)&&!R0.gset.has(s.id)&&!S.picks.includes(s.id)&&!S.book.includes(s.id)&&!S.disc.includes(s.id))return false;
   if(F.onlyRit&&!s.r)return false;if(F.noConc&&s.cc)return false;
   if(F.onlyPrep&&!(R0.gset.has(s.id)||S.picks.includes(s.id)||S.disc.includes(s.id)))return false;
   if(F.onlyBook&&!(S.book.includes(s.id)||s.l===0&&S.picks.includes(s.id)))return false;
@@ -134,7 +135,7 @@ function render(ch,el,sheet){
           ck=`<input type="checkbox" id="cb-${s.id}" data-act="sp-book" data-k="${s.id}" ${inB?'checked':''} ${bdis?'disabled':''} aria-label="${esc(s.n)} en el libro"><input type="checkbox" id="ck-${s.id}" data-act="sp-pick" data-k="${s.id}" ${on?'checked':''} ${pdis?'disabled':''} aria-label="Preparar ${esc(s.n)}">`;
           cl=(on?'on':'')+(!inB&&locked?' dim':'')}
         else{const dis=!on&&(locked||full);ck=`<input type="checkbox" id="ck-${s.id}" data-act="sp-pick" data-k="${s.id}" ${on?'checked':''} ${dis?'disabled':''} aria-label="Elegir ${esc(s.n)}">`;cl=(on?'on':'')+(dis?' dim':'')}
-        h+=`<div class="sp ${cl}"><div class="sp-row ${two?'two':''}">${ck}${nameBtn(s,g?'<span class="lockb">Subclase</span>':'')}<span class="meta">${esc(s.t)}</span></div>${open.has(s.id)?detail(s):''}</div>`;
+        h+=`<div class="sp ${cl}"><div class="sp-row ${two?'two':''}">${ck}${nameBtn(s,g?'<span class="lockb">Subclase</span>':'')}<span class="meta">${esc(s.t.split(',')[0])}</span></div>${open.has(s.id)?detail(s):''}</div>`;
       }
       h+='</div>';
     }
