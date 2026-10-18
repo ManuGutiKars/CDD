@@ -90,11 +90,13 @@ function grouped(entries,cur){
 const srcLine=x=>`<span>Libro <b>${esc(bookShort(x.src))}</b></span>`;
 
 /* ---------- Render principal ---------- */
-const RK=()=>yo?'forja-personajes:'+yo.id:'forja-personajes';
+let yoOff=null;
+const RK=()=>(yo||yoOff)?'forja-personajes:'+(yo||yoOff).id:'forja-personajes';
 const anonimos=()=>yo?(lsGet('forja-personajes')||[]).filter(r=>!cloud[r.id]&&!roster.some(x=>x.id===r.id)):[];
 const ajeno=c=>!!(c&&cloud[c.id]&&yo&&cloud[c.id].dueno!==yo.id);
 function saveCurrent(){
   if(!ch)return;ch.upd=Date.now();const c=JSON.parse(JSON.stringify(ch));
+  if(yoOff&&!yo)c.subirPend=1;
   if(!ajeno(ch)){const i=roster.findIndex(r=>r.id===ch.id);if(i>=0)roster[i]=c;else roster.unshift(c);lsSet(RK(),roster)}
   if(yo)programarNube(c);
 }
@@ -106,7 +108,10 @@ function pintarEstado(){const e=$('#nubeest');if(!e)return;e.textContent=nubeEst
 async function nt(fn,ok){try{const r=await fn();if(ok)toast(ok);return r}catch(e){toast(e.message||'Error de conexión');return undefined}}
 async function sincronizar(){
   if(!yo)return;
-  const rows=await nt(()=>Nube.misPersonajes());if(rows){cloud={};rows.forEach(r=>{cloud[r.id]={dueno:r.dueno,campana:r.campana};const d=Object.assign(blank(),r.datos,{campana:r.campana||null});const i=roster.findIndex(x=>x.id===r.id);if(i<0)roster.push(d);else if((d.upd||0)>=(roster[i].upd||0))roster[i]=d;else roster[i].campana=r.campana||null});lsSet(RK(),roster)}
+  lsSet('forja-ultimo',{id:yo.id,nombre:yo.nombre});
+  const rows=await nt(()=>Nube.misPersonajes());if(rows){cloud={};const subir=[];rows.forEach(r=>{cloud[r.id]={dueno:r.dueno,campana:r.campana};const d=Object.assign(blank(),r.datos,{campana:r.campana||null});const i=roster.findIndex(x=>x.id===r.id);if(i<0)roster.push(d);else if((d.upd||0)>=(roster[i].upd||0))roster[i]=d;else subir.push(roster[i])});
+    roster.forEach(r=>{if(!cloud[r.id]&&r.upd&&r.subirPend)subir.push(r)});lsSet(RK(),roster);
+    for(const r of subir){if(await nt(()=>Nube.guardar(r,!!cloud[r.id]))){delete r.subirPend;cloud[r.id]={dueno:yo.id,campana:r.campana||null}}}if(subir.length){lsSet(RK(),roster);toast(subir.length+' cambio(s) hechos sin conexión sincronizados')}}
   camps=(await nt(()=>Nube.campanas()))||camps;
   const pc=lsGet('forja-unirse');if(pc&&!invit){invit=await nt(()=>Nube.verInvitacion(pc));if(!invit){toast('El enlace de invitación no es válido');try{localStorage.removeItem('forja-unirse')}catch(e){}}}
 }
@@ -118,7 +123,7 @@ const invUrl=c=>location.origin+location.pathname+'?unirse='+encodeURIComponent(
 const METODOS=[['array','Conjunto estándar'],['pb','Compra de puntos'],['roll','Tirar dados'],['man','Manual']];
 function cuentaHome(){
   if(!NUBE)return '';
-  if(nubeErr)return `<div class="panel"><p class="bad">No se pudo conectar con la nube: ${esc(nubeErr)}</p></div>`;
+  if(nubeErr)return yoOff?`<div class="panel cuenta"><p><b>Sin conexión.</b> Trabajas con la copia de los personajes de ${esc(yoOff.nombre)} guardada en este dispositivo; los cambios se subirán solos cuando vuelvas a tener internet y abras la app.</p></div>`:`<div class="panel"><p class="bad">No se pudo conectar con la nube (${esc(nubeErr)}). Puedes seguir usando la app en este dispositivo.</p></div>`;
   const pc=lsGet('forja-unirse');
   if(!yo)return `<div class="panel cuenta">${pc?'<p><b>Te han invitado a una campaña.</b> Entra con tu cuenta de Google para unirte.</p>':''}
     <div class="row-c"><button class="btn primary" data-act="login" id="b-login">Entrar con Google</button><span class="muted small">Guarda tus personajes en la nube, úsalos en cualquier dispositivo y únete a campañas.</span></div></div>`;
@@ -188,7 +193,7 @@ function campBar(){
 }
 function stInicio(el){
   const list=[...roster].sort((a,b)=>(b.upd||0)-(a.upd||0));
-  el.innerHTML=cuentaHome()+`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">${yo?'Se guardan en tu cuenta <span id="nubeest" class="nubeest"></span>':'Se guardan solos en este navegador'}</span></div>
+  el.innerHTML=cuentaHome()+`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">${yo?'Se guardan en tu cuenta <span id="nubeest" class="nubeest"></span>':yoOff?'Copia en este dispositivo':'Se guardan solos en este navegador'}</span></div>
   <button class="btn primary big" data-act="new" id="b-new-home">+ Crear personaje nuevo</button>
   ${list.length?`<div class="roster">${list.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}${r.campana&&camps.find(c=>c.id===r.campana)?' · <span class="tg c">'+esc(camps.find(c=>c.id===r.campana).nombre)+'</span>':''}${yo&&!cloud[r.id]?' · <span class="muted">pendiente de subir</span>':''}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
   :`<p class="muted">Aún no tienes personajes. Pulsa “Crear personaje nuevo” para empezar, o importa uno desde Exportar.</p>`}</div>`;
@@ -554,8 +559,8 @@ async function iniciar(){
   if(NUBE){
     const hb=document.querySelector('.acts [data-act="home"]');if(hb)hb.textContent='Personajes y campañas';
     addEventListener('pagehide',()=>{if(nubeEstado==='pend'&&ch&&yo){clearTimeout(nubeT);Nube.guardar(JSON.parse(JSON.stringify(ch)),!!cloud[ch.id])}});
-    try{yo=await Nube.init()}catch(e){nubeErr=e.message}
-    Nube.alCambiar(async u=>{yo=u;ch=null;step='inicio';roster=lsGet(RK())||[];if(!u){cloud={};camps=[];camp=null;campId=null;invit=null}else await sincronizar();render()});
+    try{yo=await Nube.init()}catch(e){nubeErr=e.message;const u=lsGet('forja-ultimo');if(u&&u.id){yoOff=u;roster=lsGet(RK())||[]}}
+    Nube.alCambiar(async u=>{yo=u;if(!u)try{localStorage.removeItem('forja-ultimo')}catch(e){};ch=null;step='inicio';roster=lsGet(RK())||[];if(!u){cloud={};camps=[];camp=null;campId=null;invit=null}else await sincronizar();render()});
     if(yo){roster=lsGet(RK())||[];await sincronizar()}
   }
   render();
