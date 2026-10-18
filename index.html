@@ -349,6 +349,42 @@ button.ab-card:hover,.roll:hover{border-color:var(--gold)}
 .cbar{background:var(--parch);border:1px solid var(--gold);border-radius:8px;padding:8px 12px;font-size:.88rem;margin-bottom:12px}
 .nubeest{font-size:.78rem;margin-left:6px}.nubeest.ok{color:var(--gold)}.nubeest.err{color:var(--bad)}
 .bad-b{color:var(--bad);border-color:var(--bad)}
+
+/* Dados animados */
+#dicepop .dados{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0 2px;max-width:260px}
+#dicepop .dado{position:relative;width:46px;height:46px;display:inline-grid;place-items:center}
+#dicepop .dado svg{position:absolute;inset:0;width:100%;height:100%;fill:var(--gold-bright);stroke:#2b2216;stroke-width:3;stroke-linejoin:round}
+#dicepop .dado svg .ar{fill:none;stroke:#2b2216;stroke-width:1.6;opacity:.45}
+#dicepop .dado b{position:relative;font-family:var(--f-display);font-size:1rem;color:#2b2216;font-variant-numeric:tabular-nums}
+#dicepop .dado[data-f="4"] b{transform:translateY(8px)}
+#dicepop .dado.x{opacity:.4}
+#dicepop .mas{align-self:center;font-weight:700}
+#dicepop.rolling .dado{animation:rodar .7s cubic-bezier(.2,.7,.3,1) both}
+#dicepop.rolling .dado:nth-child(2){animation-delay:.05s}#dicepop.rolling .dado:nth-child(3){animation-delay:.1s}
+#dicepop .dado.ok{animation:asentar .25s ease-out}
+#dicepop.rolling .dv{opacity:.4}
+#dicepop.nat .dado:not(.x) svg{fill:#f3d27a;filter:drop-shadow(0 0 6px #ffd86b)}
+#dicepop.pif .dado:not(.x) svg{fill:#d98c8c}
+#dicepop.nat .dv{animation:brillo 1s ease-out}
+@keyframes rodar{0%{transform:translate(-60px,-30px) rotate(-540deg) scale(.4);opacity:0}60%{opacity:1}100%{transform:none}}
+@keyframes asentar{0%{transform:scale(1.25)}100%{transform:none}}
+@keyframes brillo{0%{text-shadow:0 0 18px #ffd86b;transform:scale(1.25)}100%{text-shadow:none;transform:none}}
+.die.tumb{animation:rodar .6s cubic-bezier(.2,.7,.3,1) both;animation-delay:var(--d,0ms)}
+@media (prefers-reduced-motion:reduce){#dicepop .dado,.die.tumb,#dicepop .dv{animation:none!important}}
+
+/* Imagen del personaje */
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.sh-head{display:flex;gap:16px;align-items:center}
+.sh-t{min-width:0;flex:1}
+.retrato-box{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none}
+.retrato{width:96px;height:96px;border-radius:14px;border:2px solid var(--gold);background:var(--parch);display:grid;place-items:center;overflow:hidden;cursor:pointer;color:var(--muted);font-size:.8rem;text-align:center}
+.retrato img{width:100%;height:100%;object-fit:cover;display:block}
+.retrato:hover,.retrato-box:focus-within .retrato{outline:3px solid var(--gold-bright);outline-offset:2px}
+.retrato-box .lnk{font-size:.78rem}
+.thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;flex:none;border:1px solid var(--line);background:var(--parch);display:inline-grid;place-items:center;font-family:var(--f-display);font-weight:700;color:var(--muted)}
+.thumb.grande{width:56px;height:56px;border-radius:10px}
+.mini-h{display:flex;gap:12px;align-items:center}
+@media (max-width:520px){.retrato{width:76px;height:76px}.sh-head{gap:12px}}
 </style>
 </head>
 <body>
@@ -374,12 +410,12 @@ button.ab-card:hover,.roll:hover{border-color:var(--gold)}
   <p class="foot">Herramienta no oficial basada en las reglas de Dungeons &amp; Dragons 2024. Los rasgos son resúmenes propios; consulta el manual para el texto completo. Fichas de conjuros de tu Compendio de Conjuros más 68 redactadas a partir de <a href="https://www.aidedd.org/spell/es/" target="_blank" rel="noopener">AideDD</a> y <a href="https://dnd2024.wikidot.com/" target="_blank" rel="noopener">la wiki de D&amp;D 2024</a>. El contenido de otros libros indica su origen. Sin cuenta, los personajes se guardan solos en este navegador; usa Exportar para tener una copia.</p>
 </div></main>
 <div class="toast" id="toast" role="status"></div>
-<script>window.FORJA_V="20261018-4";</script>
-<script src="js/config.js?v=20261018-4"></script>
-<script src="js/nube.js?v=20261018-4"></script>
-<script src="js/reglas.js?v=20261018-4"></script>
-<script src="js/conjuros.js?v=20261018-4"></script>
-<script src="js/app.js?v=20261018-4"></script>
+<script>window.FORJA_V="20261018-6";</script>
+<script src="js/config.js?v=20261018-6"></script>
+<script src="js/nube.js?v=20261018-6"></script>
+<script src="js/reglas.js?v=20261018-6"></script>
+<script src="js/conjuros.js?v=20261018-6"></script>
+<script src="js/app.js?v=20261018-6"></script>
 <script>
 // Instalación como app (PWA)
 (()=>{

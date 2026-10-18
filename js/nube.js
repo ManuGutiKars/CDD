@@ -99,6 +99,18 @@ window.Nube = (() => {
     async nuevoCodigo(id) { return err(await sb.rpc('nuevo_codigo', { c: id })); },
     async quitarMiembro(campana, usuario) { err(await sb.from('miembros').delete().eq('campana', campana).eq('usuario', usuario)); },
 
+    // ---- Imágenes de personaje (almacén público "retratos", carpeta por usuario) ----
+    async subirRetrato(blob, chId) {
+      const ext = blob.type === 'image/webp' ? 'webp' : 'jpg';
+      const ruta = `${yo.id}/${String(chId).replace(/[^\w-]/g, '')}-${Date.now()}.${ext}`;
+      err(await sb.storage.from('retratos').upload(ruta, blob, { contentType: blob.type, upsert: true, cacheControl: '31536000' }));
+      return sb.storage.from('retratos').getPublicUrl(ruta).data.publicUrl;
+    },
+    async borrarRetrato(url) {
+      const m = String(url || '').match(/\/retratos\/(.+)$/);
+      if (!m || !m[1].startsWith(yo.id + '/')) return;
+      await sb.storage.from('retratos').remove([decodeURIComponent(m[1])]);
+    },
     // ---- Notas ----
     async guardarNota(n) {
       const fila = { campana: n.campana, titulo: n.titulo, texto: n.texto, visible_para: n.visible_para, actualizado: new Date().toISOString() };

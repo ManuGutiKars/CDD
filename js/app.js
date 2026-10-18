@@ -22,22 +22,37 @@ function blank(){return {v:1,id:uid(),name:'',player:'',align:'Sin definir',lang
   bgMode:'21',p2:'',p1:'',sk:{},ex:{},feats:{},eqCls:'A',eqBg:'A',armor:'auto',shield:true,spells:{picks:[],book:[],disc:[]}}}
 function dado(n){try{const a=new Uint32Array(1);crypto.getRandomValues(a);return 1+a[0]%n}catch(e){return 1+Math.floor(Math.random()*n)}}
 function rollSort(){const r=ch.roll;if(!r||!r.sets.length)return;const idx=r.sets.map((t,i)=>[t[0]+t[1]+t[2],i]).sort((x,y)=>y[0]-x[0]).map(x=>x[1]);r.asg={};D.clases[ch.cls].ord.forEach((ab,i)=>r.asg[ab]=idx[i])}
-let advMode='n',rollLog=[];
+let advMode='n',rollLog=[],animStats=false;
 function tirarD20(label,bon){
-  const a=dado(20),c=dado(20);let u=a,det=String(a);
-  if(advMode==='v'){u=Math.max(a,c);det=`${a} · ${c} con ventaja`}else if(advMode==='d'){u=Math.min(a,c);det=`${a} · ${c} con desventaja`}
-  mostrarTirada({label,total:u+bon,det:`d20 (${det})${bon?' '+R.sg(bon):''}`,crit:u===20?'nat':u===1?'pif':''});
+  const a=dado(20),c=dado(20);let u=a,det=String(a),dice=[{f:20,v:a}];
+  if(advMode==='v'){u=Math.max(a,c);det=`${a} · ${c} con ventaja`;dice=[{f:20,v:a,x:a<c},{f:20,v:c,x:c<=a}]}else if(advMode==='d'){u=Math.min(a,c);det=`${a} · ${c} con desventaja`;dice=[{f:20,v:a,x:a>c},{f:20,v:c,x:c>=a}]}
+  mostrarTirada({label,total:u+bon,det:`d20 (${det})${bon?' '+R.sg(bon):''}`,crit:u===20?'nat':u===1?'pif':'',dice});
 }
 function tirarExpr(label,expr){
   const m=String(expr).replace(/−/g,'-').match(/(\d*)d(\d+)\s*(?:([+-])\s*(\d+))?/);if(!m)return;
   const n=+(m[1]||1),f=+m[2],mod=m[3]?(m[3]==='-'?-1:1)*+m[4]:0,ds=Array.from({length:n},()=>dado(f));
-  mostrarTirada({label,total:ds.reduce((s,x)=>s+x,0)+mod,det:`${n}d${f} (${ds.join(' + ')})${mod?' '+R.sg(mod):''}`,crit:''});
+  mostrarTirada({label,total:ds.reduce((s,x)=>s+x,0)+mod,det:`${n}d${f} (${ds.join(' + ')})${mod?' '+R.sg(mod):''}`,crit:'',dice:ds.map(v=>({f,v}))});
 }
+// ---- Dados animados ----
+const FORMAS={4:'<polygon points="50,6 95,90 5,90"/>',6:'<rect x="9" y="9" width="82" height="82" rx="14"/>',8:'<polygon points="50,3 96,50 50,97 4,50"/><path d="M4 50H96M50 3 28 50 50 97 72 50Z" class="ar"/>',
+  10:'<polygon points="50,3 95,40 50,97 5,40"/><path d="M5 40 50 58 95 40M50 58V97" class="ar"/>',12:'<polygon points="50,4 95,36 78,93 22,93 5,36"/><polygon points="50,24 72,40 64,68 36,68 28,40" class="ar"/>',
+  20:'<polygon points="50,3 93,27 93,73 50,97 7,73 7,27"/><path d="M50 3 29 62H71ZM7 27 29 62 7 73M93 27 71 62 93 73M29 62 50 97 71 62" class="ar"/>'};
+const svgDado=(f,v,x)=>`<span class="dado ${x?'x':''}" data-f="${f}"><svg viewBox="0 0 100 100" aria-hidden="true">${FORMAS[f]||FORMAS[f===100?10:20]}</svg><b>${v}</b></span>`;
+const sinMov=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}};
 function mostrarTirada(t){
-  rollLog.unshift(t);rollLog=rollLog.slice(0,12);pintarLog();
-  let p=$('#dicepop');if(!p){p=document.createElement('div');p.id='dicepop';p.setAttribute('role','status');document.body.appendChild(p)}
-  p.className='show '+t.crit;p.innerHTML=`<span class="dl">${esc(t.label)}</span><span class="dv">${t.total}</span><span class="dd">${esc(t.det)}${t.crit==='nat'?' · ¡20 natural!':t.crit==='pif'?' · 1 natural':''}</span>`;
-  clearTimeout(mostrarTirada.t);mostrarTirada.t=setTimeout(()=>p.classList.remove('show'),3500);
+  rollLog.unshift(t);rollLog=rollLog.slice(0,12);
+  let p=$('#dicepop');if(!p){p=document.createElement('div');p.id='dicepop';p.setAttribute('role','status');p.setAttribute('aria-live','polite');document.body.appendChild(p)}
+  clearTimeout(mostrarTirada.t);clearInterval(mostrarTirada.i);
+  const dice=(t.dice||[]).slice(0,8),mas=(t.dice||[]).length-dice.length;
+  const fin=()=>{clearInterval(mostrarTirada.i);p.className='show '+t.crit;p.querySelectorAll('.dado').forEach((d,i)=>{d.querySelector('b').textContent=dice[i].v;d.classList.add('ok')});
+    p.querySelector('.dv').textContent=t.total;p.querySelector('.dd').textContent=t.det+(t.crit==='nat'?' · ¡20 natural!':t.crit==='pif'?' · 1 natural':'');pintarLog();
+    mostrarTirada.t=setTimeout(()=>p.classList.remove('show'),3800)};
+  p.innerHTML=`<span class="dl">${esc(t.label)}</span><div class="dados">${dice.map(d=>svgDado(d.f,'?',d.x)).join('')}${mas>0?`<span class="mas">+${mas}</span>`:''}</div><span class="dv">…</span><span class="dd">&nbsp;</span>`;
+  p.className='show rolling';
+  if(sinMov()||!dice.length){fin();return}
+  const caras=p.querySelectorAll('.dado b');
+  mostrarTirada.i=setInterval(()=>caras.forEach((b,i)=>b.textContent=1+Math.floor(Math.random()*dice[i].f)),55);
+  mostrarTirada.t=setTimeout(fin,700);
 }
 function pintarLog(){const l=$('#dlog');if(l)l.innerHTML=rollLog.length?rollLog.map(t=>`<li class="${t.crit}"><b>${t.total}</b><span>${esc(t.label)}</span><span class="muted small">${esc(t.det)}</span></li>`).join(''):'<li class="muted">Pulsa cualquier característica, salvación, habilidad, ataque o dado.</li>'}
 function diceTray(){return `<div class="sec dtray"><h3>Tiradas</h3>
@@ -137,6 +152,28 @@ function cuentaHome(){
    ${solo.length?`<p class="muted small">Hay ${solo.length} personaje(s) creados en este navegador sin cuenta. <button class="lnk" data-act="subir" id="b-subir">Pasarlos a mi cuenta</button></p>`:''}</div>`;
   return h;
 }
+const thumb=r=>r&&r.retrato?`<img class="thumb" src="${esc(r.retrato)}" alt="" loading="lazy">`:`<span class="thumb vacio">${esc(((r&&r.name)||'?').slice(0,1).toUpperCase())}</span>`;
+function retratoBox(){
+  return `<div class="retrato-box"><label class="retrato" for="f-retrato" title="${ch.retrato?'Cambiar la imagen':'Añadir una imagen'}">${ch.retrato?`<img src="${esc(ch.retrato)}" alt="Imagen de ${esc(ch.name||'tu personaje')}">`:'<span>+ Imagen</span>'}</label>
+  <input type="file" id="f-retrato" accept="image/*" class="vh" aria-label="Elegir imagen del personaje">${ch.retrato?'<button class="lnk small" data-act="retrato-quitar">Quitar</button>':''}</div>`;
+}
+async function reducir(file,max){
+  let src=null;try{src=await createImageBitmap(file,{imageOrientation:'from-image'})}catch(e){src=await new Promise(ok=>{const i=new Image();i.onload=()=>ok(i);i.onerror=()=>ok(null);i.src=URL.createObjectURL(file)})}
+  if(!src)return null;
+  const w=src.width,h=src.height,l=Math.min(w,h),sx=(w-l)/2,sy=(h-l)*0.3,t=Math.min(max,l);
+  const c=document.createElement('canvas');c.width=c.height=t;const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(src,sx,sy,l,l,0,0,t,t);
+  let b=await new Promise(r=>c.toBlob(r,'image/webp',0.82));if(!b||b.type!=='image/webp')b=await new Promise(r=>c.toBlob(r,'image/jpeg',0.85));
+  return b;
+}
+async function procesarRetrato(file){
+  if(!file||!/^image\//.test(file.type)){toast('Elige un archivo de imagen');return}
+  toast('Preparando la imagen…');
+  const tgt=ch,viejo=tgt.retrato,blob=await reducir(file,yo?400:256);
+  if(!blob){toast('No se pudo leer esa imagen');return}
+  if(yo){const url=await nt(()=>Nube.subirRetrato(blob,tgt.id));if(!url)return;tgt.retrato=url;if(viejo&&!viejo.startsWith('data:'))Nube.borrarRetrato(viejo).catch(()=>{})}
+  else tgt.retrato=await new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result);r.readAsDataURL(blob)});
+  if(ch===tgt){render();toast('Imagen guardada ('+Math.max(1,Math.round(blob.size/1024))+' KB)')}else{saveCurrent()}
+}
 function stCampana(el){
   if(!camp||camp.id!==campId){el.innerHTML='<div class="panel"><p class="muted">Cargando campaña…</p></div>';if(!stCampana.busy){stCampana.busy=1;cargarCamp(campId).finally(()=>stCampana.busy=0)}return}
   const c=camp,soyM=c.master===yo.id,rg=c.reglas||{};
@@ -146,11 +183,11 @@ function stCampana(el){
   <div class="seg" role="tablist">${tabs.map(([k,l])=>`<button data-act="ctab" data-k="${k}" aria-pressed="${ctab===k}">${l}</button>`).join('')}</div>`;
   if(ctab==='personajes'){
     if(soyM){
-      h+=c.miembros.length?c.miembros.map(m=>{const pjs=c.personajes.filter(p=>p.dueno===m.usuario);return `<div class="jug"><div class="jh">${avatar(m.perfil)}<b>${esc(m.perfil.nombre)}</b></div>${pjs.length?pjs.map(p=>`<div class="it"><div class="nm2"><b>${esc(p.datos.name||'Sin nombre')}</b><span>${resumen(p.datos)}</span></div><button class="btn small primary" data-act="cver" data-k="${esc(p.id)}">Ver y editar ficha</button></div>`).join(''):'<p class="muted small">Aún no ha añadido ningún personaje.</p>'}</div>`}).join(''):'<p class="muted">Todavía no se ha unido nadie. Comparte el enlace de invitación con tus jugadores.</p>';
+      h+=c.miembros.length?c.miembros.map(m=>{const pjs=c.personajes.filter(p=>p.dueno===m.usuario);return `<div class="jug"><div class="jh">${avatar(m.perfil)}<b>${esc(m.perfil.nombre)}</b></div>${pjs.length?pjs.map(p=>`<div class="it">${thumb(p.datos)}<div class="nm2"><b>${esc(p.datos.name||'Sin nombre')}</b><span>${resumen(p.datos)}</span></div><button class="btn small primary" data-act="cver" data-k="${esc(p.id)}">Ver y editar ficha</button></div>`).join(''):'<p class="muted small">Aún no ha añadido ningún personaje.</p>'}</div>`}).join(''):'<p class="muted">Todavía no se ha unido nadie. Comparte el enlace de invitación con tus jugadores.</p>';
       const mios=c.personajes.filter(p=>p.dueno===yo.id);if(mios.length)h+=`<div class="jug"><div class="jh"><b>Tus PNJ o personajes</b></div>${mios.map(p=>`<div class="it"><div class="nm2"><b>${esc(p.datos.name||'Sin nombre')}</b><span>${resumen(p.datos)}</span></div><button class="btn small" data-act="load" data-k="${esc(p.id)}">Abrir</button></div>`).join('')}</div>`;
     }else{
       const mios=roster.filter(r=>r.campana===c.id);
-      h+=mios.length?`<div class="roster">${mios.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="cquitar" data-k="${r.id}">Sacar de la campaña</button></div>`).join('')}</div>`:'<p class="muted">Aún no tienes personaje en esta campaña.</p>';
+      h+=mios.length?`<div class="roster">${mios.map(r=>`<div class="it">${thumb(r)}<div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="cquitar" data-k="${r.id}">Sacar de la campaña</button></div>`).join('')}</div>`:'<p class="muted">Aún no tienes personaje en esta campaña.</p>';
     }
     const libres=roster.filter(r=>r.campana!==c.id&&!ajeno(r));
     h+=`<div class="row-c"><button class="btn primary" data-act="cnew" id="b-cnew">+ Crear personaje para esta campaña</button>${libres.length?`<select id="c-add" aria-label="Añadir un personaje existente">${libres.map(r=>`<option value="${r.id}">${esc(r.name||'Sin nombre')} (${esc(D.clases[r.cls]?.n||'')} ${r.lvl})</option>`).join('')}</select><button class="btn" data-act="cadd">Añadir a la campaña</button>`:''}</div>`;
@@ -195,7 +232,7 @@ function stInicio(el){
   const list=[...roster].sort((a,b)=>(b.upd||0)-(a.upd||0));
   el.innerHTML=cuentaHome()+`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">${yo?'Se guardan en tu cuenta <span id="nubeest" class="nubeest"></span>':yoOff?'Copia en este dispositivo':'Se guardan solos en este navegador'}</span></div>
   <button class="btn primary big" data-act="new" id="b-new-home">+ Crear personaje nuevo</button>
-  ${list.length?`<div class="roster">${list.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}${r.campana&&camps.find(c=>c.id===r.campana)?' · <span class="tg c">'+esc(camps.find(c=>c.id===r.campana).nombre)+'</span>':''}${yo&&!cloud[r.id]?' · <span class="muted">pendiente de subir</span>':''}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
+  ${list.length?`<div class="roster">${list.map(r=>`<div class="it">${thumb(r)}<div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}${r.campana&&camps.find(c=>c.id===r.campana)?' · <span class="tg c">'+esc(camps.find(c=>c.id===r.campana).nombre)+'</span>':''}${yo&&!cloud[r.id]?' · <span class="muted">pendiente de subir</span>':''}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
   :`<p class="muted">Aún no tienes personajes. Pulsa “Crear personaje nuevo” para empezar, o importa uno desde Exportar.</p>`}</div>`;
 }
 function render(){
@@ -278,7 +315,7 @@ function stCaract(el,S){
   ${ch.method==='pb'?`<span class="muted">Puntos gastados <b class="ink">${spent} / 27</b></span>`:''}</div>`;
   if(ch.method==='roll'){
     if(!r.sets.length)h+=`<div class="rollbox empty"><p>Se tiran <b>4d6</b> seis veces y en cada tirada se descarta el dado más bajo. Luego asignas cada resultado a una característica.</p><button class="btn pri" id="b-roll" data-act="roll">🎲 Tirar las características</button></div>`;
-    else h+=`<div class="rollbox"><div class="rsets">${r.sets.map((t,i)=>`<div class="rset"><span class="rn">Tirada ${i+1}</span><span class="dice">${t.map((v,j)=>`<span class="die ${j===3?'drop':''}">${v}</span>`).join('')}</span><span class="rt">${tot3(t)}</span><span class="ra">${esc(R.ABS.filter(([a])=>+r.asg[a]===i).map(([,ab])=>ab).join('')||'—')}</span></div>`).join('')}</div>
+    else h+=`<div class="rollbox"><div class="rsets">${r.sets.map((t,i)=>`<div class="rset"><span class="rn">Tirada ${i+1}</span><span class="dice">${t.map((v,j)=>`<span class="die ${j===3?'drop':''} ${animStats?'tumb':''}" style="--d:${i*90+j*40}ms">${v}</span>`).join('')}</span><span class="rt">${tot3(t)}</span><span class="ra">${esc(R.ABS.filter(([a])=>+r.asg[a]===i).map(([,ab])=>ab).join('')||'—')}</span></div>`).join('')}</div>
     <div class="row-c"><span class="muted">Suma <b class="ink">${r.sets.reduce((s,t)=>s+tot3(t),0)}</b></span><button class="btn small" data-act="roll">Volver a tirar</button><button class="btn small" data-act="rsort">Ordenar para ${c.n.toLowerCase()}</button><button class="btn small" data-act="r2man">Editar a mano</button></div></div>`;
   }
   if(ch.method==='man')h+=`<p class="muted">Escribe las puntuaciones que hayas sacado con tus propios dados o las que te indique tu DM (de 3 a 20).</p>`;
@@ -293,7 +330,7 @@ function stCaract(el,S){
     h+=`<tr class="${c.pri.includes(k)?'pri':''}"><td class="ab">${ab}<small>${full}</small></td><td>${ctl}</td><td class="bon">${S.bon[k]?'+'+S.bon[k]:''}</td><td class="bon">${other>0?'+'+other:''}</td><td class="tot">${S.sc[k]}</td><td class="mod">${R.sg(S.mo[k])}</td></tr>`;
   });
   h+=`</tbody></table></div><p class="muted">“Otros” incluye mejoras de característica, dotes y rasgos de nivel 20. Máximo 20 salvo rasgos que digan lo contrario.</p></div>`;
-  el.innerHTML=h;
+  el.innerHTML=h;animStats=false;
 }
 function stHabil(el,S){
   const fixed=R.fixedSkills(ch),pools=R.skillPools(ch),eps=R.expertisePools(ch);
@@ -359,13 +396,13 @@ function statRow(S){return `<div class="stats">
   <div class="stat"><span class="k">Percepción pasiva</span><span class="v">${S.pp}</span><span class="x">Tamaño ${esc(S.size)}</span></div></div>`}
 function subtitle(S){return `Nivel ${S.L} · <b>${S.c.n}</b>${S.sub?' ('+esc(S.sub.n)+')':''} · <b>${esc(S.sp.n)}${S.spSub&&ch.species!=='draconido'&&ch.species!=='goliat'?' ('+esc(S.spSub.n)+')':''}</b> · <b>${esc(S.bg.n)}</b>${ch.align!=='Sin definir'?' · '+esc(ch.align):''}`}
 function renderMini(S){
-  $('#mini').innerHTML=`<div class="mini-h"><h2>${esc(ch.name||'Sin nombre')}</h2><div class="sub">${subtitle(S)}</div></div>${abCards(S)}${statRow(S)}
+  $('#mini').innerHTML=`<div class="mini-h">${ch.retrato?`<img class="thumb grande" src="${esc(ch.retrato)}" alt="">`:''}<div><h2>${esc(ch.name||'Sin nombre')}</h2><div class="sub">${subtitle(S)}</div></div></div>${abCards(S)}${statRow(S)}
   ${S.spell?`<div class="spell"><div><span class="k">CD de conjuros</span><span class="v">${S.spell.dc}</span></div><div><span class="k">Ataque de conjuro</span><span class="v">${R.sg(S.spell.atk)}</span></div></div>`:''}
   <button class="btn" data-act="step" data-k="ficha">Ver ficha completa</button>`;
 }
 function stFicha(el,S){
   const sm=Conjuros.summary(ch);
-  el.innerHTML=`<article class="sheet"><header class="sh-head"><h2>${esc(ch.name||'Sin nombre')}</h2><div class="sub">${subtitle(S)}${ch.player?' · Jugador: '+esc(ch.player):''}</div></header><div class="sh-body">
+  el.innerHTML=`<article class="sheet"><header class="sh-head">${retratoBox()}<div class="sh-t"><h2>${esc(ch.name||'Sin nombre')}</h2><div class="sub">${subtitle(S)}${ch.player?' · Jugador: '+esc(ch.player):''}</div></div></header><div class="sh-body">
   ${abCards(S)}${statRow(S)}
   ${diceTray()}
   ${S.spell?`<div class="spell"><div><span class="k">Lanzamiento</span><span class="v">${R.ABF[S.spell.ab]}</span></div><div><span class="k">CD de salvación</span><span class="v">${S.spell.dc}</span></div><div class="roll" role="button" tabindex="0" data-act="r20" data-k="Ataque de conjuro" data-b="${S.spell.atk}"><span class="k">Ataque de conjuro 🎲</span><span class="v">${R.sg(S.spell.atk)}</span></div>${sm?`<div><span class="k">Espacios</span><span class="v sm">${esc(sm.slots)}</span></div>`:''}</div>`:''}
@@ -463,7 +500,7 @@ document.addEventListener('click',e=>{
     case 'method':ch.method=k;break;
     case 'suggest':suggestArr(ch);break;
     case 'pb':ch.pb[k]=Math.max(8,Math.min(15,ch.pb[k]+ +b.dataset.d));break;
-    case 'roll':{const sets=[];for(let i=0;i<6;i++)sets.push([1,2,3,4].map(()=>dado(6)).sort((x,y)=>y-x));ch.roll={sets,asg:{}};rollSort();toast('¡Dados tirados!');break}
+    case 'roll':{const sets=[];for(let i=0;i<6;i++)sets.push([1,2,3,4].map(()=>dado(6)).sort((x,y)=>y-x));ch.roll={sets,asg:{}};rollSort();animStats=true;toast('¡Dados tirados!');break}
     case 'rsort':rollSort();break;
     case 'r2man':{const bb=R.base(ch);ch.man={...bb};ch.method='man';toast('Copiado a Manual');break}
     case 'r20':tirarD20(k,+b.dataset.b||0);return;
@@ -480,6 +517,7 @@ document.addEventListener('click',e=>{
     case 'home':step='inicio';panel=null;window.scrollTo({top:0});break;
     case 'panel':panel=k||null;break;
     case 'login':nt(()=>Nube.entrar());return;
+    case 'retrato-quitar':{const v=ch.retrato;ch.retrato='';if(yo&&v&&!v.startsWith('data:'))Nube.borrarRetrato(v).catch(()=>{});toast('Imagen quitada');break}
     case 'logout':nt(()=>Nube.salir(),'Sesión cerrada');return;
     case 'subir':(async()=>{const solo=anonimos();let n=0;const hechos=new Set();for(const r0 of solo){const r=Object.assign(blank(),r0,{campana:null});if(await nt(()=>Nube.guardar(r,false))){cloud[r.id]={dueno:yo.id,campana:null};roster.push(r);hechos.add(r.id);n++}}lsSet(RK(),roster);lsSet('forja-personajes',(lsGet('forja-personajes')||[]).filter(r=>!hechos.has(r.id)));toast(n+' personaje(s) pasados a tu cuenta');render()})();return;
     case 'cjoin':(async()=>{const cod=lsGet('forja-unirse');const id=await nt(()=>Nube.unirse(cod));try{localStorage.removeItem('forja-unirse')}catch(e){}invit=null;if(id){camps=(await nt(()=>Nube.campanas()))||camps;campId=id;camp=null;ctab='personajes';step='campana';toast('¡Te has unido a la campaña!')}render()})();return;
@@ -518,6 +556,7 @@ document.addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role="button"][data-act]')){e.preventDefault();e.target.click()}});
 document.addEventListener('change',e=>{
   const el=e.target;
+  if(el.id==='f-retrato'&&el.files&&el.files[0]){procesarRetrato(el.files[0]);el.value='';return}
   if(el.id==='impfile'&&el.files&&el.files[0]){const fr=new FileReader();fr.onload=()=>importJSON(String(fr.result));fr.readAsText(el.files[0]);return}
   const cf=el.dataset.cf;
   if(cf&&camp){const rg=Object.assign({},camp.reglas||{});let cambios;

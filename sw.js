@@ -1,6 +1,6 @@
 // Forja de Héroes · service worker: permite instalar la app y usarla sin conexión.
 // Cambia VERSION en cada actualización para que los móviles descarguen la nueva.
-const VERSION = 'forja-20261018-4';
+const VERSION = 'forja-20261018-6';
 const BASE = ['./', 'index.html', 'privacidad.html', 'manifest.webmanifest',
   'icons/icono-192.png', 'icons/icono-512.png', 'icons/icono-maskable-512.png', 'icons/apple-touch-icon.png', 'icons/favicon-64.png'];
 
