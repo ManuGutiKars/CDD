@@ -57,6 +57,9 @@ function sample(){
 }
 
 let ch,roster,step,panel=null,toastT,delArm=null,DL=null;
+// ---- Nube y campañas ----
+const NUBE=!!(window.Nube&&window.Nube.activo);
+let yo=null,camps=[],campId=null,camp=null,ctab='personajes',cloud={},nubeErr='',invit=null,notaEd=null,armC=null,nubeT=null,nubeEstado='';
 try{window.claude&&window.claude.use&&window.claude.use('downloads').then(d=>{DL=d;if(panel)renderPanel()},()=>{})}catch(e){}
 const fname=s=>(String(s||'personaje').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w -]+/g,'').trim().replace(/\s+/g,'-')||'personaje');
 async function descargar(filename,data){
@@ -75,8 +78,10 @@ const BOOKS=[[PHB,'Manual del Jugador'],['Eberron: Forge of the Artificer','Eber
 const bookKey=src=>!src?PHB:String(src).startsWith('D&D Beyond')?'D&D Beyond Drops':src;
 const bookShort=src=>(BOOKS.find(b=>b[0]===bookKey(src))||[0,src])[1];
 let books=new Set((()=>{const v=lsGet('forja-libros');return Array.isArray(v)?v:BOOKS.map(b=>b[0])})());
-const okB=(x,cur)=>cur||books.has(bookKey(x.src));
-window.ForjaLibros={ok:src=>books.has(bookKey(src)),short:bookShort};
+const reglasAct=()=>{if(!ch||!ch.campana)return null;const c=camps.find(x=>x.id===ch.campana)||(camp&&camp.id===ch.campana?camp:null);return c?c.reglas||{}:null};
+const librosAct=()=>{const r=reglasAct();return r&&Array.isArray(r.libros)&&r.libros.length?new Set(r.libros):books};
+const okB=(x,cur)=>cur||librosAct().has(bookKey(x.src));
+window.ForjaLibros={ok:src=>librosAct().has(bookKey(src)),short:bookShort};
 const tagB=x=>bookKey(x.src)===PHB?'':' · '+bookShort(x.src);
 function grouped(entries,cur){
   const g={};entries.filter(([k,v])=>okB(v,k===cur)).forEach(([k,v])=>{const b=bookShort(v.src);(g[b]=g[b]||[]).push([k,v])});
@@ -85,27 +90,120 @@ function grouped(entries,cur){
 const srcLine=x=>`<span>Libro <b>${esc(bookShort(x.src))}</b></span>`;
 
 /* ---------- Render principal ---------- */
+const RK=()=>yo?'forja-personajes:'+yo.id:'forja-personajes';
+const anonimos=()=>yo?(lsGet('forja-personajes')||[]).filter(r=>!cloud[r.id]&&!roster.some(x=>x.id===r.id)):[];
+const ajeno=c=>!!(c&&cloud[c.id]&&yo&&cloud[c.id].dueno!==yo.id);
 function saveCurrent(){
   if(!ch)return;ch.upd=Date.now();const c=JSON.parse(JSON.stringify(ch));
-  const i=roster.findIndex(r=>r.id===ch.id);if(i>=0)roster[i]=c;else roster.unshift(c);
-  lsSet('forja-personajes',roster);
+  if(!ajeno(ch)){const i=roster.findIndex(r=>r.id===ch.id);if(i>=0)roster[i]=c;else roster.unshift(c);lsSet(RK(),roster)}
+  if(yo)programarNube(c);
+}
+function programarNube(c){
+  clearTimeout(nubeT);nubeEstado='pend';pintarEstado();
+  nubeT=setTimeout(async()=>{try{await Nube.guardar(c,!!cloud[c.id]);cloud[c.id]=Object.assign(cloud[c.id]||{dueno:yo.id},{campana:c.campana||null});nubeEstado='ok'}catch(e){nubeEstado='err';toast('No se pudo guardar en la nube: '+e.message)}pintarEstado()},800);
+}
+function pintarEstado(){const e=$('#nubeest');if(!e)return;e.textContent=nubeEstado==='pend'?'Guardando…':nubeEstado==='ok'?'Guardado en la nube ✓':nubeEstado==='err'?'Error al guardar':'';e.className='nubeest '+nubeEstado}
+async function nt(fn,ok){try{const r=await fn();if(ok)toast(ok);return r}catch(e){toast(e.message||'Error de conexión');return undefined}}
+async function sincronizar(){
+  if(!yo)return;
+  const rows=await nt(()=>Nube.misPersonajes());if(rows){cloud={};rows.forEach(r=>{cloud[r.id]={dueno:r.dueno,campana:r.campana};const d=Object.assign(blank(),r.datos,{campana:r.campana||null});const i=roster.findIndex(x=>x.id===r.id);if(i<0)roster.push(d);else if((d.upd||0)>=(roster[i].upd||0))roster[i]=d;else roster[i].campana=r.campana||null});lsSet(RK(),roster)}
+  camps=(await nt(()=>Nube.campanas()))||camps;
+  const pc=lsGet('forja-unirse');if(pc&&!invit){invit=await nt(()=>Nube.verInvitacion(pc));if(!invit){toast('El enlace de invitación no es válido');try{localStorage.removeItem('forja-unirse')}catch(e){}}}
+}
+async function cargarCamp(id){const d=await nt(()=>Nube.detalle(id));if(d){camp=d;const i=camps.findIndex(c=>c.id===d.id);if(i>=0)camps[i]=Object.assign(camps[i],{nombre:d.nombre,reglas:d.reglas,codigo:d.codigo});d.personajes.forEach(r=>cloud[r.id]={dueno:r.dueno,campana:r.campana})}else{camp=null;campId=null;step='inicio'}render()}
+const nomJ=(id)=>camp&&camp.perfiles&&camp.perfiles[id]?camp.perfiles[id].nombre:'Jugador';
+const resumen=r=>`${esc(D.clases[r.cls]?.n||'')} ${r.lvl}${r.sub&&r.lvl>=3?' · '+esc(((D.subclases.subclases[r.cls]||[]).find(s=>s.id===r.sub)||{}).n||''):''} · ${esc(D.origen.especies[r.species]?.n||'')} · ${esc(D.origen.trasfondos[r.bg]?.n||'')}`;
+const avatar=p=>p&&p.avatar?`<img class="av" src="${esc(p.avatar)}" alt="" referrerpolicy="no-referrer">`:`<span class="av">${esc(((p&&p.nombre)||'?').slice(0,1).toUpperCase())}</span>`;
+const invUrl=c=>location.origin+location.pathname+'?unirse='+encodeURIComponent(c.codigo);
+const METODOS=[['array','Conjunto estándar'],['pb','Compra de puntos'],['roll','Tirar dados'],['man','Manual']];
+function cuentaHome(){
+  if(!NUBE)return '';
+  if(nubeErr)return `<div class="panel"><p class="bad">No se pudo conectar con la nube: ${esc(nubeErr)}</p></div>`;
+  const pc=lsGet('forja-unirse');
+  if(!yo)return `<div class="panel cuenta">${pc?'<p><b>Te han invitado a una campaña.</b> Entra con tu cuenta de Google para unirte.</p>':''}
+    <div class="row-c"><button class="btn primary" data-act="login" id="b-login">Entrar con Google</button><span class="muted small">Guarda tus personajes en la nube, úsalos en cualquier dispositivo y únete a campañas.</span></div></div>`;
+  const solo=anonimos();
+  let h='';
+  if(invit)h+=`<div class="panel inv"><p>Te han invitado a <b>${esc(invit.nombre)}</b> (máster: ${esc(invit.master)}).</p><div class="row-c"><button class="btn primary" data-act="cjoin" id="b-cjoin">Unirme a la campaña</button><button class="btn" data-act="cnojoin">Ahora no</button></div></div>`;
+  h+=`<div class="panel"><div class="st-h"><h2>Mis campañas</h2><span class="hint">${avatar(yo)} ${esc(yo.nombre)} · <button class="lnk" data-act="logout">Cerrar sesión</button></span></div>
+   ${camps.length?`<div class="roster">${camps.map(c=>`<div class="it"><div class="nm2"><b>${esc(c.nombre)}</b><span>${c.master===yo.id?'Eres el máster':'Jugador'} · ${roster.filter(r=>r.campana===c.id).length} personaje(s) tuyos</span></div><button class="btn small primary" data-act="copen-c" data-k="${c.id}">Abrir</button></div>`).join('')}</div>`:'<p class="muted">Aún no estás en ninguna campaña.</p>'}
+   <div class="row-c"><input type="text" id="c-nueva" maxlength="80" placeholder="Nombre de la campaña" aria-label="Nombre de la nueva campaña"><button class="btn" data-act="ccrear" id="b-ccrear">Crear campaña (serás el máster)</button></div>
+   <div class="row-c"><input type="text" id="c-codigo" maxlength="200" placeholder="Código o enlace de invitación" aria-label="Código de invitación"><button class="btn" data-act="cunir" id="b-cunir">Unirse</button></div>
+   ${solo.length?`<p class="muted small">Hay ${solo.length} personaje(s) creados en este navegador sin cuenta. <button class="lnk" data-act="subir" id="b-subir">Pasarlos a mi cuenta</button></p>`:''}</div>`;
+  return h;
+}
+function stCampana(el){
+  if(!camp||camp.id!==campId){el.innerHTML='<div class="panel"><p class="muted">Cargando campaña…</p></div>';if(!stCampana.busy){stCampana.busy=1;cargarCamp(campId).finally(()=>stCampana.busy=0)}return}
+  const c=camp,soyM=c.master===yo.id,rg=c.reglas||{};
+  const tabs=[['personajes','Personajes'],['notas','Notas'],['reglas','Reglas'],['miembros',soyM?'Jugadores':'Grupo']];
+  let h=`<div class="panel camp"><div class="st-h"><h2>${esc(c.nombre)}</h2><span class="hint">${soyM?'Eres el máster':'Máster: '+esc(nomJ(c.master))} · <button class="lnk" data-act="crefresh">Actualizar</button></span></div>
+  <div class="row-c invite"><label class="sub-label" for="c-link">Enlace de invitación</label><input type="text" id="c-link" readonly value="${esc(invUrl(c))}"><button class="btn small" data-act="ccopy">Copiar</button>${soyM?'<button class="btn small" data-act="ccodigo" title="El enlace anterior dejará de funcionar">Nuevo enlace</button>':''}</div>
+  <div class="seg" role="tablist">${tabs.map(([k,l])=>`<button data-act="ctab" data-k="${k}" aria-pressed="${ctab===k}">${l}</button>`).join('')}</div>`;
+  if(ctab==='personajes'){
+    if(soyM){
+      h+=c.miembros.length?c.miembros.map(m=>{const pjs=c.personajes.filter(p=>p.dueno===m.usuario);return `<div class="jug"><div class="jh">${avatar(m.perfil)}<b>${esc(m.perfil.nombre)}</b></div>${pjs.length?pjs.map(p=>`<div class="it"><div class="nm2"><b>${esc(p.datos.name||'Sin nombre')}</b><span>${resumen(p.datos)}</span></div><button class="btn small primary" data-act="cver" data-k="${esc(p.id)}">Ver y editar ficha</button></div>`).join(''):'<p class="muted small">Aún no ha añadido ningún personaje.</p>'}</div>`}).join(''):'<p class="muted">Todavía no se ha unido nadie. Comparte el enlace de invitación con tus jugadores.</p>';
+      const mios=c.personajes.filter(p=>p.dueno===yo.id);if(mios.length)h+=`<div class="jug"><div class="jh"><b>Tus PNJ o personajes</b></div>${mios.map(p=>`<div class="it"><div class="nm2"><b>${esc(p.datos.name||'Sin nombre')}</b><span>${resumen(p.datos)}</span></div><button class="btn small" data-act="load" data-k="${esc(p.id)}">Abrir</button></div>`).join('')}</div>`;
+    }else{
+      const mios=roster.filter(r=>r.campana===c.id);
+      h+=mios.length?`<div class="roster">${mios.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="cquitar" data-k="${r.id}">Sacar de la campaña</button></div>`).join('')}</div>`:'<p class="muted">Aún no tienes personaje en esta campaña.</p>';
+    }
+    const libres=roster.filter(r=>r.campana!==c.id&&!ajeno(r));
+    h+=`<div class="row-c"><button class="btn primary" data-act="cnew" id="b-cnew">+ Crear personaje para esta campaña</button>${libres.length?`<select id="c-add" aria-label="Añadir un personaje existente">${libres.map(r=>`<option value="${r.id}">${esc(r.name||'Sin nombre')} (${esc(D.clases[r.cls]?.n||'')} ${r.lvl})</option>`).join('')}</select><button class="btn" data-act="cadd">Añadir a la campaña</button>`:''}</div>`;
+  }
+  if(ctab==='reglas'){
+    const lib=Array.isArray(rg.libros)&&rg.libros.length?rg.libros:BOOKS.map(b=>b[0]),met=Array.isArray(rg.metodos)&&rg.metodos.length?rg.metodos:METODOS.map(m=>m[0]);
+    if(soyM)h+=`<p class="muted small">Se aplican a los personajes de esta campaña: solo podrán elegir contenido de estos libros y estos métodos de características.</p>
+      <div class="row"><div class="fld"><label for="c-nombre">Nombre de la campaña</label><input type="text" id="c-nombre" data-cf="nombre" maxlength="80" value="${esc(c.nombre)}"></div>
+      <div class="fld"><label for="c-nivel">Nivel inicial</label>${sel('c-nivel',Array.from({length:20},(_,i)=>[i+1,i+1]),rg.nivelInicial||1,'data-cf="nivelInicial"')}</div></div>
+      <div class="sub-label">Libros permitidos</div><div class="books">${BOOKS.map(([k,n])=>`<label class="check"><input type="checkbox" data-cf="libro" value="${esc(k)}" ${lib.includes(k)?'checked':''}> ${esc(n)}</label>`).join('')}</div>
+      <div class="sub-label">Métodos de características</div><div class="books">${METODOS.map(([k,n])=>`<label class="check"><input type="checkbox" data-cf="metodo" value="${k}" ${met.includes(k)?'checked':''}> ${n}</label>`).join('')}</div>
+      <div class="row-c"><button class="btn small bad-b" data-act="cborrar" id="b-cborrar">${armC==='borrar'?'¿Seguro? Pulsa otra vez para borrar la campaña':'Borrar campaña'}</button></div>`;
+    else h+=`<div class="kv"><span>Nivel inicial <b>${rg.nivelInicial||1}</b></span><span>Libros <b>${esc(lib.map(bookShort).join(', '))}</b></span><span>Características <b>${esc(met.map(k=>METODOS.find(m=>m[0]===k)[1]).join(', '))}</b></span></div>`;
+  }
+  if(ctab==='notas'){
+    if(soyM)h+=`<div class="row-c"><button class="btn primary" data-act="cnota" id="b-cnota">+ Nueva nota</button><span class="muted small">Cada nota es privada hasta que marques qué jugadores pueden verla.</span></div>`;
+    const notas=c.notas;
+    if(soyM&&notaEd&&!notaEd.id)h+=notaForm(notaEd,c);
+    h+=notas.length?notas.map(n=>soyM&&notaEd&&notaEd.id===n.id?notaForm(notaEd,c):`<div class="nota"><div class="nh"><b>${esc(n.titulo||'Sin título')}</b>${soyM?`<span class="muted small">${n.visible_para.length?'Visible para: '+esc(n.visible_para.map(nomJ).join(', ')):'Solo tú'}</span><button class="btn small" data-act="cnotaed" data-k="${n.id}">Editar</button>`:''}</div><div class="nt">${esc(n.texto).replace(/\n/g,'<br>')}</div></div>`).join(''):(notaEd?'':`<p class="muted">${soyM?'Aún no hay notas.':'El máster no ha compartido notas contigo todavía.'}</p>`);
+  }
+  if(ctab==='miembros'){
+    h+=`<div class="roster"><div class="it"><div class="nm2">${avatar(c.perfiles[c.master])}<b>${esc(nomJ(c.master))}</b><span>Máster</span></div></div>${c.miembros.map(m=>`<div class="it"><div class="nm2">${avatar(m.perfil)}<b>${esc(m.perfil.nombre)}</b><span>Jugador · ${c.personajes.filter(p=>p.dueno===m.usuario).length||(m.usuario===yo.id?roster.filter(r=>r.campana===c.id).length:0)} personaje(s)</span></div>${soyM?`<button class="btn small" data-act="cexpulsar" data-k="${m.usuario}">${armC===m.usuario?'¿Expulsar?':'Expulsar'}</button>`:''}</div>`).join('')}</div>`;
+    if(!soyM)h+=`<div class="row-c"><button class="btn small" data-act="csalir" id="b-csalir">${armC==='salir'?'¿Seguro? Pulsa otra vez':'Salir de la campaña'}</button></div>`;
+  }
+  el.innerHTML=h+'</div>';
+}
+function notaForm(n,c){
+  return `<div class="nota edit"><input type="text" id="n-tit" maxlength="120" placeholder="Título" value="${esc(n.titulo)}" aria-label="Título de la nota">
+  <textarea id="n-txt" rows="6" placeholder="Texto de la nota" aria-label="Texto de la nota">${esc(n.texto)}</textarea>
+  <div class="sub-label">¿Quién puede verla además de ti?</div>
+  <div class="books">${c.miembros.length?c.miembros.map(m=>`<label class="check"><input type="checkbox" class="n-vis" value="${m.usuario}" ${n.visible_para.includes(m.usuario)?'checked':''}> ${esc(m.perfil.nombre)}</label>`).join(''):'<span class="muted small">Aún no hay jugadores.</span>'}</div>
+  <div class="row-c"><button class="btn primary" data-act="cnotasave" id="b-nsave">Guardar nota</button><button class="btn" data-act="cnotacancel">Cancelar</button>${n.id?`<button class="btn small" data-act="cnotadel">${armC==='nota'?'¿Borrar?':'Borrar'}</button>`:''}</div></div>`;
+}
+function campBar(){
+  if(!ch)return '';
+  const c=ch.campana&&(camps.find(x=>x.id===ch.campana));
+  const aj=ajeno(ch);
+  if(!c&&!aj)return '';
+  return `<div class="cbar">${aj?`Editando el personaje de <b>${esc(nomJ(cloud[ch.id].dueno))}</b> como máster · `:''}${c?`Campaña <b>${esc(c.nombre)}</b>${c.reglas&&c.reglas.libros&&c.reglas.libros.length?' · solo los libros permitidos':''} · <button class="lnk" data-act="copen-c" data-k="${c.id}">Volver a la campaña</button>`:''}</div>`;
 }
 function stInicio(el){
   const list=[...roster].sort((a,b)=>(b.upd||0)-(a.upd||0));
-  el.innerHTML=`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">Se guardan solos en este navegador</span></div>
+  el.innerHTML=cuentaHome()+`<div class="panel home"><div class="st-h"><h2>Mis personajes</h2><span class="hint">${yo?'Se guardan en tu cuenta <span id="nubeest" class="nubeest"></span>':'Se guardan solos en este navegador'}</span></div>
   <button class="btn primary big" data-act="new" id="b-new-home">+ Crear personaje nuevo</button>
-  ${list.length?`<div class="roster">${list.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${esc(D.clases[r.cls]?.n||'')} ${r.lvl}${r.sub&&r.lvl>=3?' · '+esc(((D.subclases.subclases[r.cls]||[]).find(s=>s.id===r.sub)||{}).n||''):''} · ${esc(D.origen.especies[r.species]?.n||'')} · ${esc(D.origen.trasfondos[r.bg]?.n||'')}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
+  ${list.length?`<div class="roster">${list.map(r=>`<div class="it"><div class="nm2"><b>${esc(r.name||'Sin nombre')}</b><span>${resumen(r)}${r.campana&&camps.find(c=>c.id===r.campana)?' · <span class="tg c">'+esc(camps.find(c=>c.id===r.campana).nombre)+'</span>':''}${yo&&!cloud[r.id]?' · <span class="muted">pendiente de subir</span>':''}</span></div><button class="btn small primary" data-act="load" data-k="${r.id}">Abrir</button><button class="btn small" data-act="del" data-k="${r.id}">${delArm===r.id?'¿Borrar?':'Borrar'}</button></div>`).join('')}</div>`
   :`<p class="muted">Aún no tienes personajes. Pulsa “Crear personaje nuevo” para empezar, o importa uno desde Exportar.</p>`}</div>`;
 }
 function render(){
-  const home=step==='inicio'||!ch;
-  $('.stepbar').hidden=home;$('.nameb').style.visibility=home?'hidden':'visible';
-  if(home){step='inicio';stInicio($('#stage'));$('#mini').hidden=true;$('.layout').classList.add('wide');renderPanel();return}
+  const home=step==='inicio'||step==='campana'||!ch;
+  $('.stepbar').hidden=home;$('.nameb').style.display=home?'none':'';
+  if(home){if(step==='campana'&&yo&&campId)stCampana($('#stage'));else{step='inicio';stInicio($('#stage'))}$('#mini').hidden=true;$('.layout').classList.add('wide');renderPanel();pintarEstado();return}
+  {const rg=reglasAct();if(rg&&Array.isArray(rg.metodos)&&rg.metodos.length&&!rg.metodos.includes(ch.method))ch.method=rg.metodos[0]}
   R.normalize(ch);const S=R.sheet(ch);
   $('#f-name').value!==ch.name&&document.activeElement!==$('#f-name')&&($('#f-name').value=ch.name);
   $('#steps').innerHTML=STEPS.map(([k,n],i)=>`<button class="stp" data-act="step" data-k="${k}" aria-current="${step===k?'step':'false'}"><span class="si">${i+1}</span>${n}</button>`).join('');
   const el=$('#stage');
   ({clase:stClase,trasfondo:stTrasfondo,especie:stEspecie,caract:stCaract,habil:stHabil,dotes:stDotes,equipo:stEquipo,conjuros:stConjuros,ficha:stFicha})[step](el,S);
+  const cb=campBar();if(cb)el.insertAdjacentHTML('afterbegin',cb);
   $('#mini').hidden=step==='ficha';if(step!=='ficha')renderMini(S);
   $('.layout').classList.toggle('wide',step==='ficha'||step==='conjuros');
   renderPanel();
@@ -170,7 +268,7 @@ function stCaract(el,S){
   const spent=R.ABS.reduce((s,[k])=>s+R.PBC[ch.pb[k]],0);
   const tot3=t=>t[0]+t[1]+t[2];
   let h=`<div class="panel">${head(4,'Características','Las mejoras del trasfondo y las dotes se suman solas')}
-  <div class="row-c"><div class="seg" role="group" aria-label="Método">${[['array','Conjunto estándar'],['pb','Compra de puntos'],['roll','Tirar dados'],['man','Manual']].map(([k,l])=>`<button data-act="method" data-k="${k}" aria-pressed="${ch.method===k}">${l}</button>`).join('')}</div>
+  <div class="row-c"><div class="seg" role="group" aria-label="Método">${METODOS.filter(([k])=>{const rg=reglasAct();return !rg||!Array.isArray(rg.metodos)||!rg.metodos.length||rg.metodos.includes(k)}).map(([k,l])=>`<button data-act="method" data-k="${k}" aria-pressed="${ch.method===k}">${l}</button>`).join('')}</div>
   ${ch.method==='array'?`<button class="btn small" data-act="suggest">Ordenar para ${c.n.toLowerCase()}</button>`:''}
   ${ch.method==='pb'?`<span class="muted">Puntos gastados <b class="ink">${spent} / 27</b></span>`:''}</div>`;
   if(ch.method==='roll'){
@@ -279,7 +377,8 @@ function stFicha(el,S){
   <div class="sec"><h3>Dotes</h3><div class="feats">${S.feats.map(f=>{const d=D.origen.dotes[f.id];return `<div class="feat"><b>${esc(d.n)}</b> <span class="tg s">${esc(f.src)}</span><br>${esc(d.d)}</div>`}).join('')}</div></div>
   <div class="sec"><h3>Equipo</h3><p>${S.g.inv.items.map(it=>(it.q>1?it.q+' × ':'')+esc(it.n)).join(', ')}. <b>${S.g.inv.po} po.</b></p></div>
   <div class="sec"><h3>Notas</h3><textarea id="f-notes" data-t="notes" rows="4" placeholder="Historia, rasgos de personalidad, aliados…">${esc(ch.notes)}</textarea>
-  <div class="row"><div class="fld"><label for="f-player">Jugador</label><input type="text" id="f-player" data-t="player" maxlength="40" value="${esc(ch.player)}"></div></div></div>
+  <div class="row"><div class="fld"><label for="f-player">Jugador</label><input type="text" id="f-player" data-t="player" maxlength="40" value="${esc(ch.player)}"></div>
+  ${yo&&!ajeno(ch)?`<div class="fld"><label for="f-campana">Campaña</label>${sel('f-campana',[['','Ninguna'],...camps.map(c=>[c.id,c.nombre])],ch.campana||'','data-f="campana"')}</div>`:''}</div></div>
   </div></article>`;
   pintarLog();
 }
@@ -328,7 +427,7 @@ function copy(t,ok){
 }
 function importJSON(txt){
   let o;try{o=JSON.parse(txt)}catch(e){toast('El texto no es un JSON válido');return}
-  if(Array.isArray(o)){const ok=o.filter(x=>x&&D.clases[x.cls]&&D.origen.especies[x.species]&&D.origen.trasfondos[x.bg]);if(!ok.length){toast('Ese JSON no contiene personajes válidos');return}ok.forEach(x=>{const c=Object.assign(blank(),x);const i=roster.findIndex(r=>r.id===c.id);if(i>=0)roster[i]=c;else roster.push(c)});lsSet('forja-personajes',roster);panel=null;step='inicio';render();toast(ok.length+' personajes importados');return}
+  if(Array.isArray(o)){const ok=o.filter(x=>x&&D.clases[x.cls]&&D.origen.especies[x.species]&&D.origen.trasfondos[x.bg]);if(!ok.length){toast('Ese JSON no contiene personajes válidos');return}ok.forEach(x=>{const c=Object.assign(blank(),x);const i=roster.findIndex(r=>r.id===c.id);if(i>=0)roster[i]=c;else roster.push(c)});lsSet(RK(),roster);panel=null;step='inicio';render();toast(ok.length+' personajes importados');return}
   if(!o||!D.clases[o.cls]||!D.origen.especies[o.species]||!D.origen.trasfondos[o.bg]){toast('Ese JSON no es un personaje de Forja de Héroes');return}
   ch=Object.assign(blank(),o);if(roster.some(r=>r.id===ch.id))ch.id=uid();
   panel=null;step='ficha';render();toast('Importado: '+(ch.name||'Sin nombre'));
@@ -375,8 +474,32 @@ document.addEventListener('click',e=>{
     case 'new':ch=blank();suggestArr(ch);step='clase';toast('Personaje nuevo');break;
     case 'home':step='inicio';panel=null;window.scrollTo({top:0});break;
     case 'panel':panel=k||null;break;
-    case 'load':{const r=roster.find(x=>x.id===k);if(r){ch=Object.assign(blank(),JSON.parse(JSON.stringify(r)));panel=null;step='ficha';toast('Abierto: '+(ch.name||'Sin nombre'))}break}
-    case 'del':if(delArm===k){roster=roster.filter(r=>r.id!==k);lsSet('forja-personajes',roster);if(ch&&ch.id===k)ch=null;delArm=null;toast('Borrado')}else delArm=k;break;
+    case 'login':nt(()=>Nube.entrar());return;
+    case 'logout':nt(()=>Nube.salir(),'Sesión cerrada');return;
+    case 'subir':(async()=>{const solo=anonimos();let n=0;const hechos=new Set();for(const r0 of solo){const r=Object.assign(blank(),r0,{campana:null});if(await nt(()=>Nube.guardar(r,false))){cloud[r.id]={dueno:yo.id,campana:null};roster.push(r);hechos.add(r.id);n++}}lsSet(RK(),roster);lsSet('forja-personajes',(lsGet('forja-personajes')||[]).filter(r=>!hechos.has(r.id)));toast(n+' personaje(s) pasados a tu cuenta');render()})();return;
+    case 'cjoin':(async()=>{const cod=lsGet('forja-unirse');const id=await nt(()=>Nube.unirse(cod));try{localStorage.removeItem('forja-unirse')}catch(e){}invit=null;if(id){camps=(await nt(()=>Nube.campanas()))||camps;campId=id;camp=null;ctab='personajes';step='campana';toast('¡Te has unido a la campaña!')}render()})();return;
+    case 'cnojoin':try{localStorage.removeItem('forja-unirse')}catch(e){}invit=null;break;
+    case 'ccrear':{const n=($('#c-nueva').value||'').trim();if(!n){toast('Ponle un nombre a la campaña');$('#c-nueva').focus();return}(async()=>{const c=await nt(()=>Nube.crearCampana(n),'Campaña creada');if(c){camps.unshift(c);campId=c.id;camp=null;ctab='personajes';step='campana';render()}})();return}
+    case 'cunir':{let v=($('#c-codigo').value||'').trim();const m=v.match(/[?&]unirse=([^&#]+)/);if(m)v=decodeURIComponent(m[1]);if(!v){toast('Pega el código o el enlace');return}lsSet('forja-unirse',v);(async()=>{invit=await nt(()=>Nube.verInvitacion(v));if(!invit){toast('Código no válido');try{localStorage.removeItem('forja-unirse')}catch(e){}}render()})();return}
+    case 'copen-c':campId=k;camp=null;ctab='personajes';notaEd=null;armC=null;step='campana';ch=null;panel=null;window.scrollTo({top:0});break;
+    case 'crefresh':camp=null;break;
+    case 'ctab':ctab=k;notaEd=null;armC=null;break;
+    case 'ccopy':copy(invUrl(camp),'Enlace copiado: envíaselo a tus jugadores');return;
+    case 'ccodigo':(async()=>{const nc=await nt(()=>Nube.nuevoCodigo(camp.id),'Nuevo enlace creado; el anterior ya no funciona');if(nc){camp.codigo=nc;render()}})();return;
+    case 'cnew':{const rg=camp.reglas||{};ch=blank();ch.campana=camp.id;ch.player=yo.nombre;if(rg.nivelInicial)ch.lvl=+rg.nivelInicial;if(Array.isArray(rg.metodos)&&rg.metodos.length)ch.method=rg.metodos[0];suggestArr(ch);step='clase';toast('Personaje nuevo para '+camp.nombre);break}
+    case 'cadd':{const r=roster.find(x=>x.id===$('#c-add').value);if(!r)return;r.campana=camp.id;lsSet(RK(),roster);(async()=>{if(await nt(()=>Nube.guardar(r,!!cloud[r.id]),'Añadido a la campaña')){cloud[r.id]={dueno:yo.id,campana:camp.id};camp=null;render()}})();return}
+    case 'cquitar':{const r=roster.find(x=>x.id===k);if(!r)return;r.campana=null;lsSet(RK(),roster);(async()=>{if(await nt(()=>Nube.guardar(r,true),'Personaje sacado de la campaña')){cloud[r.id].campana=null;render()}})();return}
+    case 'cver':{const p=camp.personajes.find(x=>x.id===k);if(!p)return;ch=Object.assign(blank(),JSON.parse(JSON.stringify(p.datos)),{campana:p.campana});cloud[p.id]={dueno:p.dueno,campana:p.campana};step='ficha';window.scrollTo({top:0});toast('Ficha de '+nomJ(p.dueno));break}
+    case 'cnota':notaEd={titulo:'',texto:'',visible_para:[]};armC=null;break;
+    case 'cnotaed':{const n=camp.notas.find(x=>x.id===k);notaEd=JSON.parse(JSON.stringify(n));armC=null;break}
+    case 'cnotacancel':notaEd=null;break;
+    case 'cnotasave':{const n=Object.assign({},notaEd,{campana:camp.id,titulo:$('#n-tit').value.trim(),texto:$('#n-txt').value,visible_para:[...document.querySelectorAll('.n-vis:checked')].map(x=>x.value)});(async()=>{const id=await nt(()=>Nube.guardarNota(n),'Nota guardada');if(id){notaEd=null;camp=null;render()}})();return}
+    case 'cnotadel':if(armC!=='nota'){armC='nota';break}(async()=>{await nt(()=>Nube.borrarNota(notaEd.id),'Nota borrada');notaEd=null;armC=null;camp=null;render()})();return;
+    case 'cexpulsar':if(armC!==k){armC=k;break}(async()=>{await nt(()=>Nube.quitarMiembro(camp.id,k),'Jugador expulsado');armC=null;camp=null;render()})();return;
+    case 'csalir':if(armC!=='salir'){armC='salir';break}(async()=>{await nt(()=>Nube.quitarMiembro(camp.id,yo.id),'Has salido de la campaña');roster.forEach(r=>{if(r.campana===camp.id)r.campana=null});lsSet(RK(),roster);camps=camps.filter(c=>c.id!==camp.id);armC=null;camp=null;campId=null;step='inicio';render()})();return;
+    case 'cborrar':if(armC!=='borrar'){armC='borrar';break}(async()=>{await nt(()=>Nube.borrarCampana(camp.id),'Campaña borrada');roster.forEach(r=>{if(r.campana===camp.id)r.campana=null});lsSet(RK(),roster);camps=camps.filter(c=>c.id!==camp.id);armC=null;camp=null;campId=null;step='inicio';render()})();return;
+    case 'load':{const r=roster.find(x=>x.id===k)||(camp&&camp.personajes.find(x=>x.id===k)||{}).datos;if(r){ch=Object.assign(blank(),JSON.parse(JSON.stringify(r)));panel=null;step='ficha';toast('Abierto: '+(ch.name||'Sin nombre'))}break}
+    case 'del':if(delArm===k){if(yo&&cloud[k]&&cloud[k].dueno===yo.id){nt(()=>Nube.borrar(k));delete cloud[k]}roster=roster.filter(r=>r.id!==k);lsSet(RK(),roster);if(ch&&ch.id===k)ch=null;delArm=null;toast('Borrado')}else delArm=k;break;
     case 'dljson':if(!ch)return;descargar(fname(ch.name)+'.json',JSON.stringify(ch,null,1));return;
     case 'dltext':if(!ch)return;descargar(fname(ch.name)+'.txt',sheetText());return;
     case 'dlall':descargar('forja-personajes.json',JSON.stringify(roster,null,1));return;
@@ -391,6 +514,12 @@ document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.tar
 document.addEventListener('change',e=>{
   const el=e.target;
   if(el.id==='impfile'&&el.files&&el.files[0]){const fr=new FileReader();fr.onload=()=>importJSON(String(fr.result));fr.readAsText(el.files[0]);return}
+  const cf=el.dataset.cf;
+  if(cf&&camp){const rg=Object.assign({},camp.reglas||{});let cambios;
+    if(cf==='nombre'){const n=el.value.trim();if(!n)return;cambios={nombre:n}}
+    else if(cf==='nivelInicial'){rg.nivelInicial=+el.value;cambios={reglas:rg}}
+    else if(cf==='libro'||cf==='metodo'){const key=cf==='libro'?'libros':'metodos',all=cf==='libro'?BOOKS.map(b=>b[0]):METODOS.map(m=>m[0]);const cur=new Set(Array.isArray(rg[key])&&rg[key].length?rg[key]:all);el.checked?cur.add(el.value):cur.delete(el.value);if(!cur.size){el.checked=true;toast('Tiene que quedar al menos una opción');return}rg[key]=cur.size===all.length?[]:[...cur];cambios={reglas:rg}}
+    (async()=>{if(await nt(()=>Nube.editarCampana(camp.id,cambios).then(()=>1),'Guardado')){Object.assign(camp,cambios);const c=camps.find(x=>x.id===camp.id);if(c)Object.assign(c,cambios);render()}})();return}
   const f=el.dataset.f;if(!f)return;
   if(f==='arr'){const k=el.dataset.k,v=+el.value,old=ch.arr[k];const o=Object.keys(ch.arr).find(x=>x!==k&&ch.arr[x]===v);if(o)ch.arr[o]=old;ch.arr[k]=v}
   else if(f==='rasg'){const r=ch.roll,k=el.dataset.k,v=+el.value,old=r.asg[k];const o=Object.keys(r.asg).find(x=>x!==k&&+r.asg[x]===v);if(o)r.asg[o]=old;r.asg[k]=v}
@@ -401,6 +530,7 @@ document.addEventListener('change',e=>{
   else if(f==='shield')ch.shield=el.checked;
   else if(f==='lvl')ch.lvl=+el.value;
   else if(f==='cls'){}
+  else if(f==='campana')ch.campana=el.value||null;
   else ch[f]=el.value;
   render();
 });
@@ -417,9 +547,17 @@ async function iniciar(){
   roster=lsGet('forja-personajes')||[];
   // Recupera un borrador de versiones anteriores si no estaba guardado (salvo el personaje de ejemplo)
   const draft=lsGet('forja-borrador');
-  if(draft&&D.clases[draft.cls]&&!/Personaje de ejemplo/.test(draft.notes||'')&&!roster.some(r=>r.id===draft.id)){roster.unshift(Object.assign(blank(),draft));lsSet('forja-personajes',roster)}
+  if(draft&&D.clases[draft.cls]&&!/Personaje de ejemplo/.test(draft.notes||'')&&!roster.some(r=>r.id===draft.id)){roster.unshift(Object.assign(blank(),draft));lsSet(RK(),roster)}
   try{localStorage.removeItem('forja-borrador')}catch(e){}
   ch=null;step='inicio';
+  const q=new URLSearchParams(location.search);if(q.get('unirse')){lsSet('forja-unirse',q.get('unirse'));history.replaceState(null,'',location.pathname)}
+  if(NUBE){
+    const hb=document.querySelector('.acts [data-act="home"]');if(hb)hb.textContent='Personajes y campañas';
+    addEventListener('pagehide',()=>{if(nubeEstado==='pend'&&ch&&yo){clearTimeout(nubeT);Nube.guardar(JSON.parse(JSON.stringify(ch)),!!cloud[ch.id])}});
+    try{yo=await Nube.init()}catch(e){nubeErr=e.message}
+    Nube.alCambiar(async u=>{yo=u;ch=null;step='inicio';roster=lsGet(RK())||[];if(!u){cloud={};camps=[];camp=null;campId=null;invit=null}else await sincronizar();render()});
+    if(yo){roster=lsGet(RK())||[];await sincronizar()}
+  }
   render();
 }
 iniciar().catch(err=>{console.error(err);$('#stage').innerHTML=`<div class="panel"><p class="bad">No se pudieron cargar los datos (${esc(err.message)}). Si abres la página desde tu ordenador, sírvela con un servidor local en vez de abrir el archivo directamente.</p></div>`});

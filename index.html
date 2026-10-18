@@ -319,6 +319,27 @@ button.ab-card:hover,.roll:hover{border-color:var(--gold)}
 #dicepop.nat{border-color:#7fd17f}#dicepop.nat .dv{color:var(--gold-bright)}
 #dicepop.pif{border-color:#e07070}
 @media (prefers-reduced-motion:reduce){#dicepop{transition:none}}
+
+/* Cuenta y campañas */
+.lnk{background:none;border:0;padding:0;color:var(--wine);text-decoration:underline;cursor:pointer;font:inherit}
+.av{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--parch);border:1px solid var(--line);font-size:.75rem;font-weight:700;vertical-align:middle;object-fit:cover;flex:none}
+.hint .av{width:20px;height:20px}
+.cuenta .row-c,.camp .row-c{flex-wrap:wrap}
+.camp .row-c input[type=text],.panel input#c-nueva,.panel input#c-codigo{flex:1 1 220px;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.invite input{font-size:.8rem}
+.inv{border-color:var(--gold);background:var(--parch)}
+.jug{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.jug .jh{display:flex;align-items:center;gap:8px}
+.jug .it,.roster .it .nm2{display:flex;gap:8px;align-items:center}
+.jug .it{justify-content:space-between;border-top:1px solid var(--line);padding-top:6px}
+.roster .it .nm2{flex:1;min-width:0;flex-wrap:wrap}
+.nota{border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.nota .nh{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.nota .nh b{flex:1}
+.camp .fld input[type=text]{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.nota.edit textarea,.nota.edit input{width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit}
+.cbar{background:var(--parch);border:1px solid var(--gold);border-radius:8px;padding:8px 12px;font-size:.88rem;margin-bottom:12px}
+.nubeest{font-size:.78rem;margin-left:6px}.nubeest.ok{color:var(--gold)}.nubeest.err{color:var(--bad)}
+.bad-b{color:var(--bad);border-color:var(--bad)}
 </style>
 </head>
 <body>
@@ -340,12 +361,14 @@ button.ab-card:hover,.roll:hover{border-color:var(--gold)}
     <div id="stage"><div class="panel"><p class="muted">Cargando tus personajes…</p></div></div>
     <aside id="mini" aria-live="polite"></aside>
   </div>
-  <p class="foot">Herramienta no oficial basada en las reglas de Dungeons &amp; Dragons 2024. Los rasgos son resúmenes propios; consulta el manual para el texto completo. Fichas de conjuros de tu Compendio de Conjuros más 68 redactadas a partir de <a href="https://www.aidedd.org/spell/es/" target="_blank" rel="noopener">AideDD</a> y <a href="https://dnd2024.wikidot.com/" target="_blank" rel="noopener">la wiki de D&amp;D 2024</a>. El contenido de otros libros indica su origen. Los personajes se guardan solos en este navegador; usa Exportar para tener una copia.</p>
+  <p class="foot">Herramienta no oficial basada en las reglas de Dungeons &amp; Dragons 2024. Los rasgos son resúmenes propios; consulta el manual para el texto completo. Fichas de conjuros de tu Compendio de Conjuros más 68 redactadas a partir de <a href="https://www.aidedd.org/spell/es/" target="_blank" rel="noopener">AideDD</a> y <a href="https://dnd2024.wikidot.com/" target="_blank" rel="noopener">la wiki de D&amp;D 2024</a>. El contenido de otros libros indica su origen. Sin cuenta, los personajes se guardan solos en este navegador; usa Exportar para tener una copia.</p>
 </div></main>
 <div class="toast" id="toast" role="status"></div>
-<script>window.FORJA_V="20261018-2";</script>
-<script src="js/reglas.js?v=20261018-2"></script>
-<script src="js/conjuros.js?v=20261018-2"></script>
-<script src="js/app.js?v=20261018-2"></script>
+<script>window.FORJA_V="20261018-3";</script>
+<script src="js/config.js?v=20261018-3"></script>
+<script src="js/nube.js?v=20261018-3"></script>
+<script src="js/reglas.js?v=20261018-3"></script>
+<script src="js/conjuros.js?v=20261018-3"></script>
+<script src="js/app.js?v=20261018-3"></script>
 </body>
 </html>
